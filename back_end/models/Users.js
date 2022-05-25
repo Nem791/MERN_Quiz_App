@@ -20,12 +20,9 @@ const UserSchema = new Schema({
         required: true,
         default: 'https://construct-static.com/images/v1007/r/uploads/tutorial/0/images/17449/windows-8-user-account_v650.jpg'
     },
-    profile_img: {
-        type: Date,
-        required: true
-    },
     nickname: {
-        type: String
+        type: String,
+        unique: true
     }
 
 });
