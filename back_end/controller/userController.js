@@ -38,14 +38,15 @@ const registerUser = async (req, res) => {
     // validate info of user
     const { error } = registerValidation(req.body);
     if (error) {
-        return res.status(400).send(error.details[0].message);
+        // return res.status(400).send(error.details[0].message);
+        return res.status(400).json({ error: error.details[0].message });
     }
 
     // Check email exists in db
     const emailExist = await User.findOne({ email: req.body.email });
     console.log('emailExits', emailExist);
     if (emailExist) {
-        return res.status(400).send('Email exists in database. Please register with other email');
+        return res.status(400).json({ error: 'Email exists in database. Please register with other email' });
     }
 
     // Hash password
@@ -65,9 +66,9 @@ const registerUser = async (req, res) => {
             return savedDoc;
         });;
         console.log(user);
-        res.redirect('/auth/login');
+        // res.redirect('/auth/login');
     } catch (error) {
-        res.status(400).send(error);
+        res.status(400).json(error);
     };
 }
 
@@ -78,8 +79,8 @@ const loginUser = async (req, res, next) => {
     const { error } = loginValidation(req.body);
     if (error) {
         sessData.error = `${error.details[0].message}`;
-        // return res.status(400).send(error.details[0].message);
-        return res.redirect('back');
+        return res.status(400).json({ error: error.details[0].message });
+        // return res.redirect('back');
     }
 
     // 2. Check email exists in db 
@@ -88,14 +89,16 @@ const loginUser = async (req, res, next) => {
     if (!userLogin) {
         // return res.status(400).send('Email not exists in database');
         sessData.error = `Email not exists in database`;
-        return res.redirect('back');
+        return res.status(400).json({ error: `Email not exists in database` });
+        // return res.redirect('back');
     }
 
     // 3. Check password 
     const checkPassword = await bcrypt.compare(req.body.password, userLogin.password);
     if (!checkPassword) {
         sessData.error = `Password invalid`;
-        return res.redirect('back');
+        return res.status(400).json({ error: `Password invalid` });
+        // return res.redirect('back');
         // return res.status(400).send();
     }
 
@@ -143,7 +146,7 @@ const userProfile = async (req, res) => {
     // return res.render("profile", {
     //     username, user
     // });
-    return res.json(users);
+    return res.json(user);
 };
 
 module.exports = {

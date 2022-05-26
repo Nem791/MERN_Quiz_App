@@ -15,6 +15,7 @@ const connection = mongoose.connect(db, {
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users'); 
+var quizzesRouter = require('./routes/quiz'); 
 
 var app = express();
 
@@ -40,5 +41,6 @@ app.use(fileUpload());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/quizzes', quizzesRouter);
 
 module.exports = app;

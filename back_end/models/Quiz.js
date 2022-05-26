@@ -14,29 +14,24 @@ const QuizSchema = new Schema({
         type: String,
         required: true
     },
-    user: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
-    },
     answer: {
         type: String,
         required: true
     },
     set: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: 'QuizSet'
     },
     date_created: {
         type: Date,
         default: Date.now(),
         required: true
     },
-    tags: {
-        type: Array,
+    timer: {
+        type: Number,
         required: true
     }
 });
 
-const Quiz = mongoose.model('BlogPost', QuizSchema);
+const Quiz = mongoose.model('Quiz', QuizSchema);
 module.exports = Quiz;
