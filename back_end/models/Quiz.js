@@ -11,11 +11,11 @@ const QuizSchema = new Schema({
         required: true
     },
     options: {
-        type: String,
+        type: Array,
         required: true
     },
     answer: {
-        type: String,
+        type: Array,
         required: true
     },
     set: {

@@ -61,11 +61,13 @@ const registerUser = async (req, res) => {
     console.log(newUser);
 
     try {
+        console.log('gg');
         const user = await newUser.save().then(savedDoc => {
-            console.log(savedDoc);
+            // console.log(savedDoc);
             return savedDoc;
         });;
-        console.log(user);
+        // console.log(user);
+        return res.json(user);
         // res.redirect('/auth/login');
     } catch (error) {
         res.status(400).json(error);
@@ -116,7 +118,8 @@ const loginUser = async (req, res, next) => {
 
     // res.render('index');
     sessData.auth_token = token;
-    res.redirect('/');
+    // res.redirect('/');
+    res.json({token : token})
     // res.status(204).send();
 }
 

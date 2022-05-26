@@ -6,7 +6,6 @@ const QuizSet = require('../models/QuizSet');
 const getQuizzes = async (req, res) => {
 
     try {
-
         // Find and populate
         const quizzes = await QuizSet.find({});
         // Join User vs QuizSet 
@@ -52,7 +51,7 @@ const getPostById = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.json({error});
+        res.json({ error });
     }
 
 };
@@ -62,20 +61,67 @@ const newPost = (req, res) => {
     res.render('create', { username: username });
 };
 
-const savePost = (req, res) => {
+const saveQuiz = async (req, res) => {
+    let username = (req.user !== undefined) ? req.user : undefined;
     // Luu DataTransferItemList, content, image to database 
     console.log('req.body-', req.body);
     console.log('req.user-', req.user);
-    let image = req.files.image;
-    image.mv(path.join(__dirname, '..', '/public/upload/', image.name), function (error) {
-        QuizSet.create({
-            ...req.body,
-            quiz_img: '/upload/' + image.name,
+    // let image = req.files.image;
+
+    const { quizzes, ...setData } = req.body;
+
+    // let set;
+
+    // await image.mv(path.join(__dirname, '..', '/public/upload/', image.name), function (error) {
+    //     set = QuizSet.create({
+    //         ...setData,
+    //         quiz_img: '/upload/' + image.name,
+    //         user: mongoose.Types.ObjectId(req.user._id)
+    //     }, function (err) {
+    //         // res.redirect('/');
+    //         console.log(err);
+    //         return res.json(err)
+    //     })
+    // });
+
+
+    let set;
+    try {
+
+        let quizIdArray = [];
+        for (let index = 0; index < req.body.quizzes.length; index++) {
+            const element = req.body.quizzes[index];
+            element._id = new mongoose.Types.ObjectId();
+            quizIdArray.push(element._id);
+        }
+
+        set = await QuizSet.create({
+            ...setData,
+            quizzes: quizIdArray,
+            // _id: new mongoose.Types.ObjectId(),
+            quiz_img: "https://redzonekickboxing.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
             user: mongoose.Types.ObjectId(req.user._id)
-        }, function (err) {
-            res.redirect('/');
         })
-    });
+
+        // let newArray = req.body.quizzes.map(obj => ({ ...obj, set: set._id }));
+        // console.log(newArray);
+
+        // Gan ID cua Set cho tung Quiz 
+        for (let index = 0; index < req.body.quizzes.length; index++) {
+            const element = req.body.quizzes[index];
+            element.set = set._id;
+        }
+
+        const quiz = await Quiz.create(req.body.quizzes);
+        console.log("quiz: ", quiz);
+    } catch (error) {
+        console.log(error);
+        return res.json(error);
+    }
+
+
+    return res.json(set._id);
+    // const quizList = await Quiz.create()
 };
 
 const recommendArticle = (req, res) => {
@@ -85,7 +131,7 @@ const recommendArticle = (req, res) => {
 module.exports = {
     getQuizzes,
     newPost,
-    savePost,
+    saveQuiz,
     test,
     getPostById
 }
