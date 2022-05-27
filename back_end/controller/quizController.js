@@ -22,21 +22,77 @@ const getQuizzes = async (req, res) => {
     }
 };
 
-const test = async (req, res) => {
+const getQuizzesForHomePage = async (req, res) => {
     try {
+
+        // Lay tat ca tags cho vao 1 Array 
+        // boundaries trong $bucket can phai duoc sort 
+        const set = await QuizSet.distinct('tags').sort();
+
+        // push them zz(gia tri lon nhat cua chuoi~) de gia tri 
+        // cuoi cung khong bi vao truong hop default 
+        set.push('zz');
+
+        console.log(set);
+
         // Find and populate
-        const quizzes = await QuizSet.aggregate().unwind('tags');
-        // Join User vs QuizSet (bo field password & _id)
-        // await QuizSet.populate(quizzes, { path: "user", select: '-password -_id' });
+        const quizzes = await QuizSet.aggregate([
+            { $unwind: "$tags" },
+            {
+                $bucket: {
+                    groupBy: "$tags",                  // Field to group by
+                    boundaries: set,                              // Boundaries for the buckets
+                    default: "zzzz_Other_Untagged_QuizSet",        // Bucket id for documents which do not fall into a bucket
+                    output: {                                     // Output for each bucket
+                        "quizzes":
+                        {
+                            $push: {
+                                "title": "$title",
+                                "type": "$type",
+                                "quiz_img": "$quiz_img",
+                                "user": "$user",
+                                "completions": "$completions",
+                                "tags": "$tags"
+                            }
+                        }
+                    }
+                }
+            }
+        ]);
 
-        // console.log(toSlug(quizzes[1].title) + "-" + quizzes[1]._id);
-
-        console.log('lol');
         return res.json(quizzes);
     } catch (error) {
         console.log(error);
         return res.json({ error: String(error) });
     }
+};
+
+const test = async (req, res) => {
+    try {
+        console.log(req.params.id);
+
+        return res.json(req.query.color);
+
+    } catch (error) {
+        console.log(error);
+        res.json({ error });
+    }
+};
+
+// Lay post theo ID 
+const getQuizSetByTag = async (req, res) => {
+    let username = (req.user !== undefined) ? req.user : undefined;
+
+    try {
+        console.log(req.params.id);
+
+        return res.json(quiz);
+
+    } catch (error) {
+        console.log(error);
+        res.json({ error });
+    }
+
 };
 
 // Lay post theo ID 
@@ -53,7 +109,7 @@ const getQuizSetById = async (req, res) => {
         const quiz = await QuizSet.findById(slug);
         console.log('quiz: ', quiz);
 
-        // Join User vs BlogPost 
+        // Join User vs QuizSet
         await QuizSet.populate(quiz, { path: "user quizzes", select: '-password -_id' });
 
         return res.json(quiz);
@@ -144,5 +200,6 @@ module.exports = {
     newPost,
     saveQuiz,
     getQuizSetById,
+    getQuizzesForHomePage,
     test
 }
