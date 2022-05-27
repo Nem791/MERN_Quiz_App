@@ -1,0 +1,60 @@
+{
+    "title": "Mạng máy tính",
+    "type": "questions",
+    "quizzes": [
+        {
+            "question": "LAN là viết tắt từ gì?",
+            "type": "multiple_choice",
+            "options": ["Local Area Network", "Location Area Network", "Locale Area Network", "Local Area Netword"],
+            "answer": ["Local Area Network"],
+            "timer": "5000"
+        },
+        {
+            "question": "Đâu không phải là đặc điểm mạng LAN",
+            "type": "multiple_choice",
+            "options": [
+                "Phạm vi trên vài Km",
+                "Tốc độ truyền ~ 100Mb/s",
+                "Độ tin cậy cao",
+                "Quyền sở hữu: Riêng tư"
+            ],
+            "answer": [
+                "Phạm vi trên vài Km"
+            ],
+            "timer": "8000"
+        },
+        {
+            "question": "Tốc độ truyền của mạng LAN lớn hơn mạng WAN",
+            "type": "multiple_choice",
+            "options": [
+                "Đúng",
+                "Sai"
+            ],
+            "answer": [
+                "Đúng"
+            ],
+            "timer": "15000"
+        },
+        {
+            "question": "256Kb/s là tốc độ của mạng nào?",
+            "type": "multiple_choice_answers",
+            "options": [
+                "LAN_1",
+                "WAN",
+                "LAN_2"
+            ],
+            "answer": [
+                "LAN_1", "LAN_2"
+            ],
+            "timer": "19000"
+        }
+    ],
+    "quiz_img": "https://redzonekickboxing.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+    "user": {
+        "$oid": "628d04eefc13ae295a00005a"
+    },
+    "tags": [
+        "Computers",
+        "English"
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "title": "Gender Equality",
+    "type": "questions",
+    "quizzes": [
+        {
+            "question": "How do the roles of men and women differ in your family?",
+            "type": "multiple_choice",
+            "options": ["Most men are very bossy and arrogant.", "Men are breadwinners and women are caregivers.", "Women are changing their roles.", "Most of men don’t want to stay at home."],
+            "answer": ["Men are breadwinners and women are caregivers."],
+            "timer": "25000"
+        },
+        {
+            "question": "Gender discrimination must be __________ in order to create a better society",
+            "type": "fill_blank_1",
+            "options": [
+                "eliminated"
+            ],
+            "answer": [
+                "eliminated"
+            ],
+            "timer": "18000"
+        },
+        {
+            "question": "Here is a picture of an activist calling for men to push women's rights further",
+            "type": "fill_blank_2",
+            "options": [],
+            "answer": [],
+            "timer": "15000"
+        },
+        {
+            "question": "In order to be successful, we should never ________ hope",
+            "type": "fill_blank_1",
+            "options": [],
+            "answer": [
+                "give up",
+                "abandon"
+            ],
+            "timer": "19000"
+        }
+    ],
+    "quiz_img": "https://redzonekickboxing.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+    "user": {
+        "$oid": "628d04eefc13ae295a00005a"
+    },
+    "tags": [
+        "Social Studies",
+        "English"
+    ]
+}

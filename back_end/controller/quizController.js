@@ -2,14 +2,18 @@ const { default: mongoose } = require('mongoose');
 var path = require('path');
 const Quiz = require('../models/Quiz');
 const QuizSet = require('../models/QuizSet');
+const toSlug = require('../utils/vietnamese-slug-converter');
 
 const getQuizzes = async (req, res) => {
 
     try {
         // Find and populate
         const quizzes = await QuizSet.find({});
-        // Join User vs QuizSet 
-        await QuizSet.populate(quizzes, { path: "user" });
+        // Join User vs QuizSet (bo field password & _id)
+        await QuizSet.populate(quizzes, { path: "user", select: '-password -_id' });
+
+        // console.log(toSlug(quizzes[1].title) + "-" + quizzes[1]._id);
+
         console.log('lol');
         return res.json(quizzes);
     } catch (error) {
@@ -19,35 +23,40 @@ const getQuizzes = async (req, res) => {
 };
 
 const test = async (req, res) => {
-    const pageSize = 6;
-    const page = Number(req.params.pageNumber) || 1;
-    const sortParams = req.query.sortBy === undefined ? 'title' : 'datePosted';
-    console.log('sortParams: ', sortParams);
+    try {
+        // Find and populate
+        const quizzes = await QuizSet.aggregate().unwind('tags');
+        // Join User vs QuizSet (bo field password & _id)
+        // await QuizSet.populate(quizzes, { path: "user", select: '-password -_id' });
 
-    const pages = await BlogPost.countDocuments();
-    let noOfPages = Math.ceil(pages / pageSize);
+        // console.log(toSlug(quizzes[1].title) + "-" + quizzes[1]._id);
 
-    const posts = await BlogPost.aggregate().sort(`${sortParams}`).skip(pageSize * (page - 1)).limit(pageSize);
-    return res.json(posts);
+        console.log('lol');
+        return res.json(quizzes);
+    } catch (error) {
+        console.log(error);
+        return res.json({ error: String(error) });
+    }
 };
 
 // Lay post theo ID 
-const getPostById = async (req, res) => {
+const getQuizSetById = async (req, res) => {
     let username = (req.user !== undefined) ? req.user : undefined;
 
     try {
         console.log(req.params.id);
         // get ID
         const slug = req.params.id.split('-').pop();
+        // mang-may-tinh-628f842398306d65e66cd0d9
 
         // Tim post theo ID 
-        const post = await BlogPost.findById(slug);
-        console.log('post: ', post);
+        const quiz = await QuizSet.findById(slug);
+        console.log('quiz: ', quiz);
 
         // Join User vs BlogPost 
-        await BlogPost.populate(post, { path: "user" });
+        await QuizSet.populate(quiz, { path: "user quizzes", select: '-password -_id' });
 
-        return res.render('landing-page', { username, post });
+        return res.json(quiz);
 
     } catch (error) {
         console.log(error);
@@ -67,7 +76,6 @@ const saveQuiz = async (req, res) => {
     console.log('req.body-', req.body);
     console.log('req.user-', req.user);
     // let image = req.files.image;
-
     const { quizzes, ...setData } = req.body;
 
     // let set;
@@ -88,6 +96,7 @@ const saveQuiz = async (req, res) => {
     let set;
     try {
 
+        // Set ObjectId cho tung` Quiz sau do luu vao 1 array 
         let quizIdArray = [];
         for (let index = 0; index < req.body.quizzes.length; index++) {
             const element = req.body.quizzes[index];
@@ -95,14 +104,15 @@ const saveQuiz = async (req, res) => {
             quizIdArray.push(element._id);
         }
 
+        // Tao QuizSet 
         set = await QuizSet.create({
             ...setData,
             quizzes: quizIdArray,
-            // _id: new mongoose.Types.ObjectId(),
             quiz_img: "https://redzonekickboxing.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
             user: mongoose.Types.ObjectId(req.user._id)
         })
 
+        // Cach 2 de set ID (tao array moi) 
         // let newArray = req.body.quizzes.map(obj => ({ ...obj, set: set._id }));
         // console.log(newArray);
 
@@ -112,6 +122,7 @@ const saveQuiz = async (req, res) => {
             element.set = set._id;
         }
 
+        // Tao so cau hoi cua QuizSet 
         const quiz = await Quiz.create(req.body.quizzes);
         console.log("quiz: ", quiz);
     } catch (error) {
@@ -132,6 +143,6 @@ module.exports = {
     getQuizzes,
     newPost,
     saveQuiz,
-    test,
-    getPostById
+    getQuizSetById,
+    test
 }

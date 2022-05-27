@@ -1,4 +1,4 @@
-function toSlug(str) {
+module.exports = function toSlug(str) {
     // Chuyển hết sang chữ thường
     str = str.toLowerCase();
 
@@ -25,5 +25,3 @@ function toSlug(str) {
     // return
     return str;
 }
-
-export {toSlug};
