@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { getColor } from "../../styledComponents/helpers";
 import { breakpoints } from "../../theme";
 
 export const StyledLandingPage = styled.div`
@@ -7,9 +6,6 @@ export const StyledLandingPage = styled.div`
   font-family: "Quicksand", sans-serif;
   .content {
     padding-top: 92px;
-    @media (min-width: ${breakpoints.sm}px) {
-      padding-top: 136px;
-    }
   }
 `;
 
@@ -41,7 +37,7 @@ export const LandingButton = styled.button`
   border-radius: 12px;
   padding: 12px 24px;
   ${landingBtnBg};
-  color: ${getColor("white")};
+  color: white;
   font-size: ${(pr) => pr.fs || "1.25rem"};
   &:hover {
     background-color: #381535;

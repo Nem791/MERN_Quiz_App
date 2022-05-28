@@ -4,31 +4,28 @@ import { BlockMath } from "react-katex";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
+import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import { getColor } from "./styledComponents/helpers";
 import { colors } from "./theme";
 
-const Home = () => {
-  return <div></div>;
-};
-
 const StyledApp = styled.div`
   min-height: 100vh;
-  background: ${getColor("appBg")};
-  p {
-    color: ${getColor("textColor")};
-  }
+  background: ${getColor("white2")};
 `;
 
 function App() {
   const mode = useSelector((state) => state.ui.mode);
-  const loggedIn = false;
+  const userName = useSelector((state) => state.user.name);
   return (
     <ThemeProvider theme={colors[mode]}>
       <StyledApp>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={loggedIn ? <Home /> : <LandingPage />} />
+            <Route
+              path="/"
+              element={userName ? <HomePage /> : <LandingPage />}
+            />
           </Routes>
         </BrowserRouter>
       </StyledApp>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { getColor } from "./helpers";
 
 export const Row = styled.div`
   display: flex;
@@ -19,10 +18,4 @@ export const Col = styled.div`
       `;
     }
   }}
-`;
-
-export const FormLayout = styled.div`
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  background-color: ${getColor("appBg")};
 `;

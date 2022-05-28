@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import { getColor } from "../../styledComponents/helpers";
 
 export const Layout = styled.div`
   --padding: 12px;
   --error-color: #be4b49;
+  --primary-color: #461a42;
   width: 432px;
   max-width: 95%;
   border-radius: 0.5rem;
-  background-color: ${getColor("white")};
-  color: ${getColor("main")};
+  background-color: white;
+  color: var(--primary-color);
   .top {
     position: relative;
     padding: 10px 16px;
@@ -19,7 +19,7 @@ export const Layout = styled.div`
       position: absolute;
       top: 10px;
       right: 10px;
-      color: ${getColor("main")};
+      color: var(--primary-color);
       opacity: 0.8;
       font-size: 1.5rem;
       &:hover {
@@ -74,8 +74,6 @@ export const Layout = styled.div`
     font-size: 1.25rem;
     pointer-events: none;
   }
-  /*  */
-  font-family: "Quicksand", Helvetica, Arial, sans-serif;
 `;
 
 export const StyledTextGroup = styled.div`
@@ -87,8 +85,8 @@ export const StyledTextGroup = styled.div`
       border-color: var(--error-color);
     }
     &:focus {
-      border: 1px solid ${getColor("main")};
-      box-shadow: 0 0 0 1px ${getColor("main")} inset;
+      border: 1px solid var(--primary-color);
+      box-shadow: 0 0 0 1px var(--primary-color) inset;
     }
   }
   input:focus + .error-text {

@@ -54,7 +54,7 @@ const StyledNavBar = styled.div`
   z-index: 1;
   background-color: white;
   &.scrolled {
-    background-color: ${getColor("appBg")};
+    background-color: "#EEEEEE";
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
   }
   img {
@@ -79,7 +79,7 @@ const StyledNavBar = styled.div`
       border-radius: 8px;
       padding: 6px 8px;
       font-size: 14px;
-      color: ${getColor("textColor")};
+      color: black;
       &:hover {
         background-color: rgba(255, 164, 2, 0.1);
       }

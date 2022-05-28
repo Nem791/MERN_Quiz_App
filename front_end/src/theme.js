@@ -1,11 +1,16 @@
 export const colors = {
   dark: {},
   light: {
-    appBg: "#EEE",
-    white: "#FFF",
-    textColor: "#000",
-    main: "#461A42",
-    mainHover: "#A06ECC",
+    black1: "#000000",
+    white1: "#FFFFFF",
+    white2: "#F2F2F2",
+    text1: "#222222",
+    text2: "#424242",
+    text3: "#6D6D6D",
+    primary: "#8854C0",
+    primaryText: "#FFFFFF",
+    primaryLight: "#EDE6F6",
+    primaryHover: "#A076CC",
     dividerLight: "#D4D4D4",
   },
 };

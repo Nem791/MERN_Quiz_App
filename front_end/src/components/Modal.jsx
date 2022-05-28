@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import cn from "classnames";
-import { getColor } from "../styledComponents/helpers";
 
 export default function Modal({ standard, contentClassName, close, children }) {
   useEffect(() => {
@@ -46,7 +45,7 @@ export const ModalContent = styled.div`
   width: 90vw;
   height: 90vh;
   border-radius: 0.625rem;
-  background-color: ${getColor("white")};
+  background-color: white;
   box-shadow: 0 0 3px white;
   @media (min-width: 440px) {
     width: 398.45px;

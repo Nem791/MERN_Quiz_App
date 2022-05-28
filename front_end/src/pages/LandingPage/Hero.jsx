@@ -3,7 +3,7 @@ import { FaChevronRight } from "react-icons/fa";
 import styled from "styled-components";
 import { breakpoints } from "../../theme";
 
-export default function Hero() {
+export default function Hero({ setModal }) {
   return (
     <StyledHero className="relative">
       <div className="layout">
@@ -17,11 +17,14 @@ export default function Hero() {
             learner.
           </h2>
           <div className="mt-4 flex-col">
-            <EmergedButton>
+            <EmergedButton onClick={() => setModal("signup")}>
               Sign up for free <FaChevronRight className="ml-3" />
             </EmergedButton>
             <p className="login">
-              Already have an account? <span>Login</span>
+              Already have an account?{" "}
+              <span className="pointer" onClick={() => setModal("signin")}>
+                Login
+              </span>
             </p>
           </div>
         </div>
@@ -87,7 +90,6 @@ export const StyledHero = styled.div`
   span {
     font-weight: 600;
     color: #381535;
-    cursor: pointer;
   }
   img {
     width: 100%;
