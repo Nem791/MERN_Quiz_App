@@ -16,7 +16,6 @@ export const EmergedButton = styled.button`
   align-items: center;
   padding: 12px 24px;
   border-radius: 12px;
-  border: none;
   ${landingBtnBg};
   color: white;
   font-size: 16px;
@@ -33,7 +32,6 @@ export const EmergedButton = styled.button`
 `;
 
 export const LandingButton = styled.button`
-  border: none;
   border-radius: 12px;
   padding: 12px 24px;
   ${landingBtnBg};

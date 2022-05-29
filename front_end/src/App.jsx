@@ -5,12 +5,13 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import HomePage from "./pages/HomePage";
+import Explore from "./pages/HomePage/Explore";
 import LandingPage from "./pages/LandingPage";
 import { getColor } from "./styledComponents/helpers";
 import { colors } from "./theme";
 
 const StyledApp = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   background: ${getColor("white2")};
 `;
 
@@ -22,10 +23,10 @@ function App() {
       <StyledApp>
         <BrowserRouter>
           <Routes>
-            <Route
-              path="/"
-              element={userName ? <HomePage /> : <LandingPage />}
-            />
+            <Route path="/" element={userName ? <HomePage /> : <LandingPage />}>
+              <Route index element={<Explore />} />
+              <Route path="private" element={<div>Hello</div>} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </StyledApp>

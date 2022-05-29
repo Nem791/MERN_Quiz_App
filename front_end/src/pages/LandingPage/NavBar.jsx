@@ -3,7 +3,7 @@ import { FaBars, FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { getColor } from "../../styledComponents/helpers";
-import { breakpoints } from "../../theme";
+import { boxShadows, breakpoints } from "../../theme";
 import { LandingButton } from "./styles";
 
 export default function NavBar({ scrolled, setModal }) {
@@ -55,7 +55,7 @@ const StyledNavBar = styled.div`
   background-color: white;
   &.scrolled {
     background-color: "#EEEEEE";
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
+    box-shadow: ${boxShadows.common};
   }
   img {
     max-width: 110px;

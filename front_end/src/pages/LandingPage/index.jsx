@@ -29,7 +29,7 @@ export default function LandingPage() {
   return (
     <StyledLandingPage id="landing-page">
       <NavBar scrolled={scrolled} setModal={setModal} />
-      <div className="content flex-col relative">
+      <div className="flex-col relative" style={{ paddingTop: "92px" }}>
         <Hero setModal={setModal} />
         <Testimonials />
       </div>

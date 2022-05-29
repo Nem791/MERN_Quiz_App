@@ -16,6 +16,9 @@ ul {
 a {
   text-decoration: none;
 }
+button {
+  border: none;
+}
 button:not(:disabled) {
   cursor: pointer;
 }

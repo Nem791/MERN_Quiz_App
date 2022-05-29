@@ -50,8 +50,10 @@ export default function SideBar() {
 }
 
 const StyledSideBar = styled.div`
-  width: 200px;
+  min-width: 200px;
   background-color: ${getColor("white1")};
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.05))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
   .logo-wrapper {
     width: 8rem;
     height: 2.5rem;
