@@ -67,9 +67,22 @@ const getQuizzesForHomePage = async (req, res) => {
     }
 };
 
+let lastId;
+
 const test = async (req, res) => {
     try {
         console.log(req.params.id);
+        console.log(req.query.tags);
+
+        if (lastId !== undefined) {
+            const quizzes = await QuizSet.find({}).sort({
+                _id: 1
+            }).limit(3);
+        } else {
+            const quizzes = await QuizSet.find({ _id: { $gt: lastId } }).sort({
+                _id: 1
+            }).limit(3);
+        }
 
         return res.json(req.query.color);
 
@@ -201,5 +214,6 @@ module.exports = {
     saveQuiz,
     getQuizSetById,
     getQuizzesForHomePage,
+    getQuizSetByTag,
     test
 }
