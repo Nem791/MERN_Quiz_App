@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserAnswerHistorySchema = new Schema({
-    quiz_id: {
+    quiz: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: "Quiz"
     },
     user_answers: {
-        type: String,
+        type: Array,
         required: true
     }
 });

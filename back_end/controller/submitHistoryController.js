@@ -1,9 +1,10 @@
 const { default: mongoose } = require('mongoose');
 const Quiz = require('../models/Quiz');
 const QuizSet = require('../models/QuizSet');
+const UserAnswerHistory = require('../models/UserAnswerHistory');
 const toSlug = require('../utils/vietnamese-slug-converter');
 
-const getQuizzes = async (req, res) => {
+const submitAnswers = async (req, res) => {
 
     try {
         // Find and populate
@@ -22,41 +23,80 @@ const getQuizzes = async (req, res) => {
 };
 
 const test = async (req, res) => {
-    try {
-        console.log(req.params.id);
-        console.log(req.query.tags);
-        console.log(req.query.load);
-        console.log("lastId:", lastId);
 
-        let quizzes;
+    let username = (req.user !== undefined) ? req.user : undefined;
+    let { answers } = req.body;
 
-        if (req.query.load === undefined) {
-            quizzes = await QuizSet.find().sort({
-                _id: 1
-            }).limit(1);
-
-            lastId = quizzes[quizzes.length - 1]._id;
-
-        } else {
-            console.log('2');
-
-            quizzes = await QuizSet.find({ _id: { $gt: lastId } }).sort({
-                _id: 1
-            }).limit(1);
-
-
-            lastId = quizzes[quizzes.length - 1]._id;
-        }
-
-        return res.json(quizzes);
-
-    } catch (error) {
-        console.log(error);
-        res.json({ error });
+    for (const answer of answers) {
+        answer.quiz = mongoose.Types.ObjectId(answer.quiz);
     }
+
+    const userAnswers = await UserAnswerHistory.create(answers);
+    console.log(userAnswers);
+    await UserAnswerHistory.populate(userAnswers, { path: "quiz" });
+
+    let countCorrectAnswer = 0;
+    let totalQuizzes = userAnswers.length;
+
+    for (const answer of userAnswers) {
+        let rightAnswer;
+        let submitAnswer;
+        let question;
+        switch (answer.quiz.type) {
+            case "multiple_choice":
+                rightAnswer = answer.quiz.answer[0].toLowerCase().trim();
+                submitAnswer = answer.user_answers[0].toLowerCase().trim();
+                if (rightAnswer === submitAnswer) {
+                    countCorrectAnswer++;
+                }
+                break;
+
+            case "fill_blank_1":
+                rightAnswer = answer.quiz.answer;
+                submitAnswer = answer.user_answers[0].toLowerCase().trim();
+                let check = rightAnswer.some(a => a.toLowerCase().trim() === submitAnswer);
+                if (check) {
+                    countCorrectAnswer++;
+                }
+                break;
+
+            case "fill_blank_2":
+                rightAnswer = answer.quiz.answer;
+                question = answer.quiz.question.split(' ');
+                submitAnswer = answer.user_answers;
+
+                for (let index = 0; index < submitAnswer.length; index++) {
+                    const element = submitAnswer[index].toLowerCase().trim();
+                    const match = question[rightAnswer[index]];
+                    console.log(question);
+                    console.log(rightAnswer[index]);
+                    console.log("match: ", match);
+                    if (element === match) {
+                        countCorrectAnswer += 1 / rightAnswer.length;
+                    }
+                }
+                break;
+
+            case "multiple_choice_answers":
+                rightAnswer = answer.quiz.answer;
+                submitAnswer = answer.user_answers;
+                for (const answer of submitAnswer) {
+                    let check = rightAnswer.some(a => a.toLowerCase().trim() === answer.toLowerCase().trim());
+                    if (check) {
+                        countCorrectAnswer += 1 / rightAnswer.length;
+                    }
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    return res.send({ userAnswers, username, score: (countCorrectAnswer / totalQuizzes) * 10 });
 };
 
 module.exports = {
-    getQuizzes,
+    submitAnswers,
     test
 }

@@ -1,77 +1,100 @@
-[
-    {
-        "_id": "628f920529d7dc9b48fa83f2",
-        "question": "How do the roles of men and women differ in your family?",
-        "type": "multiple_choice",
-        "options": [
-            "Most men are very bossy and arrogant.",
-            "Men are breadwinners and women are caregivers.",
-            "Women are changing their roles.",
-            "Most of men don't want to stay at home."
-        ],
-        "answer": [
-            "Men are breadwinners and women are caregivers."
-        ],
-        "set": "628f920529d7dc9b48fa83f6",
-        "date_created": "2022-05-26T14:12:44.093Z",
-        "timer": 25000,
-        "__v": 0,
-        "user_answer": [
-            "Men are breadwinners and women are caregivers."
-        ]
-    },
-    {
-        "_id": "628f920529d7dc9b48fa83f3",
-        "question": "Gender discrimination must be __________ in order to create a better society",
-        "type": "fill_blank_1",
-        "options": [
-            "eliminated"
-        ],
-        "answer": [
-            "eliminated"
-        ],
-        "set": "628f920529d7dc9b48fa83f6",
-        "date_created": "2022-05-26T14:12:44.093Z",
-        "timer": 18000,
-        "__v": 0,
-        "user_answer": [
-            "Eliminated"
-        ]
-    },
-    {
-        "_id": "628f920529d7dc9b48fa83f4",
-        "question": "Here is a picture of an activist calling for men to push women's rights further",
-        "type": "fill_blank_2",
-        "options": [
-            1,
-            8,
-            5
-        ],
-        "answer": [
-            1,
-            8,
-            5
-        ],
-        "set": "628f920529d7dc9b48fa83f6",
-        "date_created": "2022-05-26T14:12:44.093Z",
-        "timer": 15000,
-        "__v": 0,
-        "user_answer": [
-            "is", "for", "an"
-        ]
-    },
-    {
-        "_id": "628f920529d7dc9b48fa83f5",
-        "question": "In order to be successful, we should never ________ hope",
-        "type": "fill_blank_1",
-        "options": [],
-        "answer": [
-            "give up",
-            "abandon"
-        ],
-        "set": "628f920529d7dc9b48fa83f6",
-        "date_created": "2022-05-26T14:12:44.093Z",
-        "timer": 19000,
-        "__v": 0
-    }
-]
+{
+    "answers": [
+        {
+            "quiz": {
+                "_id": "62908ac77aeea1860ba2bd4b",
+                "question": "How do the roles of men and women differ in your family?",
+                "type": "multiple_choice",
+                "options": [
+                    "Most men are very bossy and arrogant.",
+                    "Men are breadwinners and women are caregivers.",
+                    "Women are changing their roles.",
+                    "Most of men don't want to stay at home."
+                ],
+                "answer": [
+                    "Men are breadwinners and women are caregivers."
+                ],
+                "set": "62908ac77aeea1860ba2bd4f",
+                "date_created": "2022-05-27T08:23:08.079Z",
+                "timer": 25000,
+                "__v": 0
+            },
+            "user_answers": [
+                "Men are breadwinners and women are caregivers."
+            ],
+            "_id": "6295de6180dfa69a24b3865d",
+            "__v": 0
+        },
+        {
+            "quiz": {
+                "_id": "62908ac77aeea1860ba2bd4c",
+                "question": "Gender discrimination must be __________ in order to create a better society",
+                "type": "fill_blank_1",
+                "options": [
+                    "eliminated"
+                ],
+                "answer": [
+                    "eliminated"
+                ],
+                "set": "62908ac77aeea1860ba2bd4f",
+                "date_created": "2022-05-27T08:23:08.079Z",
+                "timer": 18000,
+                "__v": 0
+            },
+            "user_answers": [
+                "Eliminated"
+            ],
+            "_id": "6295de6180dfa69a24b3865e",
+            "__v": 0
+        },
+        {
+            "quiz": {
+                "_id": "62908ac77aeea1860ba2bd4d",
+                "question": "Here is a picture of an activist calling for men to push women's rights further",
+                "type": "fill_blank_2",
+                "options": [
+                    1,
+                    8,
+                    5
+                ],
+                "answer": [
+                    1,
+                    8,
+                    5
+                ],
+                "set": "62908ac77aeea1860ba2bd4f",
+                "date_created": "2022-05-27T08:23:08.079Z",
+                "timer": 15000,
+                "__v": 0
+            },
+            "user_answers": [
+                "is",
+                "for",
+                "an"
+            ],
+            "_id": "6295de6180dfa69a24b3865f",
+            "__v": 0
+        },
+        {
+            "quiz": {
+                "_id": "62908ac77aeea1860ba2bd4e",
+                "question": "In order to be successful, we should never ________ hope",
+                "type": "fill_blank_1",
+                "options": [],
+                "answer": [
+                    "give up",
+                    "abandon"
+                ],
+                "set": "62908ac77aeea1860ba2bd4f",
+                "date_created": "2022-05-27T08:23:08.079Z",
+                "timer": 19000,
+                "__v": 0
+            },
+            "user_answers": [
+                "abandon"
+            ],
+            "_id": "6295de6180dfa69a24b38660",
+            "__v": 0
+        }
+    ]
+}
