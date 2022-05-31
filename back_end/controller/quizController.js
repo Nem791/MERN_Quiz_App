@@ -2,6 +2,7 @@ const { default: mongoose } = require('mongoose');
 var path = require('path');
 const Quiz = require('../models/Quiz');
 const QuizSet = require('../models/QuizSet');
+const randomNumers = require('../utils/randomNumers');
 const toSlug = require('../utils/vietnamese-slug-converter');
 
 const getQuizzes = async (req, res) => {
@@ -73,18 +74,30 @@ const test = async (req, res) => {
     try {
         console.log(req.params.id);
         console.log(req.query.tags);
+        console.log(req.query.load);
+        console.log("lastId:", lastId);
 
-        if (lastId !== undefined) {
-            const quizzes = await QuizSet.find({}).sort({
+        let quizzes;
+
+        if (req.query.load === undefined) {
+            quizzes = await QuizSet.find().sort({
                 _id: 1
-            }).limit(3);
+            }).limit(1);
+
+            lastId = quizzes[quizzes.length - 1]._id;
+
         } else {
-            const quizzes = await QuizSet.find({ _id: { $gt: lastId } }).sort({
+            console.log('2');
+
+            quizzes = await QuizSet.find({ _id: { $gt: lastId } }).sort({
                 _id: 1
-            }).limit(3);
+            }).limit(1);
+
+
+            lastId = quizzes[quizzes.length - 1]._id;
         }
 
-        return res.json(req.query.color);
+        return res.json(quizzes);
 
     } catch (error) {
         console.log(error);
@@ -98,8 +111,27 @@ const getQuizSetByTag = async (req, res) => {
 
     try {
         console.log(req.params.id);
+        console.log(req.query.tags);
+        console.log(req.query.load);
+        console.log("lastId:", lastId);
 
-        return res.json(quiz);
+        let tags = req.query.tags.toLowerCase();
+
+        let quizzes;
+        let pageNumber = Number(req.query.page);
+        const limit = 1;
+
+        if (pageNumber === 1 && pageNumber === undefined) {
+            quizzes = await QuizSet.find({ $toLower: { tags: tags } }).limit(limit);
+
+        } else {
+            quizzes = await QuizSet.find().limit(limit).skip(limit * pageNumber);
+        }
+
+        // Join User vs QuizSet
+        await QuizSet.populate(quizzes, { path: "user quizzes", select: '-password -_id' });
+
+        return res.json(quizzes);
 
     } catch (error) {
         console.log(error);
@@ -120,10 +152,25 @@ const getQuizSetById = async (req, res) => {
 
         // Tim post theo ID 
         const quiz = await QuizSet.findById(slug);
-        console.log('quiz: ', quiz);
 
         // Join User vs QuizSet
-        await QuizSet.populate(quiz, { path: "user quizzes", select: '-password -_id' });
+        await QuizSet.populate(quiz, { path: "user quizzes", select: '-password -user._id' });
+        console.log('quiz: ', quiz.quizzes[0]);
+
+        // Xu ly question type fill_blank_2 
+        for (let index = 0; index < quiz.quizzes.length; index++) {
+            const element = quiz.quizzes[index];
+            let questionLength;
+
+            if (element.type === 'fill_blank_2') {
+                questionLength = element.question.split(' ').length - 1;
+                for (let index = 0; index < randomNumers(1, 4); index++) {
+                    element.options.push(randomNumers(0, questionLength));
+                }
+                element.answer = element.options;
+            }
+            
+        }
 
         return res.json(quiz);
 

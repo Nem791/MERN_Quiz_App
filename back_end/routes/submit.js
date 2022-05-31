@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const checkToken = require('../auth/checkToken');
-const { getQuizzes, saveQuiz, getQuizSetById, test, getQuizzesForHomePage, getQuizSetByTag } = require('../controller/quizController');
 
 // Render trang home
 router.get('/', checkToken, getQuizzesForHomePage);
