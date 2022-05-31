@@ -80,14 +80,14 @@ const StyledCarousel = styled.div`
       font-size: 0.875rem;
     }
   }
-  @media (min-width: ${breakpoints.sm}px) {
+  @media (min-width: ${breakpoints.md}px) {
     height: 302px;
     .comment {
       padding: 0 40px;
       bottom: 92px;
       height: 212px;
       p {
-        font-size: 20px;
+        font-size: 1.25rem;
       }
       &.expand {
         animation: expanding-2 var(--time) forwards;
@@ -108,7 +108,7 @@ const StyledCarousel = styled.div`
       }
     }
   }
-  @media (min-width: ${breakpoints.md}px) {
+  @media (min-width: ${breakpoints.lg}px) {
     max-width: 888px;
     margin: 56px;
     .pic-wrapper {

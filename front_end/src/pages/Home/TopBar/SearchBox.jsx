@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import styled from "styled-components";
 import { Collapse } from "../../../components/HiddenSpace";
 import { useDebounce } from "../../../hooks";
+import { getColor } from "../../../styledComponents/helpers";
 
 export default function SearchBox({ collapse, setCollapse, setFocusing }) {
   const [input, setInput] = useState("");
@@ -26,10 +28,8 @@ export default function SearchBox({ collapse, setCollapse, setFocusing }) {
   }, [results.length, setCollapse]);
 
   return (
-    <div className="inherit-br grow-1 relative">
-      <div className="ml-3 search-icon">
-        <FaSearch />
-      </div>
+    <StyledSearchBox className="inherit-br grow-1 pos-relative">
+      <FaSearch className="ml-3 search-icon" />
       <input
         className="inherit-br full-w full-h"
         placeholder="Search"
@@ -51,8 +51,8 @@ export default function SearchBox({ collapse, setCollapse, setFocusing }) {
           setFocusing(false);
         }}
       />
-      <Collapse open={collapse === "input"}>
-        <div className="py-2 results-dropdown">
+      <Collapse className="collapse" open={collapse === "input"}>
+        <div className="py-2">
           {results.map((result, i) => (
             <p key={i} className="pointer">
               {result}
@@ -60,6 +60,41 @@ export default function SearchBox({ collapse, setCollapse, setFocusing }) {
           ))}
         </div>
       </Collapse>
-    </div>
+    </StyledSearchBox>
   );
 }
+
+const StyledSearchBox = styled.div`
+  input {
+    padding: 8px 8px 8px 36px;
+    background-color: inherit;
+    color: ${getColor("text1")};
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02rem;
+  }
+  .search-icon {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    top: 52%;
+    transform: translateY(-50%);
+  }
+  .collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    div {
+      border-radius: 0 0 5px 5px;
+      background-color: ${getColor("white1")};
+    }
+    p {
+      padding: 4px 16px 4px 36px;
+      line-height: 1.5;
+      &:hover {
+        background-color: ${getColor("primaryLight")};
+      }
+    }
+  }
+`;

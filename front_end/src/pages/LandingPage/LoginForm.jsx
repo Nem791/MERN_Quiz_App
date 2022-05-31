@@ -1,19 +1,27 @@
-import { useDispatch } from "react-redux";
-import { LOGIN } from "../../app/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { LOGIN } from "../../app/thunks";
+import { RESET_ERROR } from "../../app/userSlice";
 import Form from "../../components/Form";
 import Modal from "../../components/Modal";
 import { PASSWORD_MIN_LEN } from "../../configs";
 
-export default function SignupForm({ close }) {
+export default function LoginForm({ close }) {
   const dispatch = useDispatch();
+  const submitting = useSelector((state) => state.user.reqPending);
+  const submitError = useSelector((state) => state.user.reqError);
+
+  const closeForm = () => {
+    dispatch(RESET_ERROR());
+    close();
+  };
   return (
-    <Modal close={close}>
+    <Modal close={closeForm}>
       <Form
-        heading="Sign Up"
+        heading="Log In"
         initialValues={{ email: "", password: "" }}
         fieldsInfo={[
           { name: "email", placeholder: "Email", type: "email" },
-          { name: "password", placeholder: "Password", type: "password" },
+          { name: "password", placeholder: "Password", type: "password" }
         ]}
         validate={({ email, password }) => {
           const errors = {};
@@ -26,13 +34,15 @@ export default function SignupForm({ close }) {
           return errors;
         }}
         handleSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            dispatch(LOGIN("Huan"));
-            close();
-            // setSubmitting(false);
-          }, 200);
+          dispatch(LOGIN(values));
+          // setTimeout(() => {
+          // setSubmitting(false);
+          // close();
+          // }, 2000);
         }}
-        close={close}
+        submitting={submitting}
+        submitError={submitError}
+        close={closeForm}
       />
     </Modal>
   );

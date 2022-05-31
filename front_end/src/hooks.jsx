@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 export function useGetHeight() {
-  const [height, setHeight] = useState(0);
   const ref = useRef();
+  const [height, setHeight] = useState(0);
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {

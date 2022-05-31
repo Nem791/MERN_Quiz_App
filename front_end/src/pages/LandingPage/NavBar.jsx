@@ -1,20 +1,25 @@
 import cn from "classnames";
 import { FaBars, FaChevronRight } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { SNEAKIN } from "../../app/userSlice";
+import { imgLink } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { boxShadows, breakpoints } from "../../theme";
 import { LandingButton } from "./styles";
 
 export default function NavBar({ scrolled, setModal }) {
-  const notSm = window.innerWidth >= breakpoints.sm;
+  const notSm = window.innerWidth >= breakpoints.md;
+  const dispatch = useDispatch();
   return (
     <StyledNavBar className={cn({ scrolled: !notSm || scrolled })}>
-      <div className="nav flex align-center relative">
+      <div className="nav flex align-center pos-relative">
         <img
           className="mr-3"
-          src="https://cf.quizizz.com/img/quizizz_logos/purple-brandmark-600x164.png"
+          src={imgLink("quizizz_logos/purple-brandmark-600x164")}
           alt=""
+          onClick={() => dispatch(SNEAKIN())}
         />
         <ul className="nav-menu flex-center">
           <li>
@@ -78,8 +83,8 @@ const StyledNavBar = styled.div`
     a {
       border-radius: 8px;
       padding: 6px 8px;
-      font-size: 14px;
       color: black;
+      font-size: 0.875rem;
       &:hover {
         background-color: rgba(255, 164, 2, 0.1);
       }
@@ -88,16 +93,16 @@ const StyledNavBar = styled.div`
   .content {
     margin-top: 92px;
   }
-  @media (min-width: ${breakpoints.sm}px) {
+  @media (min-width: ${breakpoints.md}px) {
     .nav-menu {
       gap: 8px;
       a {
         padding: 8px 12px;
-        font-size: 16px;
+        font-size: 1rem;
       }
     }
   }
-  @media (min-width: ${breakpoints.md}px) {
+  @media (min-width: ${breakpoints.lg}px) {
     .nav {
       padding: 12px 24px 16px;
     }

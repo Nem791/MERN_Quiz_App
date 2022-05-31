@@ -1,12 +1,13 @@
-import { EmergedButton } from "./styles";
 import { FaChevronRight } from "react-icons/fa";
 import styled from "styled-components";
+import { imgLink } from "../../helpers/misc";
 import { breakpoints } from "../../theme";
+import { EmergedButton } from "./styles";
 
 export default function Hero({ setModal }) {
   return (
-    <StyledHero className="relative">
-      <div className="layout">
+    <StyledHero className="pos-relative">
+      <div className="layout pos-absolute full-stretch">
         <div className="bottom-ribbon" />
       </div>
       <div className="content">
@@ -22,17 +23,14 @@ export default function Hero({ setModal }) {
             </EmergedButton>
             <p className="login">
               Already have an account?{" "}
-              <span className="pointer" onClick={() => setModal("signin")}>
+              <span className="pointer" onClick={() => setModal("login")}>
                 Login
               </span>
             </p>
           </div>
         </div>
         <div className="image-wrapper">
-          <img
-            src="https://cf.quizizz.com/img/mkt/1-HERO-Digital_Collage.png"
-            alt=""
-          />
+          <img src={imgLink("mkt/1-HERO-Digital_Collage")} alt="" />
         </div>
       </div>
     </StyledHero>
@@ -42,11 +40,6 @@ export default function Hero({ setModal }) {
 export const StyledHero = styled.div`
   overflow-y: hidden;
   .layout {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
     pointer-events: none;
     .bottom-ribbon {
       position: absolute;
@@ -57,7 +50,7 @@ export const StyledHero = styled.div`
       transform: skewY(-3deg) translateY(56px);
       background-color: rgba(255, 164, 2, 0.2);
       opacity: 0.5;
-      @media (min-width: ${breakpoints.sm}px) {
+      @media (min-width: ${breakpoints.md}px) {
         height: 240px;
       }
     }
@@ -74,7 +67,7 @@ export const StyledHero = styled.div`
     }
     h2 {
       color: #73747e;
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: 500;
     }
     .text-section > div {
@@ -94,19 +87,19 @@ export const StyledHero = styled.div`
   img {
     width: 100%;
   }
-  @media (min-width: ${breakpoints.sm}px) {
+  @media (min-width: ${breakpoints.md}px) {
     .content {
       h1 {
-        font-size: 40px;
+        font-size: 2.5rem;
       }
       h2 {
-        font-size: 20px;
+        font-size: 1.25rem;
       }
     }
   }
-  @media (min-width: ${breakpoints.md}px) {
+  @media (min-width: ${breakpoints.lg}px) {
     .content {
-      position: relative;
+      position: pos-relative;
       max-width: 1200px;
       margin: 0 auto;
       padding: 40px 0 240px 24px;
@@ -122,7 +115,7 @@ export const StyledHero = styled.div`
       }
       h1 {
         margin-bottom: 16px;
-        font-size: 56px;
+        font-size: 3.5rem;
         line-height: 100%;
       }
       .login {

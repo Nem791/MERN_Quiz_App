@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import Hero from "./Hero";
 import NavBar from "./NavBar";
 import SignupForm from "./SignupForm";
-import SigninForm from "./SigninForm";
+import LoginForm from "./LoginForm";
 import { StyledLandingPage } from "./styles";
 import Testimonials from "./Testimonials";
 
@@ -27,14 +27,14 @@ export default function LandingPage() {
   }, [scrolled]);
 
   return (
-    <StyledLandingPage id="landing-page">
+    <StyledLandingPage>
       <NavBar scrolled={scrolled} setModal={setModal} />
-      <div className="flex-col relative" style={{ paddingTop: "92px" }}>
+      <div className="flex-col pos-relative" style={{ paddingTop: "92px" }}>
         <Hero setModal={setModal} />
         <Testimonials />
       </div>
       {modal === "signup" && <SignupForm close={closeModal} />}
-      {modal === "signin" && <SigninForm close={closeModal} />}
+      {modal === "login" && <LoginForm close={closeModal} />}
     </StyledLandingPage>
   );
 }

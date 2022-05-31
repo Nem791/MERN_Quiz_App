@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { breakpoints } from "../../../theme";
 import Carousel from "./Carousel";
+import { imgLink } from "../../../helpers/misc";
 
 export default function Testimonials() {
   return (
@@ -18,12 +19,7 @@ export default function Testimonials() {
       <div className="logo-container flex-center">
         {[...Array(6)].map((_, i) => (
           <div key={i} className="logo-wrapper flex-center">
-            <img
-              src={`https://cf.quizizz.com/img/mkt/2-SOCIAL_PROOF-Logo_${
-                i + 1
-              }.png`}
-              alt=""
-            />
+            <img src={imgLink(`mkt/2-SOCIAL_PROOF-Logo_${i + 1}`)} alt="" />
           </div>
         ))}
       </div>
@@ -35,11 +31,11 @@ const StyledTestimonials = styled.div`
   padding: 72px 16px;
   h2 {
     color: #292a3a;
-    font-size: 20px;
+    font-size: 1.25rem;
     text-align: center;
   }
   .text-small {
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     color: #73747e;
     text-align: center;
@@ -61,13 +57,13 @@ const StyledTestimonials = styled.div`
       height: 44px;
     }
   }
-  @media (min-width: ${breakpoints.sm}px) {
+  @media (min-width: ${breakpoints.md}px) {
     padding: 64px 20px;
     h2 {
-      font-size: 28px;
+      font-size: 1.75rem;
     }
     .text-small {
-      font-size: 16px;
+      font-size: 1rem;
     }
     .logo-wrapper {
       width: 25%;
@@ -76,15 +72,15 @@ const StyledTestimonials = styled.div`
       }
     }
   }
-  @media (min-width: ${breakpoints.md}px) {
+  @media (min-width: ${breakpoints.lg}px) {
     max-width: 1280px;
     padding: 80px 64px 64px;
     h2 {
-      font-size: 32px;
+      font-size: 2rem;
       max-width: 808px;
     }
     .text-small {
-      font-size: 18px;
+      font-size: 1.125rem;
     }
   }
 `;

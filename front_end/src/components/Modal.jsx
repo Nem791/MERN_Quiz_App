@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import cn from "classnames";
+import ReactDOM from "react-dom";
 
 export default function Modal({ standard, contentClassName, close, children }) {
   useEffect(() => {
@@ -10,15 +11,16 @@ export default function Modal({ standard, contentClassName, close, children }) {
     document.addEventListener("keydown", handlePressEsc, true);
     return () => document.removeEventListener("keydown", handlePressEsc, true);
   }, []);
-  return (
+  return ReactDOM.createPortal(
     <ModalLayout>
-      <div className="layout full-w full-h" onClick={close} />
+      <div className="modal-layout full-w full-h" onClick={close} />
       {standard || contentClassName ? (
         <ModalContent className={cn(contentClassName)}>{children}</ModalContent>
       ) : (
         children
       )}
-    </ModalLayout>
+    </ModalLayout>,
+    document.querySelector("#portal")
   );
 }
 
@@ -29,7 +31,7 @@ export const ModalLayout = styled.div`
   left: 0;
   right: 0;
   z-index: 10;
-  .layout {
+  .modal-layout {
     background-color: rgba(0, 0, 0, 0.6);
   }
   & > div:nth-child(2) {

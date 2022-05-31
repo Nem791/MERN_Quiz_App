@@ -1,6 +1,6 @@
 export default function callApi({ endpoint, method, reqData, token, queries }) {
   const headers = {
-    "Content-Type": "application/json",
+    "Content-Type": "application/json"
   };
   if (token) {
     headers.Authorization = `Bearer ${token}`;

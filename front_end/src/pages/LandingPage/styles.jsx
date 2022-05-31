@@ -18,11 +18,11 @@ export const EmergedButton = styled.button`
   border-radius: 12px;
   ${landingBtnBg};
   color: white;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
-  @media (min-width: ${breakpoints.sm}px) {
+  @media (min-width: ${breakpoints.md}px) {
     padding: 18px 36px;
-    font-size: 20px;
+    font-size: 1.25rem;
     box-shadow: 0px 4px 8px rgb(0 0 0 / 10%), 0px 4px 0px #381535;
     &:hover {
       box-shadow: none;
