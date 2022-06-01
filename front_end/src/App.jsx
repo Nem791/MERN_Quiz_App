@@ -19,7 +19,8 @@ const StyledApp = styled.div`
 
 export default function App() {
   const mode = useSelector((state) => state.ui.mode);
-  const userName = useSelector((state) => state.user.name);
+  // const userName = useSelector((state) => state.user.name);
+  const userName = "Huan";
   return (
     <ThemeProvider theme={colors[mode]}>
       <StyledApp>
