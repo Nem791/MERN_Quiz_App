@@ -10,7 +10,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { mausac } from "./theme";
 
 export const USER_NAME_MIN_LEN = 4;
-export const PASSWORD_MIN_LEN = 4;
+export const PASSWORD_MIN_LEN = 6;
 
 export const SIDEBAR_LINKS = [
   { Icon: FaMapMarkedAlt, label: "Explore", path: "/" },

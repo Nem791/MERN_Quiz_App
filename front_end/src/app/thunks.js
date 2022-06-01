@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const LOGIN = createAsyncThunk("user/login", async (info) => {
   return await callApi({
-    endpoint: "/users/login",
+    endpoint: "users/login",
     method: "POST",
     reqData: info,
   })
@@ -13,9 +13,9 @@ export const LOGIN = createAsyncThunk("user/login", async (info) => {
     .catch(handleError);
 });
 
-export const SIGNUP = createAsyncThunk("user/signup", async (info) => {
+export const SIGNUP = createAsyncThunk("user/register", async (info) => {
   return await callApi({
-    endpoint: "/users",
+    endpoint: "users/register",
     method: "POST",
     reqData: info,
   })

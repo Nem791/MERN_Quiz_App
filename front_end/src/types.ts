@@ -14,7 +14,6 @@ type SetType = "lesson" | "quiz";
 
 interface SetInfoOnExplore {
   title: string;
-  desc: string; // ?
   img: string;
   type: SetType;
   plays: number;

@@ -20,8 +20,8 @@ export default function SignupForm({ close }) {
         heading="Sign Up"
         initialValues={{
           name: "",
-          gender: "",
-          dob: new Date(),
+          // gender: "",
+          // dob: new Date(),
           email: "",
           password: "",
           repassword: "",
@@ -35,18 +35,18 @@ export default function SignupForm({ close }) {
             placeholder: "Retype password",
             type: "password",
           },
-          {
-            label: "Gender",
-            name: "gender",
-            type: "ratio",
-            options: ["male", "female", "other"],
-            spans: [8, 8, 8],
-          },
-          {
-            label: "Date of Birth",
-            name: "dob",
-            type: "date",
-          },
+          // {
+          //   label: "Gender",
+          //   name: "gender",
+          //   type: "ratio",
+          //   options: ["male", "female", "other"],
+          //   spans: [8, 8, 8],
+          // },
+          // {
+          //   label: "Date of Birth",
+          //   name: "dob",
+          //   type: "date",
+          // },
         ]}
         validate={({ name, email, password, repassword, gender }) => {
           const errors = {};
@@ -70,9 +70,9 @@ export default function SignupForm({ close }) {
           if (password && repassword !== password) {
             errors.repassword = "Retyped password is incorrect.";
           }
-          if (!gender.length) {
-            errors.gender = "Please choose a gender.";
-          }
+          // if (!gender.length) {
+          //   errors.gender = "Please choose a gender.";
+          // }
           return errors;
         }}
         handleSubmit={(values, { setSubmitting }) => {
