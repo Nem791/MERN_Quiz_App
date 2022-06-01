@@ -21,12 +21,10 @@ export default function SignupForm({ close }) {
         initialValues={{
           name: "",
           gender: "",
-          birthDate: "",
-          birthMonth: "",
-          birthYear: "",
+          dob: new Date(),
           email: "",
           password: "",
-          repassword: ""
+          repassword: "",
         }}
         fieldsInfo={[
           { name: "name", placeholder: "Full name" },
@@ -35,15 +33,20 @@ export default function SignupForm({ close }) {
           {
             name: "repassword",
             placeholder: "Retype password",
-            type: "password"
+            type: "password",
           },
           {
             label: "Gender",
             name: "gender",
             type: "ratio",
             options: ["male", "female", "other"],
-            spans: [8, 8, 8]
-          }
+            spans: [8, 8, 8],
+          },
+          {
+            label: "Date of Birth",
+            name: "dob",
+            type: "date",
+          },
         ]}
         validate={({ name, email, password, repassword, gender }) => {
           const errors = {};
@@ -77,7 +80,7 @@ export default function SignupForm({ close }) {
             SIGNUP({
               name: values.name,
               email: values.email,
-              password: values.password
+              password: values.password,
             })
           );
           // setTimeout(() => {

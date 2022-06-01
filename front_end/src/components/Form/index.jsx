@@ -5,6 +5,7 @@ import RadioGroup from "./RadioGroup";
 import FormLayout from "./styles";
 import { MainButton } from "../../styledComponents/Inputs";
 import { Row, Col } from "../../styledComponents/Layout";
+import DateGroup from "./DateGroup";
 
 const FormGroup = ({ info, ...rest }) => {
   let Group;
@@ -12,6 +13,8 @@ const FormGroup = ({ info, ...rest }) => {
     Group = TextGroup;
   } else if (info.type === "ratio") {
     Group = RadioGroup;
+  } else if (info.type === "date") {
+    Group = DateGroup;
   }
   return (
     <Col span={info.span || 24} offset={info.offset}>
@@ -32,7 +35,7 @@ export default function MyForm({
   cancelBtn,
   submitting,
   submitError,
-  close
+  close,
 }) {
   return (
     <FormLayout>

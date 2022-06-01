@@ -1,15 +1,16 @@
 // import "antd/dist/antd.css";
 import "katex/dist/katex.min.css";
+import "react-datepicker/dist/react-datepicker.css";
 import { BlockMath } from "react-katex";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
-import Home from "./pages/Home";
+import Creator from "./pages/Creator";
 import Explore from "./pages/Explore";
+import Home from "./pages/Home";
 import LandingPage from "./pages/LandingPage";
 import { getColor } from "./styledComponents/helpers";
 import { colors } from "./theme";
-import Creator from "./pages/Creator";
 
 const StyledApp = styled.div`
   min-height: 100vh;
