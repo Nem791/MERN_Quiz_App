@@ -10,6 +10,9 @@ const UserAnswerHistorySchema = new Schema({
     user_answers: {
         type: Array,
         required: true
+    },
+    misc: {
+        type: Array
     }
 });
 

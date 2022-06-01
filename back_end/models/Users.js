@@ -22,6 +22,9 @@ const UserSchema = new Schema({
     },
     nickname: {
         type: String
+    },
+    birthday: {
+        type: Date
     }
 
 });

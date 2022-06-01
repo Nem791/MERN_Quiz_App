@@ -2,6 +2,8 @@ const { default: mongoose } = require('mongoose');
 const Quiz = require('../models/Quiz');
 const QuizSet = require('../models/QuizSet');
 const UserAnswerHistory = require('../models/UserAnswerHistory');
+const UserQuestionHistory = require('../models/UserQuestionHistory');
+const { markMultipleChoice, markFillBlank1, markFillBlank2, markMultipleChoiceAnswers } = require('../utils/mark');
 const toSlug = require('../utils/vietnamese-slug-converter');
 
 const submitAnswers = async (req, res) => {
@@ -32,8 +34,8 @@ const test = async (req, res) => {
     }
 
     const userAnswers = await UserAnswerHistory.create(answers);
-    console.log(userAnswers);
     await UserAnswerHistory.populate(userAnswers, { path: "quiz" });
+    console.log(userAnswers[0].quiz);
 
     let countCorrectAnswer = 0;
     let totalQuizzes = userAnswers.length;
@@ -46,46 +48,30 @@ const test = async (req, res) => {
             case "multiple_choice":
                 rightAnswer = answer.quiz.answer[0].toLowerCase().trim();
                 submitAnswer = answer.user_answers[0].toLowerCase().trim();
-                if (rightAnswer === submitAnswer) {
-                    countCorrectAnswer++;
-                }
+
+                countCorrectAnswer += markMultipleChoice(rightAnswer, submitAnswer)
                 break;
 
             case "fill_blank_1":
                 rightAnswer = answer.quiz.answer;
                 submitAnswer = answer.user_answers[0].toLowerCase().trim();
-                let check = rightAnswer.some(a => a.toLowerCase().trim() === submitAnswer);
-                if (check) {
-                    countCorrectAnswer++;
-                }
+
+                countCorrectAnswer += markFillBlank1(rightAnswer, submitAnswer)
                 break;
 
             case "fill_blank_2":
-                rightAnswer = answer.quiz.answer;
+                rightAnswer = answer.misc;
                 question = answer.quiz.question.split(' ');
                 submitAnswer = answer.user_answers;
 
-                for (let index = 0; index < submitAnswer.length; index++) {
-                    const element = submitAnswer[index].toLowerCase().trim();
-                    const match = question[rightAnswer[index]];
-                    console.log(question);
-                    console.log(rightAnswer[index]);
-                    console.log("match: ", match);
-                    if (element === match) {
-                        countCorrectAnswer += 1 / rightAnswer.length;
-                    }
-                }
+                countCorrectAnswer += markFillBlank2(rightAnswer, submitAnswer, question)
                 break;
 
             case "multiple_choice_answers":
                 rightAnswer = answer.quiz.answer;
                 submitAnswer = answer.user_answers;
-                for (const answer of submitAnswer) {
-                    let check = rightAnswer.some(a => a.toLowerCase().trim() === answer.toLowerCase().trim());
-                    if (check) {
-                        countCorrectAnswer += 1 / rightAnswer.length;
-                    }
-                }
+
+                countCorrectAnswer += markMultipleChoiceAnswers(rightAnswer, submitAnswer);
                 break;
 
             default:
@@ -93,7 +79,18 @@ const test = async (req, res) => {
         }
     }
 
-    return res.send({ userAnswers, username, score: (countCorrectAnswer / totalQuizzes) * 10 });
+    let user_id = username._id;
+    let score = (countCorrectAnswer / totalQuizzes) * 10;
+    let quiz_set_id = userAnswers[0].quiz._id;
+    let user_answers = [];
+
+    for (const iterator of userAnswers) {
+        user_answers.push(iterator.quiz._id);
+    }
+
+    const doc = await UserQuestionHistory.create({user_id, score, quiz_set_id, user_answers});
+
+    return res.send({ doc });
 };
 
 module.exports = {

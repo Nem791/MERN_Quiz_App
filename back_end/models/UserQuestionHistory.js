@@ -6,10 +6,10 @@ const UserQuestionHistorySchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true
     },
-    score: [{
+    score: {
         type: Number,
         required: true
-    }],
+    },
     user_id: {
         type: Schema.Types.ObjectId,
         required: true,
@@ -26,8 +26,7 @@ const UserQuestionHistorySchema = new Schema({
         required: true
     },
     duration: {
-        type: String,
-        required: true
+        type: String
     }
 });
 

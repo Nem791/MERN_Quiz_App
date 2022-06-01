@@ -4,7 +4,7 @@ const checkToken = require('../auth/checkToken');
 const { test, submitAnswers } = require('../controller/submitHistoryController');
 
 // Test route
-router.get('/test', checkToken, test);
+router.post('/test', checkToken, test);
 
 // Tinh diem & luu score 
 router.post('/', checkToken, submitAnswers)
