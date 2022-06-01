@@ -48,6 +48,7 @@ const getQuizzesForHomePage = async (req, res) => {
                         "quizzes":
                         {
                             $push: {
+                                "_id": "$_id",
                                 "title": "$title",
                                 "type": "$type",
                                 "quiz_img": "$quiz_img",

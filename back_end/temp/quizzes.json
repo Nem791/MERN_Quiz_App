@@ -1,0 +1,285 @@
+[{
+  "_id": {
+    "$oid": "628f822bbec25599365659b0"
+  },
+  "question": "I really miss Kate. -_________do I.",
+  "type": "multiple_choice",
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "answer": [
+    "So"
+  ],
+  "set": {
+    "$oid": "628f822bbec25599365659b4"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572071243"
+    }
+  },
+  "timer": 5000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f822bbec25599365659b1"
+  },
+  "question": "I was so tired after the game. - ___________________",
+  "type": "multiple_choice",
+  "options": [
+    "So was I",
+    "I did too",
+    "Neither was I",
+    "I wasn't either"
+  ],
+  "answer": [
+    "So was I"
+  ],
+  "set": {
+    "$oid": "628f822bbec25599365659b4"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572071243"
+    }
+  },
+  "timer": 5000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f822bbec25599365659b2"
+  },
+  "question": "I haven't tried Chinese food before. - I haven't ____________.",
+  "type": "multiple_choice",
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "answer": [
+    "Either"
+  ],
+  "set": {
+    "$oid": "628f822bbec25599365659b4"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572071243"
+    }
+  },
+  "timer": 5000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f822bbec25599365659b3"
+  },
+  "question": "I have never seen anything like this before. - _______________ has my sister",
+  "type": "multiple_choice",
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "answer": [
+    "Neither"
+  ],
+  "set": {
+    "$oid": "628f822bbec25599365659b4"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572071243"
+    }
+  },
+  "timer": 15000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f842398306d65e66cd0d5"
+  },
+  "question": "LAN là viết tắt từ gì?",
+  "type": "multiple_choice",
+  "options": [
+    "Local Area Network",
+    "Location Area Network",
+    "Locale Area Network",
+    "Local Area Netword"
+  ],
+  "answer": [
+    "Local Area Network"
+  ],
+  "set": {
+    "$oid": "628f842398306d65e66cd0d9"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572634648"
+    }
+  },
+  "timer": 5000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f842398306d65e66cd0d6"
+  },
+  "question": "Đâu không phải là đặc điểm mạng LAN",
+  "type": "multiple_choice",
+  "options": [
+    "Phạm vi trên vài Km",
+    "Tốc độ truyền ~ 100Mb/s",
+    "Độ tin cậy cao",
+    "Quyền sở hữu: Riêng tư"
+  ],
+  "answer": [
+    "Phạm vi trên vài Km"
+  ],
+  "set": {
+    "$oid": "628f842398306d65e66cd0d9"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572634648"
+    }
+  },
+  "timer": 8000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f842398306d65e66cd0d7"
+  },
+  "question": "Tốc độ truyền của mạng LAN lớn hơn mạng WAN",
+  "type": "multiple_choice",
+  "options": [
+    "Đúng",
+    "Sai"
+  ],
+  "answer": [
+    "Đúng"
+  ],
+  "set": {
+    "$oid": "628f842398306d65e66cd0d9"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572634648"
+    }
+  },
+  "timer": 15000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f842398306d65e66cd0d8"
+  },
+  "question": "256Kb/s là tốc độ của mạng nào?",
+  "type": "multiple_choice_answers",
+  "options": [
+    "LAN_1",
+    "WAN",
+    "LAN_2"
+  ],
+  "answer": [
+    "LAN_1",
+    "LAN_2"
+  ],
+  "set": {
+    "$oid": "628f842398306d65e66cd0d9"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572634648"
+    }
+  },
+  "timer": 19000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f920529d7dc9b48fa83f3"
+  },
+  "question": "Gender discrimination must be __________ in order to create a better society",
+  "type": "fill_blank_1",
+  "options": [
+    "eliminated"
+  ],
+  "answer": [
+    "eliminated"
+  ],
+  "set": {
+    "$oid": "628f920529d7dc9b48fa83f6"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653574364093"
+    }
+  },
+  "timer": 18000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f920529d7dc9b48fa83f2"
+  },
+  "question": "How do the roles of men and women differ in your family?",
+  "type": "multiple_choice",
+  "options": [
+    "Most men are very bossy and arrogant.",
+    "Men are breadwinners and women are caregivers.",
+    "Women are changing their roles.",
+    "Most of men don’t want to stay at home."
+  ],
+  "answer": [
+    "Men are breadwinners and women are caregivers."
+  ],
+  "set": {
+    "$oid": "628f920529d7dc9b48fa83f6"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653574364093"
+    }
+  },
+  "timer": 25000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f920529d7dc9b48fa83f4"
+  },
+  "question": "Here is a picture of an activist calling for men to push women's rights further",
+  "type": "fill_blank_2",
+  "options": [],
+  "answer": [],
+  "set": {
+    "$oid": "628f920529d7dc9b48fa83f6"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653574364093"
+    }
+  },
+  "timer": 15000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f920529d7dc9b48fa83f5"
+  },
+  "question": "In order to be successful, we should never ________ hope",
+  "type": "fill_blank_1",
+  "options": [],
+  "answer": [
+    "give up",
+    "abandon"
+  ],
+  "set": {
+    "$oid": "628f920529d7dc9b48fa83f6"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653574364093"
+    }
+  },
+  "timer": 19000,
+  "__v": 0
+}]
