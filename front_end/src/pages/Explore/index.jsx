@@ -4,8 +4,11 @@ import FieldDisplay from "./FieldDisplay";
 import FieldSum from "./FieldSum";
 import SearchArea from "./SearchArea";
 import { breakpoints } from "../../theme";
+import { useGetSetOnExploreQuery } from "../../app/thunks";
 
 export default function Explore() {
+  const { data, error, isLoading } = useGetSetOnExploreQuery();
+  console.log(data);
   return (
     <StyledExplore>
       <div className="flex-col align-center">
