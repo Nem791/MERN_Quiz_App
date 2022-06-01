@@ -13,7 +13,7 @@ export default function CreateModal({ close }) {
   const navigate = useNavigate();
   return (
     <Modal close={close}>
-      <Layout className="full-h hide-sb" width="350px">
+      <Layout className="full-h hide-sb" width="360px">
         <div className="top">
           <h1>Create Your Own</h1>
         </div>

@@ -76,7 +76,6 @@ const StyledSearchBox = styled.div`
   .search-icon {
     position: absolute;
     pointer-events: none;
-    border-radius: 50%;
     top: 52%;
     transform: translateY(-50%);
   }

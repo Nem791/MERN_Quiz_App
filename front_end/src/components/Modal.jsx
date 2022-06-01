@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import styled from "styled-components";
-import cn from "classnames";
 import ReactDOM from "react-dom";
 
-export default function Modal({ standard, contentClassName, close, children }) {
+export default function Modal({ close, children }) {
   useEffect(() => {
     const handlePressEsc = (e) => {
       if (e.key === "Escape") close();
@@ -14,11 +13,7 @@ export default function Modal({ standard, contentClassName, close, children }) {
   return ReactDOM.createPortal(
     <ModalLayout>
       <div className="modal-layout full-w full-h" onClick={close} />
-      {standard || contentClassName ? (
-        <ModalContent className={cn(contentClassName)}>{children}</ModalContent>
-      ) : (
-        children
-      )}
+      {children}
     </ModalLayout>,
     document.querySelector("#portal")
   );
@@ -40,26 +35,5 @@ export const ModalLayout = styled.div`
     left: 50%;
     z-index: 10;
     transform: translate(-50%, -50%);
-  }
-`;
-
-export const ModalContent = styled.div`
-  width: 90vw;
-  height: 90vh;
-  border-radius: 0.625rem;
-  background-color: white;
-  box-shadow: 0 0 3px white;
-  @media (min-width: 440px) {
-    width: 398.45px;
-  }
-  @media (min-width: 610px) {
-    width: 586px;
-  }
-  @media (min-width: 769px) {
-    width: 722px;
-  }
-  @media (min-width: 1025px) {
-    height: 85vh;
-    width: 944px;
   }
 `;

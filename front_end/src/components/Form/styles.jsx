@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { getColor } from "../../styledComponents/helpers";
 import { breakpoints } from "../../theme";
 
 const FormLayout = styled.div`
   --padding: 12px;
   --error-color: #be4b49;
-  --primary-color: #461a42;
+  --primary-color: ${getColor("primaryDark")};
   width: 100%;
   height: 100%;
   border-radius: 0.5rem;

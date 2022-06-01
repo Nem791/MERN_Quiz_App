@@ -12,7 +12,7 @@ import { colors } from "./theme";
 import Creator from "./pages/Creator";
 
 const StyledApp = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   background: ${getColor("white2")};
 `;
 

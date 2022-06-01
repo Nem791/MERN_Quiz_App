@@ -14,7 +14,7 @@ const StyledCarousel = styled.div`
     width: 100%;
     height: 192px;
     padding: 0 22px;
-    border-radius: 24px;
+    border-radius: 1.5rem;
     background-color: ${(pr) => `rgba(${colorsByIndex[pr.index]}, 0.1)`};
     overflow: hidden;
     &.expand {
@@ -39,7 +39,6 @@ const StyledCarousel = styled.div`
     gap: 12px;
     transition: all var(--time);
     .pic-wrapper {
-      border-radius: 50%;
       width: 40px;
       height: 40px;
       border-width: 1px;

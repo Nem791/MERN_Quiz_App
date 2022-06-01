@@ -9,7 +9,7 @@ export default function TagGroup({
   options = [],
   chosen = [],
   errors = {},
-  touched = {}
+  touched = {},
 }) {
   const error = errors[name] && touched[name];
   return (

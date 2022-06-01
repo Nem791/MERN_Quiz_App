@@ -6,28 +6,28 @@ import StyledCarousel from "./Carousel.styles";
 const comments = [
   "Quizizz has been such an incredible resource for me during this remote learning period. THANK YOU to the Quizizz team for being so responsive to teacher needs!",
   "One of our math teachers started using Quizizz this week and it was a game changer for her and her students.",
-  "I have use Quizizz for a few years now and it never dissappoints. The excitement in their faces is everything! 😊 "
+  "I have use Quizizz for a few years now and it never dissappoints. The excitement in their faces is everything! 😊 ",
 ];
 
 const picUrls = [
   "mkt/2-SOCIAL_PROOF-User_Image_2",
   "mkt/2-SOCIAL_PROOF-User_Image_1",
-  "mkt/2-SOCIAL_PROOF-User_Image_3"
+  "mkt/2-SOCIAL_PROOF-User_Image_3",
 ];
 
 const commenters = [
   {
     name: "Sarah Whitman",
-    label: "Middle School ELA"
+    label: "Middle School ELA",
   },
   {
     name: "Sean Scanion",
-    label: "Director of Curriculumn a& Instruction"
+    label: "Director of Curriculumn a& Instruction",
   },
   {
     name: "Mrs. Gonzalez",
-    label: "Third Grade Teacher"
-  }
+    label: "Third Grade Teacher",
+  },
 ];
 
 export default function Carousel() {
@@ -63,7 +63,7 @@ export default function Carousel() {
           return (
             <div
               key={i}
-              className={cn("pic-wrapper pointer", { active })}
+              className={cn("pic-wrapper b-radius-round pointer", { active })}
               onClick={() => {
                 lastest.current = Date.now();
                 if (!active) {

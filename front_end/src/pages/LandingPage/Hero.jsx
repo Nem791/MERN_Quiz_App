@@ -1,6 +1,7 @@
 import { FaChevronRight } from "react-icons/fa";
 import styled from "styled-components";
 import { imgLink } from "../../helpers/misc";
+import { getColor } from "../../styledComponents/helpers";
 import { breakpoints } from "../../theme";
 import { EmergedButton } from "./styles";
 
@@ -62,7 +63,7 @@ export const StyledHero = styled.div`
       text-align: center;
     }
     h1 {
-      color: #461a42;
+      color: ${getColor("primaryDark")};
       margin-bottom: 0.75rem;
     }
     h2 {
@@ -82,7 +83,7 @@ export const StyledHero = styled.div`
   }
   span {
     font-weight: 600;
-    color: #381535;
+    color: ${getColor("primaryDarker")};
   }
   img {
     width: 100%;

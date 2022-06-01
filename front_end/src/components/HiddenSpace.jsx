@@ -54,3 +54,53 @@ export function Collapse({ className, open, children }) {
     </StyledDiv>
   );
 }
+
+export function OutOfScreen({
+  active,
+  moveTime = 200,
+  unmountWhenOut,
+  children,
+  ...rest
+}) {
+  const [mounted, setMounted] = useState(!unmountWhenOut);
+
+  useEffect(() => {
+    if (unmountWhenOut) {
+      if (active) {
+        setMounted(true);
+      } else {
+        setTimeout(() => setMounted(false), moveTime);
+      }
+    }
+  }, [unmountWhenOut, active, moveTime]);
+
+  return (
+    <StyledOutOfScreen
+      className={cn({ "slide-in": active })}
+      moveTime={moveTime}
+      {...rest}
+    >
+      {mounted && children}
+    </StyledOutOfScreen>
+  );
+}
+
+const StyledOutOfScreen = styled.div`
+  position: fixed;
+  top: ${(pr) => pr.posOut.top};
+  bottom: ${(pr) => pr.posOut.bottom};
+  left: ${(pr) => pr.posOut.left};
+  right: ${(pr) => pr.posOut.right};
+  z-index: ${(pr) => pr.posOut.zIndex};
+  width: ${(pr) => pr.width};
+  height: ${(pr) => pr.height};
+  opacity: 0.4;
+  transition: all ${(pr) => pr.moveTime}ms ease;
+  &.slide-in {
+    top: ${(pr) => pr.posIn.top};
+    bottom: ${(pr) => pr.posIn.bottom};
+    left: ${(pr) => pr.posIn.left};
+    right: ${(pr) => pr.posIn.right};
+    opacity: 1;
+  }
+`;

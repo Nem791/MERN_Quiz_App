@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { SNEAKIN } from "../../app/userSlice";
-import { imgLink } from "../../helpers/misc";
+import { SiteLogo } from "../../components/Misc";
 import { getColor } from "../../styledComponents/helpers";
 import { boxShadows, breakpoints } from "../../theme";
 import { LandingButton } from "./styles";
@@ -15,12 +15,7 @@ export default function NavBar({ scrolled, setModal }) {
   return (
     <StyledNavBar className={cn({ scrolled: !notSm || scrolled })}>
       <div className="nav flex align-center pos-relative">
-        <img
-          className="mr-3"
-          src={imgLink("quizizz_logos/purple-brandmark-600x164")}
-          alt=""
-          onClick={() => dispatch(SNEAKIN())}
-        />
+        <SiteLogo onClick={() => dispatch(SNEAKIN())} />
         <ul className="nav-menu flex-center">
           <li>
             <Link to="/forwork">For Work</Link>
@@ -59,7 +54,6 @@ const StyledNavBar = styled.div`
   z-index: 1;
   background-color: white;
   &.scrolled {
-    background-color: "#EEEEEE";
     box-shadow: ${boxShadows.common};
   }
   img {
@@ -81,7 +75,7 @@ const StyledNavBar = styled.div`
     gap: 4px;
     margin-bottom: 0;
     a {
-      border-radius: 8px;
+      border-radius: 0.5rem;
       padding: 6px 8px;
       color: black;
       font-size: 0.875rem;

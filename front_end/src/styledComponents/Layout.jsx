@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const Box = styled.div`
+  width: ${(pr) => pr.width};
+  min-width: ${(pr) => pr.minWidth};
+  height: ${(pr) => pr.height};
+  border: ${(pr) => pr.border};
+  border-radius: ${(pr) => pr.borderRadius};
+  background-color: ${(pr) => pr.bgColor};
+  box-shadow: ${(pr) => pr.boxShadow};
+`;
+
 export const Row = styled.div`
   display: flex;
   flex-flow: row wrap;
@@ -35,4 +45,16 @@ export const Col = styled.div`
       `;
     }
   }}
+`;
+
+export const LineDivider = styled.div`
+  height: ${(pr) => pr.height || "100%"};
+  width: ${(pr) => pr.width || "1px"};
+  background-color: ${(pr) => pr.bgColor || pr.theme.dividerLight};
+`;
+
+export const StackDivider = styled.div`
+  height: ${(pr) => pr.height || "1px"};
+  width: ${(pr) => pr.width || "100%"};
+  background-color: ${(pr) => pr.bgColor || pr.theme.dividerLight};
 `;

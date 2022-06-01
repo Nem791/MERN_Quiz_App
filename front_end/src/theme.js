@@ -10,21 +10,27 @@ export const colors = {
     primary: "#8854C0",
     primaryText: "#FFFFFF",
     primaryLight: "#EDE6F6",
+    primaryDark: "#461A42", // 70 26 66
+    primaryDarker: "#381535",
     primaryHover: "#A076CC",
-    dividerLight: "#D4D4D4"
-  }
+    dividerLight: "#D4D4D4",
+  },
 };
 
 export const breakpoints = {
   sm: 360,
   md: 640,
   lg: 1024,
-  xl: 1280
+  xl: 1280,
 };
 
 export const boxShadows = {
   common: "rgba(0, 0, 0, 0.1) 0px 2px 4px",
-  thin:
-    "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
-  emerge: "rgba(0, 0, 0, 0.19) 0px 5px 10px, rgba(0, 0, 0, 0.23) 0px 4px 8px"
+  thin: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+  emerge: "rgba(0, 0, 0, 0.19) 0px 5px 10px, rgba(0, 0, 0, 0.23) 0px 4px 8px",
+};
+
+// dunno what these colors are called in english
+export const mausac = {
+  xanhngoc: "#2D9DA6",
 };

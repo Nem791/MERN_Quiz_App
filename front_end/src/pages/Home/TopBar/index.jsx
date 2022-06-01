@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaBars, FaRegBell } from "react-icons/fa";
 import styled from "styled-components";
 import { getColor } from "../../../styledComponents/helpers";
+import { LineDivider } from "../../../styledComponents/Layout";
 import { boxShadows, breakpoints } from "../../../theme";
 import SearchBox from "./SearchBox";
 import SelectPlace from "./SelectPlace";
@@ -17,13 +18,13 @@ export default function TopBar({ setFocusing, setSidebarOn }) {
       >
         <FaBars size="1.25rem" />
       </div>
-      <div className="search-bar flex grow-1">
+      <div className="search-bar b-radius-3 flex grow-1">
         <SearchBox
           collapse={collapse}
           setCollapse={setCollapse}
           setFocusing={setFocusing}
         />
-        <div className="divider my-2" />
+        <LineDivider className="my-2" height="auto" />
         <SelectPlace
           collapse={collapse}
           setCollapse={setCollapse}
@@ -31,7 +32,7 @@ export default function TopBar({ setFocusing, setSidebarOn }) {
           setSearchPlace={setSearchPlace}
         />
       </div>
-      <button className="notif-btn ml-4 flex-center">
+      <button className="ml-4 notif-btn b-radius-round flex-center">
         <FaRegBell size="1.125rem" />
       </button>
     </StyledTopBar>
@@ -47,7 +48,6 @@ const StyledTopBar = styled.div`
   z-index: 2;
   .search-bar {
     background-color: ${getColor("white2")};
-    border-radius: 0.5rem;
     .inherit-br {
       border-radius: inherit;
     }
@@ -59,15 +59,10 @@ const StyledTopBar = styled.div`
     .bars-btn {
       display: none;
     }
-    .divider {
-      width: 1px;
-      background: ${getColor("dividerLight")};
-    }
     .notif-btn {
       display: block;
       width: 2.5rem;
       height: 2.5rem;
-      border-radius: 50%;
       background-color: ${getColor("white2")};
     }
   }

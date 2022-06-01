@@ -12,11 +12,11 @@ export default function FieldSum() {
   const [wrapperRef, controllers] = useSlideCtrl();
   return (
     <StyledFieldSum className="pos-relative">
-      <div ref={wrapperRef} className="overflow-hidden smooth-scroll">
+      <div ref={wrapperRef} className="pb-1 overflow-hidden smooth-scroll">
         <div className="list flex">
           {EXPLORE_FIELDS.map(({ label, img, path }) => (
             <Link key={label} to={path} className="flex-col align-center">
-              <div className="p-1 mb-2 img-wrapper">
+              <div className="p-1 mb-2 img-wrapper b-radius-round">
                 <img
                   className="full-w full-h"
                   src={imgLink(first + img)}
@@ -49,7 +49,6 @@ const StyledFieldSum = styled.div`
     width: 4rem;
     height: 4rem;
     border: 1px solid ${getColor("dividerLight")};
-    border-radius: 50%;
   }
   span {
     font-size: 0.875rem;

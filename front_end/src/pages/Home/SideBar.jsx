@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { LOGOUT } from "../../app/userSlice";
+import { SiteLogo } from "../../components/Misc";
 import { SIDEBAR_LINKS } from "../../configs";
-import { imgLink } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { MainButton } from "../../styledComponents/Inputs";
 import CreateModal from "./CreateModal";
@@ -18,7 +18,7 @@ export default function SideBar({ setSidebarOn }) {
   return (
     <StyledSideBar className="flex-col">
       <div className="mt-2 ml-3 logo-wrapper">
-        <img src={imgLink("quizizz_logos/purple-brandmark-600x164")} alt="" />
+        <SiteLogo />
       </div>
       <div className="p-4 pb-2">
         <a className="profile-link" href="/profile">
