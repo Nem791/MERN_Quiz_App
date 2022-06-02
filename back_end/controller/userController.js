@@ -105,7 +105,7 @@ const loginUser = async (req, res, next) => {
     }
 
     // 4. Return token jwt
-    const token = jwt.sign({ _id: userLogin._id, name: userLogin.name, email: userLogin.email }, 'masobimat01');
+    const token = jwt.sign({ _id: userLogin._id, name: userLogin.name, email: userLogin.email }, 'masobimat01', { expiresIn: 20 });
 
 
     // 5. Add token to header
@@ -133,6 +133,14 @@ const logOutUser = async (req, res) => {
     });
 };
 
+
+const checkLoginStatus = async (req, res) => {
+    let username = (req.user !== undefined) ? req.user : undefined;
+
+    return res.send(username);
+    
+};
+
 const userProfile = async (req, res) => {
     let username = (req.user !== undefined) ? req.user : undefined;
 
@@ -158,5 +166,6 @@ module.exports = {
     registerUser,
     loginUser,
     logOutUser,
-    userProfile
+    userProfile,
+    checkLoginStatus
 }
