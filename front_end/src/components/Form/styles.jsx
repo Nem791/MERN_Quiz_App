@@ -36,11 +36,13 @@ const FormLayout = styled.div`
   .bottom,
   .submit-error {
     border-top: 1px solid #dadde1;
-    padding: 16px;
   }
   .group-label {
-    margin-bottom: 8px;
-    font-weight: 700;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    &.inline {
+      margin: 0 0.5rem 0.75rem 0;
+    }
   }
   .input-box {
     background-color: #f5f6f7;
@@ -55,11 +57,11 @@ const FormLayout = styled.div`
     }
   }
   .error-text {
-    min-width: 60%;
     border-radius: 4px;
     padding: 0.5rem 0.75rem;
     background-color: var(--error-color);
     color: white;
+    font-size: 0.875rem;
     line-height: 1.5;
   }
   .error-icon {
@@ -75,3 +77,27 @@ const FormLayout = styled.div`
 `;
 
 export default FormLayout;
+
+export const StyledCommonTextInput = styled.div`
+  input {
+    width: 100%;
+    &.error {
+      border-color: var(--error-color);
+    }
+    &:focus {
+      border: 1px solid var(--primary-color);
+      box-shadow: 0 0 0 1px var(--primary-color) inset;
+    }
+  }
+  input:focus ~ .error-text {
+    display: block;
+  }
+  input:focus ~ .error-icon {
+    display: none;
+  }
+  .error-icon {
+    top: var(--padding);
+    right: var(--padding);
+    pointer-events: none;
+  }
+`;

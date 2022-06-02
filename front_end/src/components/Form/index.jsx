@@ -1,3 +1,4 @@
+import cn from "classnames";
 import { Form, Formik } from "formik";
 import { FaTimes } from "react-icons/fa";
 import TextGroup from "./TextGroup";
@@ -7,7 +8,7 @@ import { MainButton } from "../../styledComponents/Inputs";
 import { Row, Col } from "../../styledComponents/Layout";
 import DateGroup from "./DateGroup";
 
-const FormGroup = ({ info, ...rest }) => {
+const FormGroup = ({ info }) => {
   let Group;
   if (!info.type || ["text", "email", "password"].includes(info.type)) {
     Group = TextGroup;
@@ -17,9 +18,17 @@ const FormGroup = ({ info, ...rest }) => {
     Group = DateGroup;
   }
   return (
-    <Col span={info.span || 24} offset={info.offset}>
-      {info.label && <p className="group-label">{info.label}</p>}
-      <Group {...info} {...rest} />
+    <Col
+      className={cn(info.inline && "flex align-center")}
+      span={info.span || 24}
+      offset={info.offset}
+    >
+      {info.label && (
+        <p className={cn("group-label", { inline: info.inline })}>
+          {info.label}
+        </p>
+      )}
+      <Group {...info} />
     </Col>
   );
 };
@@ -46,25 +55,22 @@ export default function MyForm({
           <FaTimes />
         </div>
       </div>
-      {submitError && <p className="submit-error fw-600">{submitError}</p>}
-      <div className="bottom">
+      <div className="bottom p-4">
         <Formik
           initialValues={initialValues}
           validate={validate}
           onSubmit={handleSubmit}
-          children={({ errors, touched, isSubmitting }) => {
+          children={({ isSubmitting }) => {
             return (
               <Form className="flex-col">
                 <Row>
                   {fieldsInfo.map((info) => (
-                    <FormGroup
-                      key={info.name}
-                      info={info}
-                      errors={errors}
-                      touched={touched}
-                    />
+                    <FormGroup key={info.name} info={info} />
                   ))}
                 </Row>
+                {submitError && (
+                  <p className="pt-4 submit-error fw-600">{submitError}</p>
+                )}
                 <div className="mt-4 mx-auto">
                   {cancelBtn}
                   <MainButton type="submit" disabled={submitting}>

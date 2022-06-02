@@ -23,17 +23,12 @@ export const SIGNUP = createAsyncThunk("user/register", async (info) => {
     .catch(handleError);
 });
 
-// Define a service using a base URL and expected endpoints
-export const setOnExploreApi = createApi({
+export const setsOnExploreApi = createApi({
   reducerPath: "setOnExploreApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
   endpoints: (builder) => ({
-    getSetOnExplore: builder.query({
-      query: () => `quizzes/`,
-    }),
+    getSetOnExplore: builder.query({ query: () => `quizzes/` }),
   }),
 });
 
-// Export hooks for usage in functional components, which are
-// auto-generated based on the defined endpoints
-export const { useGetSetOnExploreQuery } = setOnExploreApi;
+export const { useGetSetOnExploreQuery } = setsOnExploreApi;

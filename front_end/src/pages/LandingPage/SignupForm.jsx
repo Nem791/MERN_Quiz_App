@@ -20,8 +20,8 @@ export default function SignupForm({ close }) {
         heading="Sign Up"
         initialValues={{
           name: "",
-          // gender: "",
-          // dob: new Date(),
+          gender: "",
+          dob: null,
           email: "",
           password: "",
           repassword: "",
@@ -35,20 +35,24 @@ export default function SignupForm({ close }) {
             placeholder: "Retype password",
             type: "password",
           },
-          // {
-          //   label: "Gender",
-          //   name: "gender",
-          //   type: "ratio",
-          //   options: ["male", "female", "other"],
-          //   spans: [8, 8, 8],
-          // },
-          // {
-          //   label: "Date of Birth",
-          //   name: "dob",
-          //   type: "date",
-          // },
+          {
+            label: "Gender",
+            name: "gender",
+            type: "ratio",
+            options: ["male", "female", "other"],
+            spans: [8, 8, 8],
+          },
+          {
+            label: "Date of Birth",
+            name: "dob",
+            placeholder: "YYYY/MM/DD",
+            type: "date",
+            maxDate: new Date(),
+            yearRange: 100,
+            inline: true,
+          },
         ]}
-        validate={({ name, email, password, repassword, gender }) => {
+        validate={({ name, email, password, repassword, gender, dob }) => {
           const errors = {};
           if (name.length < USER_NAME_MIN_LEN) {
             errors.name = `Your name must contain atleast ${USER_NAME_MIN_LEN} letters.`;
@@ -70,23 +74,27 @@ export default function SignupForm({ close }) {
           if (password && repassword !== password) {
             errors.repassword = "Retyped password is incorrect.";
           }
-          // if (!gender.length) {
-          //   errors.gender = "Please choose a gender.";
-          // }
+          if (!gender.length) {
+            errors.gender = "Please choose a gender.";
+          }
+          if (dob === null) {
+            errors.dob = "Please enter or choose a valid date.";
+          } else if (new Date().getFullYear() - dob.getFullYear() < 3) {
+            errors.dob = "You must be atleast 3-year-old to sign up.";
+          }
           return errors;
         }}
         handleSubmit={(values, { setSubmitting }) => {
+          console.log(values.dob.toDateString());
           dispatch(
             SIGNUP({
               name: values.name,
               email: values.email,
               password: values.password,
+              gender: values.gender,
+              dob: values.dob.toDateString(),
             })
           );
-          // setTimeout(() => {
-          //   alert(JSON.stringify(values, null, 2));
-          //   setSubmitting(false);
-          // }, 200);
         }}
         submitting={submitting}
         submitError={submitError}
