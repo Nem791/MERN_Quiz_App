@@ -1,21 +1,16 @@
-import { FaImage, FaEye, FaLanguage, FaClock } from "react-icons/fa";
+import { FaImage, FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import styled from "styled-components";
 import { getColor } from "../../styledComponents/helpers";
 import { mausac } from "../../theme";
 import { BiBook } from "react-icons/bi";
 
-function convertTime(sec) {
-  return sec + "s";
-}
-
 export default function Manager({
   name = "Placeholder",
-  isPublic,
-  language = "English",
-  dfltTimer = 30,
+  isPrivate,
   tags = [],
 }) {
+  const PrivateIcon = isPrivate ? FaEyeSlash : FaEye;
   return (
     <StyledManager className="p-4 mb-2">
       <div className="p-4 img-part flex-col flex-center pointer">
@@ -30,25 +25,21 @@ export default function Manager({
           <MdEdit size="1.125rem" />
         </button>
       </div>
-      <div className="mt-2 extra-info-part flex">
+      <div className="ml-1 mt-2 extra-info-part flex">
         <button>
-          <FaEye />
-          {isPublic ? "Public" : "Private"}
-        </button>
-        <span className="mx-2">•</span>
-        <button>
-          <FaLanguage size="1rem" />
-          {language}
-        </button>
-        <span className="mx-2">•</span>
-        <button>
-          <FaClock />
-          {convertTime(dfltTimer)}
+          <PrivateIcon />
+          {isPrivate ? "Private" : "Public"}
         </button>
       </div>
-      <div className="mt-2 tags-part flex align-center">
+      <div className="mt-2 tags-part flex align-start">
         <BiBook size="1.25rem" />
-        <p className="ml-1 ellipsis">{tags.join(" | ")}</p>
+        <div className="ml-1 flex-col">
+          {tags.map((tag, i) => (
+            <p key={i} className="my-1">
+              {tag}
+            </p>
+          ))}
+        </div>
       </div>
     </StyledManager>
   );

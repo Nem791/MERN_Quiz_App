@@ -30,7 +30,11 @@ export const boxShadows = {
   emerge: "rgba(0, 0, 0, 0.19) 0px 5px 10px, rgba(0, 0, 0, 0.23) 0px 4px 8px",
 };
 
-// dunno what these colors are called in english
+// dunno what some of these colors are called in english
 export const mausac = {
   xanhngoc: "#2D9DA6",
+  xanhbien: "#2D70AE",
+  vang: "#EFA929",
+  dohong: "#D5546D",
+  timnhat: "#9A4292",
 };

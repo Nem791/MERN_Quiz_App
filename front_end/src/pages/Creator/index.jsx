@@ -25,9 +25,10 @@ export default function Creator() {
           <Manager {...state} />
         </div>
         <OutOfScreen
+          className="editor-screen-animation"
           active={editor}
           posOut={{ top: "100%", left: 0, right: 0 }}
-          posIn={{ top: "var(--topbar-height)", bottom: 0 }}
+          posIn={{ top: "var(--topbar-height)" }}
           moveTime={300}
           unmountWhenOut
         >
@@ -43,6 +44,7 @@ const StyledCreator = styled.div`
   .std-btn {
     display: flex;
     align-items: center;
+    border-radius: 0.25rem;
     padding: 4px 16px;
     font-size: 0.875rem;
     font-weight: 600;
@@ -69,6 +71,9 @@ const StyledCreator = styled.div`
     top: var(--topbar-height);
     padding: 1.5rem 0 0 1.5rem;
     width: 24rem;
+    height: calc(100vh - var(--topbar-height));
+  }
+  .editor-screen-animation {
     height: calc(100vh - var(--topbar-height));
   }
   @media (min-width: ${breakpoints.lg}px) {
