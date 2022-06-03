@@ -3,6 +3,7 @@ import cn from "classnames";
 import { Field } from "formik";
 import { FaExclamationCircle } from "react-icons/fa";
 import { StyledCommonTextInput } from "./styles";
+import { getColor } from "../../styledComponents/helpers";
 
 export default function TextGroup({ name = "", type = "text", placeholder }) {
   return (
@@ -47,7 +48,7 @@ export const StyledTextGroup = styled(StyledCommonTextInput)`
       margin-left: -5px;
       border-style: solid;
       border-width: 5px;
-      border-color: var(--error-color) transparent transparent transparent;
+      border-color: ${getColor("error")} transparent transparent transparent;
     }
   }
 `;

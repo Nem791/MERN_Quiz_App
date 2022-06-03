@@ -4,7 +4,6 @@ import { breakpoints } from "../../theme";
 
 const FormLayout = styled.div`
   --padding: 12px;
-  --error-color: #be4b49;
   --primary-color: ${getColor("primaryDark")};
   width: 100%;
   height: 100%;
@@ -30,7 +29,7 @@ const FormLayout = styled.div`
     }
   }
   .submit-error {
-    color: var(--error-color);
+    color: ${getColor("error")};
     text-align: center;
   }
   .bottom,
@@ -53,20 +52,20 @@ const FormLayout = styled.div`
       border-color: black;
     }
     &.error:not(:focus):hover {
-      box-shadow: 0 0 0 1px var(--error-color) inset;
+      box-shadow: 0 0 0 1px ${getColor("error")} inset;
     }
   }
   .error-text {
     border-radius: 4px;
     padding: 0.5rem 0.75rem;
-    background-color: var(--error-color);
+    background-color: ${getColor("error")};
     color: white;
     font-size: 0.875rem;
     line-height: 1.5;
   }
   .error-icon {
     position: absolute;
-    color: var(--error-color);
+    color: ${getColor("error")};
     font-size: 1.25rem;
   }
   @media (min-width: ${breakpoints.md}px) {
@@ -82,7 +81,7 @@ export const StyledCommonTextInput = styled.div`
   input {
     width: 100%;
     &.error {
-      border-color: var(--error-color);
+      border-color: ${getColor("error")};
     }
     &:focus {
       border: 1px solid var(--primary-color);

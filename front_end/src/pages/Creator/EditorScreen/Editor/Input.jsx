@@ -2,9 +2,14 @@ import cn from "classnames";
 import { convertToRaw, Editor, EditorState } from "draft-js";
 import { useRef, useState } from "react";
 import styled from "styled-components";
-import { getColor } from "../../../styledComponents/helpers";
+import { getColor } from "../../../../styledComponents/helpers";
 
-export default function EditorInput({ focused, toggleFocus, changeInput }) {
+export default function EditorInput({
+  placeholder,
+  focused,
+  toggleFocus,
+  changeInput,
+}) {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const ref = useRef();
 
@@ -26,8 +31,11 @@ export default function EditorInput({ focused, toggleFocus, changeInput }) {
       <Editor
         editorState={editorState}
         onChange={onChange}
-        onBlur={toggleFocus}
-        placeholder="Type an answer option here..."
+        onBlur={() => {
+          toggleFocus();
+          ref.current?.blur();
+        }}
+        placeholder={placeholder}
         ref={ref}
       />
     </StyledEditorInput>
@@ -47,11 +55,14 @@ const StyledEditorInput = styled.div`
   }
   .public-DraftEditorPlaceholder-root {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
   }
   .public-DraftEditorPlaceholder-inner,
   .DraftEditor-editorContainer {
     color: ${getColor("white1")};
-    font-size: 1.5rem;
     text-align: center;
   }
   .public-DraftEditorPlaceholder-inner {
