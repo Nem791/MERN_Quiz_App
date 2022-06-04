@@ -118,6 +118,7 @@ const loginUser = async (req, res, next) => {
 
     // res.render('index');
     sessData.auth_token = token;
+    sessData.last_login = Date.now();
     // res.redirect('/');
     res.json({token : token})
     // res.status(204).send();
@@ -135,9 +136,9 @@ const logOutUser = async (req, res) => {
 
 
 const checkLoginStatus = async (req, res) => {
-    let username = (req.user !== undefined) ? req.user : undefined;
+    let user = (req.user !== undefined) ? req.user : undefined;
 
-    return res.send(username);
+    return res.send(user);
     
 };
 

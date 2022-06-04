@@ -21,15 +21,22 @@ module.exports = function (req, res, next) {
         //     req.user = checkToken;
         //     next();
         // }
-        
+
         // If else token ton` tai hay khong`
-        req.user = (!token) ? undefined : jwt.verify(token, 'masobimat01');
+        req.user = (!token) ? undefined : {...jwt.verify(token, 'masobimat01'), token};
         console.log("req.user: ", req.user);
         next();
 
     } catch (error) {
         console.log(error);
-        console.log(error instanceof jwt.TokenExpiredError);
-        res.status(400).send(error);
+
+        // Phan loai error 
+        if (error instanceof jwt.TokenExpiredError) {
+            return res.status(400).send({ ...error, "error_message": 'Token expired' });
+        } else if (error instanceof SyntaxError) {
+            return res.status(400).send({ ...error, "error_message": 'Invalid Token' });
+        }
+
+        return res.status(400).send(error);
     }
 }

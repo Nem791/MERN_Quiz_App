@@ -188,7 +188,6 @@ const newPost = (req, res) => {
 };
 
 const saveQuiz = async (req, res) => {
-    let username = (req.user !== undefined) ? req.user : undefined;
     // Luu DataTransferItemList, content, image to database 
     console.log('req.body-', req.body);
     console.log('req.user-', req.user);
