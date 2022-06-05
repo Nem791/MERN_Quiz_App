@@ -60,6 +60,10 @@ export const BottomPart = styled.div`
       border-color: var(--tooltip-bg) transparent transparent transparent;
     }
   }
+  .tooltip-wrapper:disabled {
+    background-color: rgba(229, 229, 229);
+    color: rgba(9, 9, 9, 0.2);
+  }
   .tooltip-wrapper:disabled .tooltip,
   .tooltip.warnNoText {
     background-color: ${getColor("error")};

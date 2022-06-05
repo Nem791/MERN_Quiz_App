@@ -9,7 +9,6 @@ import SelectPlace from "./SelectPlace";
 
 export default function TopBar({ setFocusing, setSidebarOn }) {
   const [searchPlace, setSearchPlace] = useState("Quizizz library");
-  const [collapse, setCollapse] = useState(null);
   return (
     <StyledTopBar className="full-w flex">
       <div
@@ -19,15 +18,9 @@ export default function TopBar({ setFocusing, setSidebarOn }) {
         <FaBars size="1.25rem" />
       </div>
       <div className="search-bar b-radius-3 flex grow-1">
-        <SearchBox
-          collapse={collapse}
-          setCollapse={setCollapse}
-          setFocusing={setFocusing}
-        />
+        <SearchBox setFocusing={setFocusing} />
         <LineDivider className="my-2" height="auto" />
         <SelectPlace
-          collapse={collapse}
-          setCollapse={setCollapse}
           searchPlace={searchPlace}
           setSearchPlace={setSearchPlace}
         />

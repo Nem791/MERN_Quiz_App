@@ -4,13 +4,14 @@ import styled from "styled-components";
 import { getColor } from "../../styledComponents/helpers";
 import { mausac } from "../../theme";
 import { BiBook } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
-export default function Manager({
-  name = "Placeholder",
-  isPrivate,
-  tags = [],
-}) {
+export default function Manager() {
+  const name = useSelector((state) => state.creator.name);
+  const tags = useSelector((state) => state.creator.tags);
+  const isPrivate = useSelector((state) => state.creator.isPrivate);
   const PrivateIcon = isPrivate ? FaEyeSlash : FaEye;
+
   return (
     <StyledManager className="p-4 mb-2">
       <div className="p-4 img-part flex-col flex-center pointer">

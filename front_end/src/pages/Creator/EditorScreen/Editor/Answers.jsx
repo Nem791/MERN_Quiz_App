@@ -1,19 +1,33 @@
+import { createSelector } from "@reduxjs/toolkit";
 import cn from "classnames";
 import { FaCheck, FaImage, FaTrashAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  CHOOSE_ANSWER_CORRECT,
+  DELETED_ANSWER,
+  DELETING_ANSWER,
+  STOP_WARNING,
+  WARN_NO_TEXT,
+} from "../../../../app/creatorSlice";
 import StyledEditorAns from "./Answers.styles";
-import Input from "./Input";
 
-export default function EditorAns({
-  color,
-  correct,
-  setThisCorrect,
-  warnNoText,
-  animation,
-  animationDuration,
-  deletable,
-  deleteThis,
-  ...rest
-}) {
+const selectAnswerById = createSelector(
+  (state) => state.creator.editor.answersById,
+  (_, id) => id,
+  (answersById, id) => answersById[id]
+);
+
+const animationDuration = 300;
+
+export default function EditorAns({ id, deletable, input }) {
+  const answerInfo = useSelector((state) => selectAnswerById(state, id));
+  const multiCorrect = useSelector(
+    (state) => state.creator.editor.multiCorrect
+  );
+  const dispatch = useDispatch();
+  if (!answerInfo) return null;
+
+  const { text, color, correct, warnNoText, animation } = answerInfo;
   return (
     <StyledEditorAns
       color={color}
@@ -24,7 +38,12 @@ export default function EditorAns({
         <div className="flex">
           <button
             className="mr-2 util-btn tooltip-wrapper"
-            onClick={deleteThis}
+            onClick={() => {
+              dispatch(DELETING_ANSWER(id));
+              setTimeout(() => {
+                dispatch(DELETED_ANSWER(id));
+              }, animationDuration);
+            }}
             disabled={!deletable}
           >
             <span className="tooltip">
@@ -43,10 +62,22 @@ export default function EditorAns({
           </button>
         </div>
         <button
-          className={cn("ml-auto b-radius-round correct-btn tooltip-wrapper", {
+          className={cn("ml-auto correct-btn tooltip-wrapper", {
             correct,
+            multiCorrect,
           })}
-          onClick={setThisCorrect}
+          onClick={() => {
+            if (text === "") {
+              if (!warnNoText) {
+                dispatch(WARN_NO_TEXT(id));
+                setTimeout(() => {
+                  dispatch(STOP_WARNING(id));
+                }, 2000);
+              }
+            } else {
+              dispatch(CHOOSE_ANSWER_CORRECT(id));
+            }
+          }}
         >
           <span className={cn("tooltip", { warnNoText })}>
             {warnNoText ? "Please add text first" : "Mark this answer correct"}
@@ -54,9 +85,7 @@ export default function EditorAns({
           <FaCheck size="0.875rem" />
         </button>
       </div>
-      <div className="mt-2 grow-1 custom-sb">
-        <Input {...rest} placeholder="Type an answer option here..." />
-      </div>
+      <div className="mt-2 grow-1 custom-sb">{input}</div>
     </StyledEditorAns>
   );
 }

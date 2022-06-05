@@ -6,7 +6,7 @@ const userSlice = createSlice({
   initialState: {
     name: "",
     reqError: "",
-    reqPending: false
+    reqPending: false,
   },
   reducers: {
     LOGOUT: (state) => {
@@ -18,7 +18,7 @@ const userSlice = createSlice({
     },
     SNEAKIN: (state) => {
       state.name = "Huan";
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -35,7 +35,7 @@ const userSlice = createSlice({
       .addCase(SIGNUP.pending, (state) => {
         state.reqPending = true;
       });
-  }
+  },
 });
 
 function login(state, res) {

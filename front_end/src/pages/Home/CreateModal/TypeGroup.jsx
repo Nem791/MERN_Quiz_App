@@ -1,36 +1,26 @@
-import { Field } from "formik";
+import { Field, useField } from "formik";
 import { FaExclamationCircle } from "react-icons/fa";
 import styled from "styled-components";
 import { getColor } from "../../../styledComponents/helpers";
 import { Row, Col } from "../../../styledComponents/Layout";
 
-export default function TypeGroup({
-  name = "",
-  options = [],
-  errors = {},
-  touched = {}
-}) {
-  const error = errors[name] && touched[name];
+export default function TypeGroup({ name = "", options = [] }) {
+  const [, { error, touched }] = useField({ name });
   return (
     <StyledTypeGroup className="mb-5">
-      {error && (
+      {error && touched && (
         <p className="mb-2 error-text flex align-center">
           <FaExclamationCircle size="1.25rem" />
-          <span className="ml-2">{errors[name]}</span>
+          <span className="ml-2">{error}</span>
         </p>
       )}
       <Row gap={[8, 8]}>
-        {options.map(({ img, value }) => (
+        {options.map(({ img, label, value }) => (
           <Col key={value} span={12}>
             <label className="input-box flex align-center pointer pos-relative">
               <img src={img} alt="" />
-              <span className="ml-2 capitalize fw-600">{value}</span>
-              <Field
-                type="radio"
-                className="d-none"
-                name={name}
-                value={value}
-              />
+              <span className="ml-2 capitalize fw-600">{label}</span>
+              <Field type="radio" hidden name={name} value={value} />
               <div className="background pos-absolute full-stretch" />
             </label>
           </Col>

@@ -1,18 +1,21 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { QUIZ_TYPES } from "../../configs";
+import { OPEN_EDITOR } from "../../app/creatorSlice";
+import { _QUEST_TYPE_RENDER_INFOS } from "../../configs";
 import { getColor } from "../../styledComponents/helpers";
 import { Col, Row } from "../../styledComponents/Layout";
 import { boxShadows } from "../../theme";
 
-export default function QuizOptions({ setEditor }) {
+export default function QuizOptions() {
+  const dispatch = useDispatch();
   return (
     <StyledQuizOptions className="p-4 b-radius-3">
       <Row className="board-inner" gap={[16, 16]}>
-        {QUIZ_TYPES.map(({ Icon, text, bgColor }, i) => (
+        {_QUEST_TYPE_RENDER_INFOS.map(({ Icon, text, bgColor }, i) => (
           <Col key={i} span={8}>
             <div
               className="p-2 option b-radius-3 flex-col align-center pointer"
-              onClick={() => setEditor(text)}
+              onClick={() => dispatch(OPEN_EDITOR(text))}
             >
               <IconWrapper
                 className="mb-3 b-radius-1 flex-center"

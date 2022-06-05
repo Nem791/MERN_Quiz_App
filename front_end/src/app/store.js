@@ -1,16 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { setsOnExploreApi } from "./thunks";
+import { exploreSetsApi } from "./thunks";
 import uiReducer from "./uiSlice";
 import userReducer from "./userSlice";
+import creatorReducer from "./creatorSlice";
 
 const store = configureStore({
   reducer: {
     ui: uiReducer,
     user: userReducer,
-    [setsOnExploreApi.reducerPath]: setsOnExploreApi.reducer,
+    creator: creatorReducer,
+    [exploreSetsApi.reducerPath]: exploreSetsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(setsOnExploreApi.middleware),
+    getDefaultMiddleware().concat(exploreSetsApi.middleware),
 });
 
 export default store;

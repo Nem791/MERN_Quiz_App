@@ -1,4 +1,5 @@
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import styles from "./styles.module.css";
 
 const months = [
   "January",
@@ -63,7 +64,7 @@ const renderCustomHeader =
         </select>
 
         <button
-          className="pl-2 pr-1 flex-center"
+          className={"pl-2 pr-1 flex-center " + styles.hiddenWhenDisabled}
           type="button"
           onClick={increaseMonth}
           disabled={nextMonthButtonDisabled}

@@ -1,9 +1,9 @@
-import Modal from "../../components/Modal";
-import Form from "../../components/Form";
-import { USER_NAME_MIN_LEN, PASSWORD_MIN_LEN } from "../../configs";
 import { useDispatch, useSelector } from "react-redux";
 import { RESET_ERROR } from "../../app/userSlice";
-import { SIGNUP } from "../../app/thunks";
+import { SIGNUP } from "../../app/userSlice/thunks";
+import Form from "../../components/Form";
+import Modal from "../../components/Modal";
+import { _PASSWORD_MIN_LEN, _USER_NAME_MIN_LEN } from "../../configs";
 
 export default function SignupForm({ close }) {
   const dispatch = useDispatch();
@@ -54,16 +54,16 @@ export default function SignupForm({ close }) {
         ]}
         validate={({ name, email, password, repassword, gender, dob }) => {
           const errors = {};
-          if (name.length < USER_NAME_MIN_LEN) {
-            errors.name = `Your name must contain atleast ${USER_NAME_MIN_LEN} letters.`;
+          if (name.length < _USER_NAME_MIN_LEN) {
+            errors.name = `Your name must contain atleast ${_USER_NAME_MIN_LEN} letters.`;
           } else if (/[^a-zA-Z ]/g.test(name)) {
             errors.name = "Your name can only contain spaces and a-z letters.";
           }
           if (!/\S+@\S+/.test(email)) {
             errors.email = "Invalid email address.";
           }
-          if (password.length < PASSWORD_MIN_LEN) {
-            errors.password = `Password must contain atleast ${PASSWORD_MIN_LEN} characters`;
+          if (password.length < _PASSWORD_MIN_LEN) {
+            errors.password = `Password must contain atleast ${_PASSWORD_MIN_LEN} characters`;
           } else if (
             password.search(/[0-9]/) === -1 ||
             password.search(/[A-Z]/) === -1

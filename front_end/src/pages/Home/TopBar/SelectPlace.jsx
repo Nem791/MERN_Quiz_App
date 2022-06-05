@@ -1,62 +1,39 @@
 import cn from "classnames";
-import { useEffect, useRef } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import styled from "styled-components";
 import { Collapse } from "../../../components/HiddenSpace";
+import { useCollapseCtrl } from "../../../hooks";
 import { getColor } from "../../../styledComponents/helpers";
 import { breakpoints } from "../../../theme";
 
-export default function SelectPlace({
-  collapse,
-  setCollapse,
-  searchPlace,
-  setSearchPlace
-}) {
-  const ref1 = useRef();
-  const ref2 = useRef();
-
-  useEffect(() => {
-    const handleClick = (e) => {
-      if (ref2.current && !ref2.current.contains(e.target)) {
-        if (!ref1.current) return;
-        if (ref1.current.contains(e.target)) {
-          setCollapse((prev) =>
-            prev === "place" ? null : prev === null ? "place" : prev
-          );
-        } else {
-          setCollapse((prev) => (prev === "place" ? null : prev));
-        }
-      }
-    };
-    window.addEventListener("click", handleClick, true);
-    return () => window.removeEventListener("click", handleClick, true);
-  }, [setCollapse]);
-
+export default function SelectPlace({ searchPlace, setSearchPlace }) {
+  const [collapsed, setCollapsed, ctrlRef, collapseRef] = useCollapseCtrl();
   return (
     <StyledSelectPlace className="inherit-br pos-relative">
       <button
-        ref={ref1}
+        ref={ctrlRef}
         className="p-2 pr-1 inherit-br full-h full-w flex align-center justify-between"
       >
         <span className="mr-2">{searchPlace}</span>
         <FaCaretDown />
       </button>
-      <Collapse className="collapse" open={collapse === "place"}>
-        {["Quizizz library", "My library"].map((opt) => (
-          <p
-            key={opt}
-            ref={ref2}
-            className={cn("p-2 pr-1 pointer", {
-              active: opt === searchPlace
-            })}
-            onClick={() => {
-              setCollapse(null);
-              setSearchPlace(opt);
-            }}
-          >
-            {opt}
-          </p>
-        ))}
+      <Collapse className="collapse" open={collapsed}>
+        <div ref={collapseRef}>
+          {["Quizizz library", "My library"].map((opt) => (
+            <p
+              key={opt}
+              className={cn("p-2 pr-1 pointer", {
+                active: opt === searchPlace,
+              })}
+              onClick={() => {
+                setCollapsed(null);
+                setSearchPlace(opt);
+              }}
+            >
+              {opt}
+            </p>
+          ))}
+        </div>
       </Collapse>
     </StyledSelectPlace>
   );

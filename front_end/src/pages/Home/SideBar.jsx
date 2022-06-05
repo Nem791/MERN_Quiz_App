@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { LOGOUT } from "../../app/userSlice";
 import { SiteLogo } from "../../components/Misc";
-import { SIDEBAR_LINKS } from "../../configs";
+import { _SIDEBAR_LINKS } from "../../configs";
 import { getColor } from "../../styledComponents/helpers";
 import { MainButton } from "../../styledComponents/Inputs";
 import CreateModal from "./CreateModal";
@@ -36,7 +36,7 @@ export default function SideBar({ setSidebarOn }) {
         Create
       </MainButton>
       <div className="flex-col">
-        {SIDEBAR_LINKS.map(({ Icon, label, path }) => (
+        {_SIDEBAR_LINKS.map(({ Icon, label, path }) => (
           <NavLink key={label} className="link flex align-center" to={path}>
             <Icon className="ml-4 mr-3" /> {label}
           </NavLink>

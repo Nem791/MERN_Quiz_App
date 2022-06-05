@@ -64,7 +64,8 @@ input {
   outline: none;
   font-size: inherit;
 }
-img {
+img,
+svg {
   display: block;
 }
 
@@ -135,6 +136,12 @@ img {
 }
 .fw-600 {
   font-weight: 600;
+}
+.fs-075 {
+  font-size: 0.75rem;
+}
+.fs-1 {
+  font-size: 1rem;
 }
 
 /*  */

@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { mausac } from "../../../../theme";
 
 const StyledEditorAns = styled.div`
   position: relative;
-  background-color: ${(pr) => mausac[pr.color]};
+  background-color: ${(pr) => pr.color};
   &.deleting {
     animation: deleting ${(pr) => pr.duration}ms ease-in-out forwards;
   }
@@ -43,11 +42,12 @@ const StyledEditorAns = styled.div`
     border-radius: 0.5rem;
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
-    &:hover {
+    &:not(:disabled):hover {
       background-color: rgba(255, 255, 255, 0.33);
     }
   }
   .correct-btn {
+    border-radius: 50%;
     border: 2px solid white;
     background-color: rgba(9, 9, 9, 0.5);
     color: rgba(255, 255, 255, 0.5);
@@ -57,6 +57,9 @@ const StyledEditorAns = styled.div`
     }
     &.correct {
       background-color: rgb(0, 201, 133);
+    }
+    &.multiCorrect {
+      border-radius: 0.25rem;
     }
   }
   // inside EditorInput

@@ -1,17 +1,31 @@
-import { FaCloudUploadAlt, FaCog } from "react-icons/fa";
+import cn from "classnames";
+import { FaCloudUploadAlt, FaCog, FaTrashAlt } from "react-icons/fa";
 import { IoPlay } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { LineDivider } from "../../styledComponents/Layout";
 import { imgLink } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { breakpoints } from "../../theme";
+import { useDispatch } from "react-redux";
+import { CLOSE_CREATOR } from "../../app/creatorSlice";
 
 export default function TopBar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const buttons = [
     { Icon: IoPlay, text: "Preview" },
     { Icon: FaCog, text: "Settings" },
-    { Icon: FaCloudUploadAlt, text: "Save" },
+    {
+      Icon: FaTrashAlt,
+      text: "Discard",
+      className: "out-creator",
+      onClick: () => {
+        dispatch(CLOSE_CREATOR());
+        navigate("/");
+      },
+    },
+    { Icon: FaCloudUploadAlt, text: "Save", className: "out-creator" },
   ];
   return (
     <CreatorTopBar className="p-2 flex align-center justify-between">
@@ -24,8 +38,12 @@ export default function TopBar() {
         bgColor="rgba(255, 255, 255, 0.1)"
       />
       <div className="ml-auto flex">
-        {buttons.map(({ Icon, text }, i) => (
-          <button key={i} className="ml-2 std-btn">
+        {buttons.map(({ Icon, text, className, onClick }, i) => (
+          <button
+            key={i}
+            className={cn("ml-2 std-btn", className)}
+            onClick={onClick}
+          >
             <Icon className="mr-1" size="1rem" />
             {text}
           </button>
@@ -45,7 +63,7 @@ const CreatorTopBar = styled.div`
   button:first-child {
     display: none;
   }
-  button:not(:last-child) {
+  button:not(.out-creator) {
     background: rgba(255, 255, 255, 0.2);
     color: white;
     &:hover {
@@ -54,7 +72,7 @@ const CreatorTopBar = styled.div`
   }
   @media (min-width: ${breakpoints.lg}px) {
     button:first-child {
-      display: block;
+      display: flex;
     }
   }
 `;

@@ -35,3 +35,26 @@ export function useDebounce(value, delay) {
   }, [value, delay]);
   return debouncedValue;
 }
+
+export function useCollapseCtrl() {
+  const [collapsed, setCollapsed] = useState(false);
+  const ctrlRef = useRef();
+  const collapseRef = useRef();
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (collapseRef.current && !collapseRef.current.contains(e.target)) {
+        if (!ctrlRef.current) return;
+        if (ctrlRef.current.contains(e.target)) {
+          setCollapsed((prev) => !prev);
+        } else {
+          setCollapsed(false);
+        }
+      }
+    };
+    window.addEventListener("click", handleClick, true);
+    return () => window.removeEventListener("click", handleClick, true);
+  }, [setCollapsed]);
+
+  return [collapsed, setCollapsed, ctrlRef, collapseRef];
+}

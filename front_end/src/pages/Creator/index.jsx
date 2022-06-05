@@ -1,16 +1,18 @@
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { OutOfScreen } from "../../components/HiddenSpace";
 import { breakpoints } from "../../theme";
 import EditorScreen from "./EditorScreen";
 import Manager from "./Manager";
+import QuestList from "./QuestList";
 import QuizOptions from "./QuizOptions";
 import TopBar from "./TopBar";
 
 export default function Creator() {
-  const [editor, setEditor] = useState(null);
-  const { state } = useLocation();
+  const questType = useSelector((state) => state.creator.editor.questType);
+  const numOfQuests = useSelector(
+    (state) => state.creator.savedQuests.allIds.length
+  );
   return (
     <StyledCreator className="b-radius-1">
       <div className="creator-topbar">
@@ -18,21 +20,27 @@ export default function Creator() {
       </div>
       <div className="creator-inner flex justify-center relative">
         <div className="left-sec px-2 flex-col align-center">
-          <p className="mb-4 fw-600">Create a new question</p>
-          <QuizOptions setEditor={setEditor} />
+          {numOfQuests ? (
+            <QuestList />
+          ) : (
+            <>
+              <p className="mb-4 fw-600">Create a new question</p>
+              <QuizOptions />
+            </>
+          )}
         </div>
         <div className="right-sec">
-          <Manager {...state} />
+          <Manager />
         </div>
         <OutOfScreen
           className="editor-screen-animation"
-          active={editor}
+          active={questType}
           posOut={{ top: "100%", left: 0, right: 0 }}
           posIn={{ top: "var(--topbar-height)" }}
           moveTime={300}
-          unmountWhenOut
+          // unmountWhenOut
         >
-          <EditorScreen editor={editor} setEditor={setEditor} />
+          <EditorScreen />
         </OutOfScreen>
       </div>
     </StyledCreator>
