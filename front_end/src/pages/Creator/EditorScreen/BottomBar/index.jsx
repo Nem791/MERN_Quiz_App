@@ -7,7 +7,7 @@ import {
   CLOSE_EDITOR,
   SAVE_QUEST,
   TOGGLE_MULTI_CORRECT_ANSWERS,
-} from "../../../../app/creatorSlice";
+} from "../../../../app/creatorSlice/actions";
 import { _QUEST_TYPES } from "../../../../configs";
 import { getColor } from "../../../../styledComponents/helpers";
 import TimeSelect from "./TimeSelect";

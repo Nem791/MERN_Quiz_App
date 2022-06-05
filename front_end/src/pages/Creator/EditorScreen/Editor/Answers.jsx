@@ -8,7 +8,7 @@ import {
   DELETING_ANSWER,
   STOP_WARNING,
   WARN_NO_TEXT,
-} from "../../../../app/creatorSlice";
+} from "../../../../app/creatorSlice/actions";
 import StyledEditorAns from "./Answers.styles";
 
 const selectAnswerById = createSelector(

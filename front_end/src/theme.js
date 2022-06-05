@@ -35,7 +35,9 @@ export const boxShadows = {
 export const mausac = {
   xanhngoc: "#2D9DA6",
   xanhbien: "#2D70AE",
+  xanhladam: "#00A06A",
   vang: "#EFA929",
   dohong: "#D5546D",
   timnhat: "#9A4292",
+  do: "#EC0B43",
 };

@@ -2,6 +2,7 @@ import cn from "classnames";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
+// import { useDevActions } from "../../hooks";
 import { getColor } from "../../styledComponents/helpers";
 import { breakpoints } from "../../theme";
 import SideBar from "./SideBar";
@@ -10,6 +11,9 @@ import TopBar from "./TopBar";
 export default function HomePage() {
   const [focusing, setFocusing] = useState(false);
   const [sidebarOn, setSidebarOn] = useState(false);
+
+  // useDevActions();
+
   return (
     <StyledHomePage className="full-w full-w flex">
       {(focusing || sidebarOn) && (

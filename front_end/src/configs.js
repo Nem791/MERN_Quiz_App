@@ -101,6 +101,11 @@ export const _TAGS = [
   "Other",
 ];
 
+export const _QUEST_SET_TYPES = {
+  sliders: "lesson",
+  questions: "quiz",
+};
+
 export const _QUEST_TYPES = {
   multipleChoice: "Multiple-choice",
   fillInTheBlank: "Fill-in-the-blank",

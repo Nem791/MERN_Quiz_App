@@ -1,6 +1,6 @@
 import { FaCaretDown } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { OPEN_EDITOR } from "../../../../app/creatorSlice";
+import { OPEN_EDITOR } from "../../../../app/creatorSlice/actions";
 import { Collapse } from "../../../../components/HiddenSpace";
 import { _QUEST_TYPE_RENDER_INFOS } from "../../../../configs";
 import { useCollapseCtrl } from "../../../../hooks";

@@ -8,7 +8,7 @@ import { imgLink } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { breakpoints } from "../../theme";
 import { useDispatch } from "react-redux";
-import { CLOSE_CREATOR } from "../../app/creatorSlice";
+import { CLOSE_CREATOR } from "../../app/creatorSlice/actions";
 
 export default function TopBar() {
   const dispatch = useDispatch();

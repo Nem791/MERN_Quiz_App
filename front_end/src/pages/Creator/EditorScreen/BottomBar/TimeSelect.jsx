@@ -1,6 +1,6 @@
 import { FaCaretDown, FaClock } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { CHANGE_TIME_LIMIT } from "../../../../app/creatorSlice";
+import { CHANGE_TIME_LIMIT } from "../../../../app/creatorSlice/actions";
 import { Collapse } from "../../../../components/HiddenSpace";
 import { useCollapseCtrl } from "../../../../hooks";
 import { Box } from "../../../../styledComponents/Layout";

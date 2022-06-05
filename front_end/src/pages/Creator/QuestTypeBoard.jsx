@@ -1,15 +1,13 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { OPEN_EDITOR } from "../../app/creatorSlice";
+import { OPEN_EDITOR } from "../../app/creatorSlice/actions";
 import { _QUEST_TYPE_RENDER_INFOS } from "../../configs";
-import { getColor } from "../../styledComponents/helpers";
 import { Col, Row } from "../../styledComponents/Layout";
-import { boxShadows } from "../../theme";
 
-export default function QuizOptions() {
+export default function QuestTypeBoard() {
   const dispatch = useDispatch();
   return (
-    <StyledQuizOptions className="p-4 b-radius-3">
+    <StyledQuestTypeBoard className="p-4 left-sec-children">
       <Row className="board-inner" gap={[16, 16]}>
         {_QUEST_TYPE_RENDER_INFOS.map(({ Icon, text, bgColor }, i) => (
           <Col key={i} span={8}>
@@ -28,15 +26,13 @@ export default function QuizOptions() {
           </Col>
         ))}
       </Row>
-    </StyledQuizOptions>
+    </StyledQuestTypeBoard>
   );
 }
 
-const StyledQuizOptions = styled.div`
+const StyledQuestTypeBoard = styled.div`
   width: 400px;
   max-width: 100vw;
-  box-shadow: ${boxShadows.emerge};
-  background-color: ${getColor("white1")};
   .option {
     &:hover {
       background-color: rgba(9, 9, 9, 0.05);

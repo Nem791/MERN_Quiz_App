@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { _ANSWER_COLORS, _QUEST_TYPES } from "../configs";
+import { _ANSWER_COLORS, _QUEST_TYPES } from "../../configs";
 
 const initialAnswerInfo = {
   text: "",
@@ -11,7 +11,7 @@ const initialAnswerInfo = {
 const initialEditor = {
   questType: null,
   multiCorrect: false,
-  question: "",
+  question: null,
   answersById: {},
   allAnswerIds: [],
   timeLimit: 30,
@@ -132,10 +132,13 @@ const creatorSlice = createSlice({
     },
     SAVE_QUEST: (state) => {
       const { allAnswerIds, answersById, ...rest } = state.editor;
-      const answers = allAnswerIds.map(({ text, correct }) => ({
-        text,
-        correct,
-      }));
+      const answers = allAnswerIds.map((id) => {
+        const { text, correct } = answersById[id];
+        return {
+          text,
+          correct,
+        };
+      });
       const id = Date.now();
       state.savedQuests.byId[id] = {
         ...rest,
@@ -144,25 +147,16 @@ const creatorSlice = createSlice({
       state.savedQuests.allIds.push(id);
       state.editor = initialEditor;
     },
+    DELETE_QUEST: ({ savedQuests }, action) => {
+      const id = action.payload;
+      delete savedQuests.byId[id];
+      savedQuests.allIds = savedQuests.allIds.filter(
+        (quest) => quest.id !== id
+      );
+    },
   },
 });
 
-export const {
-  OPEN_CREATOR,
-  CLOSE_CREATOR,
-  OPEN_EDITOR,
-  CLOSE_EDITOR,
-  EDIT_QUESTION,
-  CHOOSE_ANSWER_CORRECT,
-  WARN_NO_TEXT,
-  STOP_WARNING,
-  EDIT_ANSWER,
-  DELETING_ANSWER,
-  DELETED_ANSWER,
-  ADDED_ANSWER,
-  TOGGLE_MULTI_CORRECT_ANSWERS,
-  CHANGE_TIME_LIMIT,
-  SAVE_QUEST,
-} = creatorSlice.actions;
+export const actions = creatorSlice.actions;
 
 export default creatorSlice.reducer;

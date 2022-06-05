@@ -1,10 +1,13 @@
 // import "antd/dist/antd.css";
 import "katex/dist/katex.min.css";
+import { useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { BlockMath } from "react-katex";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
+import { SNEAKIN } from "./app/userSlice";
+import { useDevActions } from "./hooks";
 import Creator from "./pages/Creator";
 import Explore from "./pages/Explore";
 import Home from "./pages/Home";
@@ -20,6 +23,12 @@ const StyledApp = styled.div`
 export default function App() {
   const mode = useSelector((state) => state.ui.mode);
   const userName = useSelector((state) => state.user.name);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(SNEAKIN());
+  }, []);
+
   return (
     <ThemeProvider theme={colors[mode]}>
       <StyledApp>

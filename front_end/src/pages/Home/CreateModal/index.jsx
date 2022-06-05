@@ -1,11 +1,11 @@
 import { Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { OPEN_CREATOR } from "../../../app/creatorSlice";
+import { OPEN_CREATOR } from "../../../app/creatorSlice/actions";
 import Layout from "../../../components/Form/styles";
 import TextGroup from "../../../components/Form/TextGroup";
 import Modal from "../../../components/Modal";
-import { _TAGS } from "../../../configs";
+import { _TAGS, _QUEST_SET_TYPES } from "../../../configs";
 import { Button, MainButton } from "../../../styledComponents/Inputs";
 import { Col, Row } from "../../../styledComponents/Layout";
 import TagGroup from "./TagGroup";
@@ -55,19 +55,21 @@ export default function CreateModal({ close }) {
 
 function renderForm(close) {
   return ({ values, isSubmitting }) => {
-    const type = values.type || "lesson/quiz";
+    const type =
+      _QUEST_SET_TYPES[values.type] ||
+      `${_QUEST_SET_TYPES.sliders}/${_QUEST_SET_TYPES.questions}`;
     return (
       <Form className="p-4 flex-col">
         <TypeGroup
           name="type"
           options={[
             {
-              label: "Lesson",
+              label: _QUEST_SET_TYPES.questions,
               value: "questions",
               img: "https://cf.quizizz.com/img/illustrations/lesson.png",
             },
             {
-              label: "Quiz",
+              label: _QUEST_SET_TYPES.sliders,
               value: "sliders",
               img: "https://cf.quizizz.com/img/illustrations/quiz.png",
             },

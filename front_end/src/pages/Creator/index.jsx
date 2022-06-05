@@ -1,11 +1,14 @@
+import cn from "classnames";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { OutOfScreen } from "../../components/HiddenSpace";
-import { breakpoints } from "../../theme";
+import { getColor } from "../../styledComponents/helpers";
+import { boxShadows, breakpoints } from "../../theme";
 import EditorScreen from "./EditorScreen";
 import Manager from "./Manager";
 import QuestList from "./QuestList";
-import QuizOptions from "./QuizOptions";
+import QuestTypeBoard from "./QuestTypeBoard";
+import ToolBar from "./Toolbar";
 import TopBar from "./TopBar";
 
 export default function Creator() {
@@ -18,16 +21,23 @@ export default function Creator() {
       <div className="creator-topbar">
         <TopBar />
       </div>
-      <div className="creator-inner flex justify-center relative">
-        <div className="left-sec px-2 flex-col align-center">
-          {numOfQuests ? (
-            <QuestList />
-          ) : (
-            <>
-              <p className="mb-4 fw-600">Create a new question</p>
-              <QuizOptions />
-            </>
-          )}
+      <div className="creator-inner flex justify-center">
+        <div className="left-sec px-2 flex-col align-center pos-relative">
+          <div
+            className={cn("creator-toolbar full-w", { "d-none": !numOfQuests })}
+          >
+            <ToolBar />
+          </div>
+          <div className="creator-quest-area">
+            {numOfQuests ? (
+              <QuestList />
+            ) : (
+              <>
+                <p className="mb-4 fw-600 text-center">Create a new question</p>
+                <QuestTypeBoard />
+              </>
+            )}
+          </div>
         </div>
         <div className="right-sec">
           <Manager />
@@ -35,7 +45,7 @@ export default function Creator() {
         <OutOfScreen
           className="editor-screen-animation"
           active={questType}
-          posOut={{ top: "100%", left: 0, right: 0 }}
+          posOut={{ top: "100%", left: 0, right: 0, zIndex: 3 }}
           posIn={{ top: "var(--topbar-height)" }}
           moveTime={300}
           // unmountWhenOut
@@ -69,9 +79,26 @@ const StyledCreator = styled.div`
     min-height: calc(100vh - var(--topbar-height));
     padding-top: var(--topbar-height);
   }
+  .creator-toolbar {
+    position: fixed;
+    top: var(--topbar-height);
+    z-index: 1;
+  }
+  .creator-toolbar,
   .left-sec {
     max-width: 40rem;
-    margin-top: 8.5rem;
+  }
+  .left-sec {
+    width: 100%;
+  }
+  .left-sec-children {
+    border: 1px solid rgb(229, 229, 229);
+    box-shadow: ${boxShadows.common};
+    border-radius: 0.5rem;
+    background-color: ${getColor("white1")};
+  }
+  .creator-quest-area {
+    padding-top: 8.5rem;
   }
   .right-sec {
     display: none;

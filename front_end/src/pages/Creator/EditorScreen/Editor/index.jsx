@@ -5,7 +5,7 @@ import {
   ADDED_ANSWER,
   EDIT_ANSWER,
   EDIT_QUESTION,
-} from "../../../../app/creatorSlice";
+} from "../../../../app/creatorSlice/actions";
 import { Col, Row } from "../../../../styledComponents/Layout";
 import Answers from "./Answers";
 import Input from "./Input";
@@ -13,6 +13,7 @@ import { BottomPart, StyledEditor } from "./styles";
 
 export default function Editor() {
   const answerIds = useSelector((state) => state.creator.editor.allAnswerIds);
+  const question = useSelector((state) => state.creator.editor.question);
   const [focusId, setFocusId] = useState(null);
   const dispatch = useDispatch();
 
@@ -22,12 +23,16 @@ export default function Editor() {
       <div className="px-3 top-part flex">
         <div style={{ width: "6rem" }}></div>
         <div className="question-editor-wrapper grow-1">
-          <Input
-            placeholder="Type your question here..."
-            focused={focusId === -1}
-            toggleFocus={() => setFocusId((prev) => (prev === -1 ? null : -1))}
-            changeInput={(text) => dispatch(EDIT_QUESTION(text))}
-          />
+          {question !== null && (
+            <Input
+              placeholder="Type your question here..."
+              focused={focusId === -1}
+              toggleFocus={() =>
+                setFocusId((prev) => (prev === -1 ? null : -1))
+              }
+              changeInput={(text) => dispatch(EDIT_QUESTION(text))}
+            />
+          )}
         </div>
       </div>
       <BottomPart className="pos-relative">
