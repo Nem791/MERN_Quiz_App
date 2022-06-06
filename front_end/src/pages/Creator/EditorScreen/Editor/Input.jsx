@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { convertToRaw, Editor, EditorState } from "draft-js";
+import { ContentState, convertToRaw, Editor, EditorState } from "draft-js";
 import { useRef, useState } from "react";
 import styled from "styled-components";
 import { getColor } from "../../../../styledComponents/helpers";
@@ -8,9 +8,13 @@ export default function EditorInput({
   placeholder,
   focused,
   toggleFocus,
+  initialInput,
   changeInput,
 }) {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [editorState, setEditorState] = useState(
+    EditorState.createWithContent(ContentState.createFromText(initialInput))
+  );
   const ref = useRef();
 
   const onChange = (newState) => {

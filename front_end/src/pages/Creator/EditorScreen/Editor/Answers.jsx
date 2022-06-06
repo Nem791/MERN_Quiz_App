@@ -6,10 +6,12 @@ import {
   CHOOSE_ANSWER_CORRECT,
   DELETED_ANSWER,
   DELETING_ANSWER,
+  EDIT_ANSWER,
   STOP_WARNING,
   WARN_NO_TEXT,
 } from "../../../../app/creatorSlice/actions";
 import StyledEditorAns from "./Answers.styles";
+import Input from "./Input";
 
 const selectAnswerById = createSelector(
   (state) => state.creator.editor.answersById,
@@ -19,7 +21,7 @@ const selectAnswerById = createSelector(
 
 const animationDuration = 300;
 
-export default function EditorAns({ id, deletable, input }) {
+export default function Answers({ id, deletable, focused, setFocusId }) {
   const answerInfo = useSelector((state) => selectAnswerById(state, id));
   const multiCorrect = useSelector(
     (state) => state.creator.editor.multiCorrect
@@ -46,7 +48,7 @@ export default function EditorAns({ id, deletable, input }) {
             }}
             disabled={!deletable}
           >
-            <span className="tooltip">
+            <span className="tooltip top-tooltip">
               {deletable
                 ? "Delete option"
                 : "You cannot have less than 2 options"}
@@ -57,7 +59,7 @@ export default function EditorAns({ id, deletable, input }) {
             className="util-btn tooltip-wrapper"
             data-tooltip="Change option to image"
           >
-            <span className="tooltip">Change option to image</span>
+            <span className="tooltip top-tooltip">Change option to image</span>
             <FaImage />
           </button>
         </div>
@@ -79,13 +81,21 @@ export default function EditorAns({ id, deletable, input }) {
             }
           }}
         >
-          <span className={cn("tooltip", { warnNoText })}>
+          <span className={cn("tooltip top-tooltip", { warnNoText })}>
             {warnNoText ? "Please add text first" : "Mark this answer correct"}
           </span>
           <FaCheck size="0.875rem" />
         </button>
       </div>
-      <div className="mt-2 grow-1 custom-sb">{input}</div>
+      <div className="mt-2 grow-1 custom-sb">
+        <Input
+          placeholder="Type an answer option here..."
+          focused={focused}
+          toggleFocus={() => setFocusId((prev) => (prev === id ? null : id))}
+          initialInput={text}
+          changeInput={(text) => dispatch(EDIT_ANSWER({ id, text }))}
+        />
+      </div>
     </StyledEditorAns>
   );
 }

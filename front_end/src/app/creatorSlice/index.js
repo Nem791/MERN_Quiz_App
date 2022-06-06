@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import { _ANSWER_COLORS, _QUEST_TYPES } from "../../configs";
 
 const initialAnswerInfo = {
@@ -8,7 +8,22 @@ const initialAnswerInfo = {
   animation: null,
 };
 
+const initAnswers = (editor, existedAns) => {
+  editor.answersById = {};
+  existedAns.forEach((ans, i) => {
+    editor.answersById[i + 1] = {
+      ...initialAnswerInfo,
+      ...(ans || {}),
+      id: i + 1,
+      color: _ANSWER_COLORS[i],
+    };
+  });
+  editor.allAnswerIds = [1, 2, 3, 4];
+};
+
 const initialEditor = {
+  id: 0,
+  mode: null, // | "old"
   questType: null,
   multiCorrect: false,
   question: null,
@@ -43,18 +58,13 @@ const creatorSlice = createSlice({
     },
     OPEN_EDITOR: ({ editor }, action) => {
       const questType = action.payload;
+      editor.id = Date.now();
+      editor.mode = "new";
       editor.questType = questType;
       editor.question = "";
       switch (questType) {
         case _QUEST_TYPES.multipleChoice: {
-          [...Array(4)].forEach((_, i) => {
-            editor.answersById[i + 1] = {
-              ...initialAnswerInfo,
-              id: i + 1,
-              color: _ANSWER_COLORS[i],
-            };
-          });
-          editor.allAnswerIds = [1, 2, 3, 4];
+          initAnswers(editor, [...Array(4)]);
           break;
         }
         default:
@@ -128,30 +138,51 @@ const creatorSlice = createSlice({
       }
     },
     CHANGE_TIME_LIMIT: (state, action) => {
-      state.editor.timeLimit = action.payload;
+      const { id, time } = action.payload;
+      if (id && state.savedQuests[id]) {
+        state.savedQuests[id].timeLimit = time;
+      } else {
+        state.editor.timeLimit = time;
+      }
     },
     SAVE_QUEST: (state) => {
-      const { allAnswerIds, answersById, ...rest } = state.editor;
-      const answers = allAnswerIds.map((id) => {
-        const { text, correct } = answersById[id];
-        return {
-          text,
-          correct,
-        };
+      const { id, mode, allAnswerIds, answersById, ...rest } = state.editor;
+      const answers = allAnswerIds.map((ansId) => {
+        const { text, correct } = answersById[ansId];
+        return { text, correct };
       });
-      const id = Date.now();
+      if (mode === "new") {
+        state.savedQuests.allIds.push(id);
+      }
       state.savedQuests.byId[id] = {
+        id,
         ...rest,
         answers,
       };
-      state.savedQuests.allIds.push(id);
       state.editor = initialEditor;
+    },
+    EDIT_QUEST: (state, action) => {
+      const { answers, ...rest } = state.savedQuests.byId[action.payload];
+      state.editor = {
+        mode: "old",
+        ...rest,
+      };
+      initAnswers(state.editor, answers);
+    },
+    DUPLICATE_QUEST: ({ savedQuests }, action) => {
+      const { id, ...rest } = savedQuests.byId[action.payload];
+      const newId = Date.now();
+      savedQuests.byId[newId] = {
+        id: newId,
+        ...rest,
+      };
+      savedQuests.allIds.push(newId);
     },
     DELETE_QUEST: ({ savedQuests }, action) => {
       const id = action.payload;
       delete savedQuests.byId[id];
       savedQuests.allIds = savedQuests.allIds.filter(
-        (quest) => quest.id !== id
+        (questId) => questId !== id
       );
     },
   },

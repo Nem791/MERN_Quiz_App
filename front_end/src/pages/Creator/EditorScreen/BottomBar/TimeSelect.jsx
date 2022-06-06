@@ -1,3 +1,4 @@
+import cn from "classnames";
 import { FaCaretDown, FaClock } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { CHANGE_TIME_LIMIT } from "../../../../app/creatorSlice/actions";
@@ -13,20 +14,27 @@ export default function TimeSelect() {
   const dispatch = useDispatch();
 
   return (
-    <Box className="btn pos-relative" width="7rem">
+    <Box className="btn pos-relative tooltip-wrapper" width="7rem">
+      <p
+        className={cn("tooltip top-tooltip text-center", {
+          "d-none": collapsed,
+        })}
+      >
+        Time limit to answer this question
+      </p>
       <Collapse className="collapse b-radius-1" open={collapsed}>
         <div className="py-1" ref={collapseRef}>
-          {timeOptions.map((sec) => (
+          {timeOptions.map((time) => (
             <div
-              key={sec}
+              key={time}
               className="py-2 collapse-option pointer"
               onClick={() => {
                 setCollapsed(false);
-                dispatch(CHANGE_TIME_LIMIT(sec));
+                dispatch(CHANGE_TIME_LIMIT({ time }));
               }}
             >
               <p className="fw-600">
-                {sec < 60 ? sec + " seconds" : sec / 60 + " minutes"}
+                {time < 60 ? time + " seconds" : time / 60 + " minutes"}
               </p>
             </div>
           ))}

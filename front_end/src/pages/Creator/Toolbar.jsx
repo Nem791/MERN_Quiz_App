@@ -11,12 +11,18 @@ export default function ToolBar() {
         {_QUEST_TYPE_RENDER_INFOS.map(({ Icon, text, bgColor }) => (
           <div key={text}>
             <Box
-              className="flex-center b-radius-1 pointer"
+              className="flex-center b-radius-1 pointer pos-relative tooltip-wrapper"
               width="3rem"
               height="3rem"
               bgColor={bgColor}
               onClick={() => dispatch(OPEN_EDITOR(text))}
             >
+              <Box
+                className="px-2 tooltip btm-tooltip fs-075 text-center"
+                width="300%"
+              >
+                Add {text} question
+              </Box>
               <Icon size="1.5rem" color="white" />
             </Box>
           </div>

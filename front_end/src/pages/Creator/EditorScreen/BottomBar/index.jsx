@@ -48,29 +48,37 @@ export default function BottomBar() {
 }
 
 function isSavable(question, answers) {
-  if (question === "") return false;
+  if (question === "") return [false, "Please fill the question"];
   let hasCorrect = false;
-  for (const answer of answers) {
-    if (answer.text === "") return false;
-    if (answer.correct) hasCorrect = true;
+  let existedAns = [];
+  for (const { text, correct } of answers) {
+    if (text === "") return [false, "Please fill all answers"];
+    if (existedAns.includes(text)) {
+      return [false, "Each answer must be unique"];
+    } else {
+      existedAns.push(text);
+    }
+    if (correct) hasCorrect = true;
   }
-  return hasCorrect;
+  return [hasCorrect, !hasCorrect && "Please mark the correct answer"];
 }
 
 function SaveButton() {
-  const { question, answersById } = useSelector(
-    (state) => state.creator.editor
-  );
+  const question = useSelector((state) => state.creator.editor.question);
+  const answersById = useSelector((state) => state.creator.editor.answersById);
   const [shaking, setShaking] = useState(false);
   const dispatch = useDispatch();
-  const savable = isSavable(question, Object.values(answersById));
+  const [savable, msg] = isSavable(question, Object.values(answersById));
 
   return (
     <button
-      className={cn("px-4 py-1 btn flex align-center pos-relative", {
-        shaking,
-        disabled: !savable,
-      })}
+      className={cn(
+        "px-4 py-1 btn save-btn flex align-center pos-relative tooltip-wrapper",
+        {
+          shaking,
+          disabled: !savable,
+        }
+      )}
       onClick={() => {
         if (savable) {
           dispatch(SAVE_QUEST());
@@ -80,6 +88,7 @@ function SaveButton() {
         }
       }}
     >
+      {msg && <p className="tooltip top-tooltip">{msg}</p>}
       <FaSave className="mr-2" />
       Save
     </button>
@@ -143,6 +152,15 @@ const StyledBottomBar = styled.div`
   }
   .shaking {
     animation: shaking 100ms linear infinite;
+  }
+  .top-tooltip {
+    width: 140%;
+  }
+  .save-btn .top-tooltip {
+    background-color: ${getColor("error")};
+    ::after {
+      border-color: ${getColor("error")} transparent transparent transparent;
+    }
   }
   @keyframes shaking {
     from {

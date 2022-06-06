@@ -24,7 +24,6 @@ export const StyledEditor = styled.div`
 `;
 
 export const BottomPart = styled.div`
-  --tooltip-bg: rgb(25, 25, 25);
   margin-top: 0.5rem;
   padding: 0 0.75rem;
   height: calc(55% - 0.5rem);
@@ -41,37 +40,21 @@ export const BottomPart = styled.div`
     padding: 6px;
     border-radius: 0.75rem;
   }
-  .tooltip {
-    bottom: calc(100% + 6px);
-    min-width: 120px;
-    background-color: var(--tooltip-bg);
-    color: white;
-    transform-origin: center bottom;
-    cursor: default;
-    line-height: 1.4;
-    &::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-style: solid;
-      border-width: 5px;
-      border-color: var(--tooltip-bg) transparent transparent transparent;
-    }
+  .top-tooltip {
+    min-width: 7.5rem;
   }
   .tooltip-wrapper:disabled {
     background-color: rgba(229, 229, 229);
     color: rgba(9, 9, 9, 0.2);
   }
-  .tooltip-wrapper:disabled .tooltip,
-  .tooltip.warnNoText {
+  .tooltip-wrapper:disabled .top-tooltip,
+  .top-tooltip.warnNoText {
     background-color: ${getColor("error")};
     &::after {
       border-color: ${getColor("error")} transparent transparent transparent;
     }
   }
-  .tooltip.warnNoText {
+  .top-tooltip.warnNoText {
     transform: scale(1);
   }
 `;

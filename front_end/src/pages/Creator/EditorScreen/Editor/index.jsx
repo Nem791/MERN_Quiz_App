@@ -3,7 +3,6 @@ import { FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ADDED_ANSWER,
-  EDIT_ANSWER,
   EDIT_QUESTION,
 } from "../../../../app/creatorSlice/actions";
 import { Col, Row } from "../../../../styledComponents/Layout";
@@ -30,6 +29,7 @@ export default function Editor() {
               toggleFocus={() =>
                 setFocusId((prev) => (prev === -1 ? null : -1))
               }
+              initialInput={question}
               changeInput={(text) => dispatch(EDIT_QUESTION(text))}
             />
           )}
@@ -41,7 +41,7 @@ export default function Editor() {
           onClick={() => dispatch(ADDED_ANSWER())}
           disabled={answerIds.length === 5}
         >
-          <span className="tooltip">
+          <span className="tooltip top-tooltip">
             {answerIds.length < 5
               ? "Add an option"
               : "You cannot have more than 5 options"}
@@ -54,16 +54,8 @@ export default function Editor() {
               <Answers
                 id={id}
                 deletable={answerIds.length > 2}
-                input={
-                  <Input
-                    changeInput={(text) => dispatch(EDIT_ANSWER({ id, text }))}
-                    focused={focusId === id}
-                    toggleFocus={() =>
-                      setFocusId((prev) => (prev === id ? null : id))
-                    }
-                    placeholder="Type an answer option here..."
-                  />
-                }
+                focused={focusId === id}
+                setFocusId={setFocusId}
               />
             </Col>
           ))}
