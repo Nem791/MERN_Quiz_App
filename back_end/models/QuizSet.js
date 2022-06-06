@@ -49,6 +49,11 @@ const QuizSetSchema = new Schema({
     comments: {
         type: Array,
         default: []
+    },
+    draft: {
+        type: Boolean,
+        default: true,
+        required: true
     }
 });
 
