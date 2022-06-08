@@ -1,5 +1,6 @@
 const { default: mongoose } = require('mongoose');
 var path = require('path');
+
 const Quiz = require('../models/Quiz');
 const QuizSet = require('../models/QuizSet');
 const randomNumers = require('../utils/randomNumers');
@@ -170,7 +171,7 @@ const getQuizSetById = async (req, res) => {
                 }
                 element.answer = element.options;
             }
-            
+
         }
 
         return res.json(quiz);
@@ -187,119 +188,141 @@ const newPost = (req, res) => {
     res.render('create', { username: username });
 };
 
-const saveQuiz = async (req, res) => {
+const updateDraft = async (req, res) => {
+    let setData = req.body;
+    try {
+        const set = await QuizSet.findByIdAndUpdate({ _id: setData._id }, { draft: false }, { new: true });
+        return res.send(set);
+    } catch (error) {
+        console.log(error);
+        return res.send({ error });
+    }
+};
+
+const saveQuizSet = async (req, res) => {
     // Luu DataTransferItemList, content, image to database 
     console.log('req.body-', req.body);
-    console.log('req.user-', req.user);
-    // let image = req.files.image;
-    const { quizzes, ...setData } = req.body;
+    let files = req.files;
 
-    // let set;
+    let setData = req.body;
 
-    // await image.mv(path.join(__dirname, '..', '/public/upload/', image.name), function (error) {
-    //     set = QuizSet.create({
-    //         ...setData,
-    //         quiz_img: '/upload/' + image.name,
-    //         user: mongoose.Types.ObjectId(req.user._id)
-    //     }, function (err) {
-    //         // res.redirect('/');
-    //         console.log(err);
-    //         return res.json(err)
-    //     })
-    // });
-
+    // return res.send(req.files);
+    // return res.send(files.image.data.toString('base64'));
 
     let set;
     try {
+        // Neu co _id => Update 
+        // Ko co _id => Tao moi
+        if (!setData._id) {
+            setData._id = new mongoose.Types.ObjectId().toString();
+        }
+        console.log("setData._id---: ", setData._id);
 
-        // Set ObjectId cho tung` Quiz sau do luu vao 1 array 
-        let quizIdArray = [];
-        for (let index = 0; index < req.body.quizzes.length; index++) {
-            const element = req.body.quizzes[index];
-            element._id = new mongoose.Types.ObjectId();
-            quizIdArray.push(element._id);
+        let { _id, ...updatedData } = setData;
+
+        if (files) {
+            // Convert image duoi dang string base64 
+            // let quiz_img = files.image.data.toString('base64');
+            // setData = { ...setData, quiz_img };
+
+            let image = files.image;
+
+            await image.mv(path.join(__dirname, '..', '/public/images/', image.name), function (error) {
+                updatedData = { ...updatedData, quiz_img: '/images/' + image.name };
+                console.log("updatedData: ", updatedData);
+            });
+
+            console.log("set: ", set);
+            return res.json(set);
         }
 
-        // Tao QuizSet 
-        set = await QuizSet.create({
-            ...setData,
-            quizzes: quizIdArray,
-            quiz_img: "https://redzonekickboxing.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
-            user: mongoose.Types.ObjectId(req.user._id)
-        })
 
-        // Cach 2 de set ID (tao array moi) 
-        // let newArray = req.body.quizzes.map(obj => ({ ...obj, set: set._id }));
-        // console.log(newArray);
+        let queryData = { $set: updatedData };
+        console.log('gggggg');
+        console.log("setData._id:", setData._id);
 
-        // Gan ID cua Set cho tung Quiz 
-        for (let index = 0; index < req.body.quizzes.length; index++) {
-            const element = req.body.quizzes[index];
-            element.set = set._id;
-        }
+        set = await QuizSet.findByIdAndUpdate(
+            { _id: setData._id },
+            queryData,
+            // set the new option to true to get the doc that was created by the upsert
+            { upsert: true, new: true }
+        ).clone();
 
-        // Tao so cau hoi cua QuizSet 
-        const quiz = await Quiz.create(req.body.quizzes);
-        console.log("quiz: ", quiz);
     } catch (error) {
+        console.log('Final error');
         console.log(error);
         return res.json(error);
     }
 
-
-    return res.json(set._id);
+    console.log('End');
+    return res.json(set);
+    // return res.json(set._id);
     // const quizList = await Quiz.create()
 };
 
-const savePost = async (req, res) => {
+
+const saveQuizzes = async (req, res) => {
     // Luu DataTransferItemList, content, image to database 
     console.log('req.body-', req.body);
-    console.log('req.user-', req.user);
-    let image = req.files.image;
     let files = req.files;
-    for (const key in files) {
-        console.log('file');
-        console.log(files[key]);
-        req.body = { ...req.body, [key]: '/upload/' + files[key].name }
-        // files[key].mv(path.join(__dirname, '..', '/public/upload/', image.name), function (error) {
-        //     console.log("error: ", error);
-        // });
-        await fileUploadAsync(files[key]);
+    let setData = req.body;
 
+    // console.log(files);
+    // for (var key in files) {
+    //     console.log(key, ' - ', files[key]);
+    // }
+    // Câu trả lời là a1_1 a1_2... là ảnh answer 1, ảnh answer 2... của q1
+
+    // return res.send(files.image.data.toString('base64'));
+
+    let set;
+    try {
+
+        // Neu co _id => Update 
+        // Ko co _id => Tao moi
+        if (!setData._id) {
+            setData._id = new mongoose.Types.ObjectId();
+        }
+
+        console.log("setData._id: ", setData._id);
+        const { _id, ...updatedData } = setData;
+        updatedData.set = mongoose.Types.ObjectId(updatedData.set);
+
+        let queryData = { $set: updatedData };
+        console.log(queryData);
+
+        set = await Quiz.findByIdAndUpdate(
+            { _id: setData._id },
+            queryData,
+            { upsert: true, new: true }
+        ).clone();
+
+    } catch (error) {
+        console.log('Final error');
+        console.log(error);
+        return res.json(error);
     }
 
-    // if (Array.isArray(files)) {
-    //     try {
-    //         const data = await Promise.all(files.map((x) => fileUploadAsync(x)));
-    //         console.log("data: ", data);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // } else if (typeof files === 'object') {
-    //     return fileUploadAsync(files);
-    // }
-
-    console.log(req.body);
-
-    await BlogPost.create({
-        ...req.body,
-        user: mongoose.Types.ObjectId(req.user._id)
-    }, function (err) {
-        console.log(err);
-    })
-
+    console.log('End');
+    return res.json(set);
+    // return res.json(set._id);
+    // const quizList = await Quiz.create()
 };
 
 const recommendArticle = (req, res) => {
     const posts = BlogPost.aggregate();
+
+
 }
 
 module.exports = {
     getQuizzes,
     newPost,
-    saveQuiz,
     getQuizSetById,
     getQuizzesForHomePage,
     getQuizSetByTag,
+    saveQuizSet,
+    saveQuizzes,
+    updateDraft,
     test
 }

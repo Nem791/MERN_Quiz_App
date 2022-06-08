@@ -1,0 +1,61 @@
+{
+    "quizzes": [
+        {
+            "question": "I really miss Kate. -_________do I.",
+            "type": "multiple_choice",
+            "options": [
+                "So",
+                "Too",
+                "Either",
+                "Neither"
+            ],
+            "answer": [
+                "So"
+            ],
+            "timer": "5",
+            "set": "628f920529d7dc9b48fa83f6"
+        },
+        {
+            "question": "I was so tired after the game. - ___________________",
+            "type": "multiple_choice",
+            "options": [
+                "So was I",
+                "I did too",
+                "Neither was I",
+                "I wasn't either"
+            ],
+            "answer": [
+                "So was I"
+            ],
+            "timer": "5000"
+        },
+        {
+            "question": "I haven't tried Chinese food before. - I haven't ____________.",
+            "type": "multiple_choice",
+            "options": [
+                "So",
+                "Too",
+                "Either",
+                "Neither"
+            ],
+            "answer": [
+                "Either"
+            ],
+            "timer": "5000"
+        },
+        {
+            "question": "I have never seen anything like this before. - _______________ has my sister",
+            "type": "multiple_choice",
+            "options": [
+                "So",
+                "Too",
+                "Either",
+                "Neither"
+            ],
+            "answer": [
+                "Neither"
+            ],
+            "timer": "15000"
+        }
+    ]
+}

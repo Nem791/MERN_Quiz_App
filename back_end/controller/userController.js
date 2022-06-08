@@ -105,7 +105,7 @@ const loginUser = async (req, res, next) => {
     }
 
     // 4. Return token jwt
-    const token = jwt.sign({ _id: userLogin._id, name: userLogin.name, email: userLogin.email }, 'masobimat01', { expiresIn: 20 });
+    const token = jwt.sign({ _id: userLogin._id, name: userLogin.name, email: userLogin.email }, 'masobimat01', { expiresIn: 60 * 60 });
 
 
     // 5. Add token to header
