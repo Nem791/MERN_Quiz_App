@@ -18,6 +18,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var quizzesRouter = require("./routes/quiz");
 var submitRouter = require("./routes/submit");
+var filterQuiztRouter = require("./routes/filter-quiz");
 
 var app = express();
 
@@ -49,5 +50,6 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/quizzes", quizzesRouter);
 app.use("/submit", submitRouter);
+app.use("/filter-quiz", filterQuiztRouter);
 
 module.exports = app;

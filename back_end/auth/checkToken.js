@@ -7,9 +7,6 @@ module.exports = function (req, res, next) {
     // let token = sessData.auth_token;
 
     // Lay token tu req.headers
-    let token = req.headers["authorization"];
-    token = token.replace('Bearer ', '');
-    console.log('Token: ' + token);
     // if (!token) return res.status(401).send('You do not have permission 4 this action');
 
     try {
@@ -22,8 +19,13 @@ module.exports = function (req, res, next) {
         //     next();
         // }
 
+
+        let token = req.headers["authorization"];
+        token = token.replace('Bearer ', '');
+        console.log('Token: ' + token);
+
         // If else token ton` tai hay khong`
-        req.user = (!token) ? undefined : {...jwt.verify(token, 'masobimat01'), token};
+        req.user = (!token) ? undefined : { ...jwt.verify(token, 'masobimat01'), token };
         console.log("req.user: ", req.user);
         next();
 
@@ -35,6 +37,9 @@ module.exports = function (req, res, next) {
             return res.status(400).send({ ...error, "error_message": 'Token expired' });
         } else if (error instanceof SyntaxError) {
             return res.status(400).send({ ...error, "error_message": 'Invalid Token' });
+        } else if (error instanceof TypeError) {
+            console.log('ll');
+            return res.status(400).send({ ...error, "error_message": 'No Token' });
         }
 
         return res.status(400).send(error);

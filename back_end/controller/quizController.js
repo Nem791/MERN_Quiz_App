@@ -3,6 +3,7 @@ var path = require('path');
 
 const Quiz = require('../models/Quiz');
 const QuizSet = require('../models/QuizSet');
+const Users = require('../models/Users');
 const randomNumers = require('../utils/randomNumers');
 const toSlug = require('../utils/vietnamese-slug-converter');
 
@@ -156,7 +157,7 @@ const getQuizSetById = async (req, res) => {
         const quiz = await QuizSet.findById(slug);
 
         // Join User vs QuizSet
-        await QuizSet.populate(quiz, { path: "user quizzes", select: '-password -user._id' });
+        await QuizSet.populate(quiz, { path: "user quizzes", select: '-password -user._id -answer' });
         console.log('quiz: ', quiz.quizzes[0]);
 
         // Xu ly question type fill_blank_2 
@@ -183,11 +184,6 @@ const getQuizSetById = async (req, res) => {
 
 };
 
-const newPost = (req, res) => {
-    let username = (req.user !== undefined) ? req.user : undefined;
-    res.render('create', { username: username });
-};
-
 const updateDraft = async (req, res) => {
     let setData = req.body;
     try {
@@ -206,9 +202,6 @@ const saveQuizSet = async (req, res) => {
 
     let setData = req.body;
 
-    // return res.send(req.files);
-    // return res.send(files.image.data.toString('base64'));
-
     let set;
     try {
         // Neu co _id => Update 
@@ -220,6 +213,7 @@ const saveQuizSet = async (req, res) => {
 
         let { _id, ...updatedData } = setData;
 
+        // Neu co anh => luu vao public & cap nhat quiz_img
         if (files) {
             // Convert image duoi dang string base64 
             // let quiz_img = files.image.data.toString('base64');
@@ -227,19 +221,24 @@ const saveQuizSet = async (req, res) => {
 
             let image = files.image;
 
-            await image.mv(path.join(__dirname, '..', '/public/images/', image.name), function (error) {
-                updatedData = { ...updatedData, quiz_img: '/images/' + image.name };
-                console.log("updatedData: ", updatedData);
-            });
+            // Lay index cua duoi .png, .jpeg, ... 
+            const index = image.name.lastIndexOf('.');
+            const after = image.name.slice(index);
 
-            console.log("set: ", set);
-            return res.json(set);
+            // ten anh = title + id quizset . png, jpeg,...
+            image.name = toSlug(setData.title) + '-' + _id + after;
+            console.log(image.name);
+
+            // Luu anh vao public 
+            await image.mv(path.join(__dirname, '..', '/public/images/', image.name));
+            // cap nhat quiz_img
+            updatedData = { ...updatedData, quiz_img: '/images/' + image.name };
+            console.log("updatedData: ", updatedData);
+
         }
 
-
+        // $set operator replaces the value of a field with the specified value
         let queryData = { $set: updatedData };
-        console.log('gggggg');
-        console.log("setData._id:", setData._id);
 
         set = await QuizSet.findByIdAndUpdate(
             { _id: setData._id },
@@ -294,8 +293,15 @@ const saveQuizzes = async (req, res) => {
         set = await Quiz.findByIdAndUpdate(
             { _id: setData._id },
             queryData,
+            // set the new option to true to get the doc that was created by the upsert
             { upsert: true, new: true }
         ).clone();
+
+        // Add _id to QuizSet 
+        await QuizSet.findByIdAndUpdate(
+            { _id: setData.set },
+            { $push: { quizzes: setData._id } }
+        );
 
     } catch (error) {
         console.log('Final error');
@@ -309,20 +315,45 @@ const saveQuizzes = async (req, res) => {
     // const quizList = await Quiz.create()
 };
 
-const recommendArticle = (req, res) => {
-    const posts = BlogPost.aggregate();
+const likeFunction = async (req, res) => {
+    let user = req.user;
+    console.log(req.params.type);
 
+    let quizSetId = req.query._id;
 
+    let quizSet;
+    let userSet;
+    try {
+        switch (req.params.type) {
+            case 'like':
+                // set the new option to true to get the doc that was updated
+                quizSet = await QuizSet.findByIdAndUpdate(quizSetId, { $push: { user_liked: user._id } }, { new: true });
+                userSet = await Users.findByIdAndUpdate(user._id, { $push: { liked_quiz: quizSetId } }, { new: true });
+                return res.send({ quizSet, userSet });
+
+            case 'unlike':
+                // set the new option to true to get the doc that was updated
+                quizSet = await QuizSet.findByIdAndUpdate(quizSetId, { $pull: { user_liked: user._id } }, { new: true });
+                userSet = await Users.findByIdAndUpdate(user._id, { $pull: { liked_quiz: quizSetId } }, { new: true });
+                return res.send({ quizSet, userSet });
+
+            default:
+                return res.status(400).send({ error: "Invalid params" });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send(error);
+    }
 }
 
 module.exports = {
     getQuizzes,
-    newPost,
     getQuizSetById,
     getQuizzesForHomePage,
     getQuizSetByTag,
     saveQuizSet,
     saveQuizzes,
     updateDraft,
+    likeFunction,
     test
 }

@@ -54,7 +54,17 @@ const QuizSetSchema = new Schema({
         type: Boolean,
         default: true,
         required: true
-    }
+    },
+    deleted: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
+    user_liked: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }]
+    
 });
 
 const QuizSet = mongoose.model('QuizSet', QuizSetSchema);
