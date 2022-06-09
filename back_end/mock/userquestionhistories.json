@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "62a1e07d46bfe59ad6a62fe7"
+  },
+  "quiz_set_id": {
+    "$oid": "628f920529d7dc9b48fa83f2"
+  },
+  "score": 10,
+  "user_id": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_answers": [
+    {
+      "$oid": "62a1e07d46bfe59ad6a62fde"
+    },
+    {
+      "$oid": "62a1e07d46bfe59ad6a62fdf"
+    },
+    {
+      "$oid": "62a1e07d46bfe59ad6a62fe0"
+    },
+    {
+      "$oid": "62a1e07d46bfe59ad6a62fe1"
+    }
+  ],
+  "finishedAt": {
+    "$date": {
+      "$numberLong": "1654775897021"
+    }
+  },
+  "__v": 0
+}]

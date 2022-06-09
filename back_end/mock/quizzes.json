@@ -1,0 +1,810 @@
+[{
+  "_id": {
+    "$oid": "628f822bbec25599365659b0"
+  },
+  "question": "I really miss Kate. -_________do I.",
+  "type": "multiple_choice",
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "answer": [
+    "So"
+  ],
+  "set": {
+    "$oid": "628f822bbec25599365659b4"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572071243"
+    }
+  },
+  "timer": 5000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f822bbec25599365659b1"
+  },
+  "question": "I was so tired after the game. - ___________________",
+  "type": "multiple_choice",
+  "options": [
+    "So was I",
+    "I did too",
+    "Neither was I",
+    "I wasn't either"
+  ],
+  "answer": [
+    "So was I"
+  ],
+  "set": {
+    "$oid": "628f822bbec25599365659b4"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572071243"
+    }
+  },
+  "timer": 5000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f822bbec25599365659b2"
+  },
+  "question": "I haven't tried Chinese food before. - I haven't ____________.",
+  "type": "multiple_choice",
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "answer": [
+    "Either"
+  ],
+  "set": {
+    "$oid": "628f822bbec25599365659b4"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572071243"
+    }
+  },
+  "timer": 5000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f822bbec25599365659b3"
+  },
+  "question": "I have never seen anything like this before. - _______________ has my sister",
+  "type": "multiple_choice",
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "answer": [
+    "Neither"
+  ],
+  "set": {
+    "$oid": "628f822bbec25599365659b4"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572071243"
+    }
+  },
+  "timer": 15000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f842398306d65e66cd0d5"
+  },
+  "question": "LAN là viết tắt từ gì?",
+  "type": "multiple_choice",
+  "options": [
+    "Local Area Network",
+    "Location Area Network",
+    "Locale Area Network",
+    "Local Area Netword"
+  ],
+  "answer": [
+    "Local Area Network"
+  ],
+  "set": {
+    "$oid": "628f842398306d65e66cd0d9"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572634648"
+    }
+  },
+  "timer": 5000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f842398306d65e66cd0d6"
+  },
+  "question": "Đâu không phải là đặc điểm mạng LAN",
+  "type": "multiple_choice",
+  "options": [
+    "Phạm vi trên vài Km",
+    "Tốc độ truyền ~ 100Mb/s",
+    "Độ tin cậy cao",
+    "Quyền sở hữu: Riêng tư"
+  ],
+  "answer": [
+    "Phạm vi trên vài Km"
+  ],
+  "set": {
+    "$oid": "628f842398306d65e66cd0d9"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572634648"
+    }
+  },
+  "timer": 8000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f842398306d65e66cd0d7"
+  },
+  "question": "Tốc độ truyền của mạng LAN lớn hơn mạng WAN",
+  "type": "multiple_choice",
+  "options": [
+    "Đúng",
+    "Sai"
+  ],
+  "answer": [
+    "Đúng"
+  ],
+  "set": {
+    "$oid": "628f842398306d65e66cd0d9"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572634648"
+    }
+  },
+  "timer": 15000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f842398306d65e66cd0d8"
+  },
+  "question": "256Kb/s là tốc độ của mạng nào?",
+  "type": "multiple_choice_answers",
+  "options": [
+    "LAN_1",
+    "WAN",
+    "LAN_2"
+  ],
+  "answer": [
+    "LAN_1",
+    "LAN_2"
+  ],
+  "set": {
+    "$oid": "628f842398306d65e66cd0d9"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653572634648"
+    }
+  },
+  "timer": 19000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f920529d7dc9b48fa83f3"
+  },
+  "question": "Gender discrimination must be __________ in order to create a better society",
+  "type": "fill_blank_1",
+  "options": [
+    "eliminated"
+  ],
+  "answer": [
+    "eliminated"
+  ],
+  "set": {
+    "$oid": "628f920529d7dc9b48fa83f6"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653574364093"
+    }
+  },
+  "timer": 18000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f920529d7dc9b48fa83f2"
+  },
+  "question": "How do the roles of men and women differ in your family?",
+  "type": "multiple_choice",
+  "options": [
+    "Most men are very bossy and arrogant.",
+    "Men are breadwinners and women are caregivers.",
+    "Women are changing their roles.",
+    "Most of men don’t want to stay at home."
+  ],
+  "answer": [
+    "Men are breadwinners and women are caregivers."
+  ],
+  "set": {
+    "$oid": "628f920529d7dc9b48fa83f6"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653574364093"
+    }
+  },
+  "timer": 25000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f920529d7dc9b48fa83f4"
+  },
+  "question": "Here is a picture of an activist calling for men to push women's rights further",
+  "type": "fill_blank_2",
+  "options": [],
+  "answer": [],
+  "set": {
+    "$oid": "628f920529d7dc9b48fa83f6"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653574364093"
+    }
+  },
+  "timer": 15000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628f920529d7dc9b48fa83f5"
+  },
+  "question": "In order to be successful, we should never ________ hope",
+  "type": "fill_blank_1",
+  "options": [],
+  "answer": [
+    "give up",
+    "abandon"
+  ],
+  "set": {
+    "$oid": "628f920529d7dc9b48fa83f6"
+  },
+  "date_created": {
+    "$date": {
+      "$numberLong": "1653574364093"
+    }
+  },
+  "timer": 19000,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "629f627f20403c74144329ab"
+  },
+  "__v": 0,
+  "answer": [
+    "So"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654612594273"
+    }
+  },
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "question": "I really miss Kate. -_________do I.",
+  "set": {
+    "$oid": "628f920529d7dc9b48fa83f6"
+  },
+  "timer": 5,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a0b9f52cfa7cca97803898"
+  },
+  "__v": 0,
+  "answer": [
+    "So"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654700510451"
+    }
+  },
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "question": "I really miss Kate. -_________do I.",
+  "set": {
+    "$oid": "628f920529d7dc9b48fa83f6"
+  },
+  "timer": 5,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a0ba242cfa7cca9780389a"
+  },
+  "__v": 0,
+  "answer": [
+    "So"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654700510451"
+    }
+  },
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "question": "I really miss Kate. -_________do I.",
+  "set": {
+    "$oid": "62a02de4aa924f1c85c0be38"
+  },
+  "timer": 5,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a0ba56c72a67b7934f0c0e"
+  },
+  "__v": 0,
+  "answer": [
+    "So"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654700625737"
+    }
+  },
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "question": "I really miss Kate. -_________do I.",
+  "set": {
+    "$oid": "62a02de4aa924f1c85c0be38"
+  },
+  "timer": 5,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a0ba62c72a67b7934f0c11"
+  },
+  "__v": 0,
+  "answer": [
+    "So"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654700625737"
+    }
+  },
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "question": "I really miss Kate. -_________do I.",
+  "set": {
+    "$oid": "62a02de4aa924f1c85c0be38"
+  },
+  "timer": 5,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a1f6e96ab9f8ebc78ed215"
+  },
+  "__v": 0,
+  "answer": [
+    "So"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654781643455"
+    }
+  },
+  "options": [
+    "So",
+    "Too",
+    "Either",
+    "Neither"
+  ],
+  "question": "I really miss Kate. -_________do I.",
+  "set": {
+    "$oid": "62a02de4aa924f1c85c0be38"
+  },
+  "timer": 5,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a20fbe3b719fad524456ee"
+  },
+  "__v": 0,
+  "answer": [
+    "1588"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654788028040"
+    }
+  },
+  "options": [
+    "1688",
+    "1588",
+    "1701",
+    "1401"
+  ],
+  "question": "When was the Spanish Armada defeated?.",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a2101c73cc8bb6ce3a35be"
+  },
+  "__v": 0,
+  "answer": [
+    "1588"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654788118565"
+    }
+  },
+  "options": [
+    "1688",
+    "1588",
+    "1701",
+    "1401"
+  ],
+  "question": "When was the Spanish Armada defeated?.",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a210294f559619b045ec3e"
+  },
+  "__v": 0,
+  "answer": [
+    "1588"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654788135063"
+    }
+  },
+  "options": [
+    "1688",
+    "1588",
+    "1701",
+    "1401"
+  ],
+  "question": "When was the Spanish Armada defeated?.",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a213c84f559619b045ec41"
+  },
+  "__v": 0,
+  "answer": [
+    "1588"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654788135063"
+    }
+  },
+  "options": [
+    "1688",
+    "1588",
+    "1701",
+    "1401"
+  ],
+  "question": "When was the Spanish Armada defeated?.",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a213fc4f559619b045ec44"
+  },
+  "__v": 0,
+  "answer": [
+    "1588"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654788135063"
+    }
+  },
+  "options": [
+    "1688",
+    "1588",
+    "1701",
+    "1401"
+  ],
+  "question": "When was the Spanish Armada defeated?.",
+  "set": {
+    "$oid": "628f920529d7dc9b48fa83f6"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a218b882b8ee9f38f0eee0"
+  },
+  "__v": 0,
+  "answer": [
+    "1588"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654790266053"
+    }
+  },
+  "options": [
+    "1688",
+    "1588",
+    "1701",
+    "1401"
+  ],
+  "question": "When was the Spanish Armada defeated?.",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a218fd82b8ee9f38f0eee3"
+  },
+  "__v": 0,
+  "answer": [
+    "Menelik II"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654790266053"
+    }
+  },
+  "options": [
+    "Menelik II",
+    "Taytu Betul",
+    "Oreste Baratieri",
+    "Aaron Burr"
+  ],
+  "question": "Who was the Ethiopian emperor who defeated an invading Italian army?",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a2190782b8ee9f38f0eee6"
+  },
+  "__v": 0,
+  "answer": [
+    "Zhao Kuo"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654790266053"
+    }
+  },
+  "options": [
+    "Bao Qi",
+    "Lian Po",
+    "Zhao She",
+    "Zhao Kuo"
+  ],
+  "question": "Which general's mistake caused the Zhao to lose the battle of Changping?",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a2190f82b8ee9f38f0eee9"
+  },
+  "__v": 0,
+  "answer": [
+    "Aaron Burr"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654790266053"
+    }
+  },
+  "options": [
+    "Richard Nixon",
+    "Aaron Burr",
+    "Harry Truman",
+    "George H.W. Bush"
+  ],
+  "question": "Which former vice president plotted against the US government in the 1800s?",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a2191982b8ee9f38f0eeec"
+  },
+  "__v": 0,
+  "answer": [
+    "Wounded Knee Creek"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654790266053"
+    }
+  },
+  "options": [
+    "Lakota Reservation Hill",
+    "Little Big Horn",
+    "Sitting Bull River",
+    "Wounded Knee Creek"
+  ],
+  "question": "Where were hundreds of Native Americans massacred by U.S. troops in 1890?",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a2192e82b8ee9f38f0eeef"
+  },
+  "__v": 0,
+  "answer": [
+    "Napoleon's defeat in Russia"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654790266053"
+    }
+  },
+  "options": [
+    "The defeat of the Spanish Armada",
+    "The Italian defeat in Ethiopia",
+    "The charge of the Light Brigade",
+    "Napoleon's defeat in Russia"
+  ],
+  "question": "Which two military defeats were caused by both an opposing army/navy and the weather?",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a2193982b8ee9f38f0eef2"
+  },
+  "__v": 0,
+  "answer": [
+    "Alfred Lord Tennyson"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654790266053"
+    }
+  },
+  "options": [
+    "Lali Long Soldier",
+    "Alfred Lord Tennyson",
+    "Edgar Allen Poe",
+    "John Keats"
+  ],
+  "question": "The charge of the Light Brigade at Balaklava inspired a poem by which famous poet?",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a2194382b8ee9f38f0eef5"
+  },
+  "__v": 0,
+  "answer": [
+    "Ford Pinto"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654790266053"
+    }
+  },
+  "options": [
+    "Ford Pinto",
+    "Tesla",
+    "Ford Explorer",
+    "Toyota Corolla"
+  ],
+  "question": "Which car sometimes exploded after even a slight impact?",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a2194c82b8ee9f38f0eef8"
+  },
+  "__v": 0,
+  "answer": [
+    "No comment"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654790266053"
+    }
+  },
+  "options": [
+    "Deadly bomb",
+    "Treat with silent contempt",
+    "No comment",
+    "Respectfully decline to submit"
+  ],
+  "question": "What are two possible meanings of mokusatsu?",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+},{
+  "_id": {
+    "$oid": "62a2195782b8ee9f38f0eefb"
+  },
+  "__v": 0,
+  "answer": [
+    "Napoleon's retreat from Moscow"
+  ],
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654790266053"
+    }
+  },
+  "options": [
+    "Napoleon's retreat from Moscow",
+    "The Battle of Adwa",
+    "The Halifax explosion",
+    "The sinking of the Titanic"
+  ],
+  "question": "Which historical mistake was commemorated with a musical piece by Tchaikovsky?",
+  "set": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "timer": 30,
+  "type": "multiple_choice"
+}]

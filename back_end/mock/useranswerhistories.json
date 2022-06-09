@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "62a1e07d46bfe59ad6a62fde"
+  },
+  "quiz": {
+    "$oid": "628f920529d7dc9b48fa83f2"
+  },
+  "user_answers": [
+    "Men are breadwinners and women are caregivers."
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a1e07d46bfe59ad6a62fdf"
+  },
+  "quiz": {
+    "$oid": "628f920529d7dc9b48fa83f3"
+  },
+  "user_answers": [
+    "Eliminated"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a1e07d46bfe59ad6a62fe0"
+  },
+  "quiz": {
+    "$oid": "628f920529d7dc9b48fa83f4"
+  },
+  "user_answers": [
+    "is",
+    "for",
+    "an"
+  ],
+  "misc": [
+    1,
+    8,
+    5
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a1e07d46bfe59ad6a62fe1"
+  },
+  "quiz": {
+    "$oid": "628f920529d7dc9b48fa83f5"
+  },
+  "user_answers": [
+    "abandon"
+  ],
+  "misc": [],
+  "__v": 0
+}]
