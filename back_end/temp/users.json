@@ -6,5 +6,19 @@
   "name": "Nam123",
   "email": "abc@gmail.com",
   "password": "$2b$10$YkepFq.vpnMeKsfaiCnIfuRQlcOaRU6DnOcso/LSNGwxToPvWfM.i",
+  "__v": 0,
+  "liked_quiz": [
+    {
+      "$oid": "62a02de4aa924f1c85c0be38"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "629772f2097f05dfef436234"
+  },
+  "profile_img": "https://construct-static.com/images/v1007/r/uploads/tutorial/0/images/17449/windows-8-user-account_v650.jpg",
+  "name": "Nam131",
+  "email": "abcde@gmail.com",
+  "password": "$2b$10$LQMuU54NFEwEMHj8N.O44upyno1Na6xl76Mr12rCMx97ntGPEfl6G",
   "__v": 0
 }]
