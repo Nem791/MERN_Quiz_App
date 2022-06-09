@@ -196,6 +196,7 @@ const updateDraft = async (req, res) => {
 };
 
 const saveQuizSet = async (req, res) => {
+    let user = req.user;
     // Luu DataTransferItemList, content, image to database 
     console.log('req.body-', req.body);
     let files = req.files;
@@ -209,6 +210,10 @@ const saveQuizSet = async (req, res) => {
         if (!setData._id) {
             setData._id = new mongoose.Types.ObjectId().toString();
         }
+
+        // set user ID 
+        setData.user = user._id;
+
         console.log("setData._id---: ", setData._id);
 
         let { _id, ...updatedData } = setData;
@@ -297,9 +302,12 @@ const saveQuizzes = async (req, res) => {
             { upsert: true, new: true }
         ).clone();
 
+        console.log(setData.set.toString());
+        console.log(setData._id);
+
         // Add _id to QuizSet 
         await QuizSet.findByIdAndUpdate(
-            { _id: setData.set },
+            { _id: setData.set.toString() },
             { $push: { quizzes: setData._id } }
         );
 

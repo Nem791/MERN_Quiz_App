@@ -1,0 +1,153 @@
+[
+    {
+        "question": "When was the Spanish Armada defeated?.",
+        "type": "multiple_choice",
+        "options": [
+            "1688",
+            "1588",
+            "1701",
+            "1401"
+        ],
+        "answer": [
+            "1588"
+        ],
+        "timer": "30",
+        "set": "62a2091cdc9823defec38973"
+    },
+    {
+        "question": "Who was the Ethiopian emperor who defeated an invading Italian army?",
+        "type": "multiple_choice",
+        "options": [
+            "Menelik II",
+            "Taytu Betul",
+            "Oreste Baratieri",
+            "Aaron Burr"
+        ],
+        "answer": [
+            "Menelik II"
+        ],
+        "timer": "30",
+        "set": "62a2091cdc9823defec38973"
+    },
+    {
+        "question": "Which general's mistake caused the Zhao to lose the battle of Changping?",
+        "type": "multiple_choice",
+        "options": [
+            "Bao Qi",
+            "Lian Po",
+            "Zhao She",
+            "Zhao Kuo"
+        ],
+        "answer": [
+            "Zhao Kuo"
+        ],
+        "timer": "30",
+        "set": "62a2091cdc9823defec38973"
+    },
+    {
+        "question": "Which former vice president plotted against the US government in the 1800s?",
+        "type": "multiple_choice",
+        "options": [
+            "Richard Nixon",
+            "Aaron Burr",
+            "Harry Truman",
+            "George H.W. Bush"
+        ],
+        "answer": [
+            "Aaron Burr"
+        ],
+        "timer": "30",
+        "set": "62a2091cdc9823defec38973"
+    },
+    {
+        "question": "Where were hundreds of Native Americans massacred by U.S. troops in 1890?",
+        "type": "multiple_choice",
+        "options": [
+            "Lakota Reservation Hill",
+            "Little Big Horn",
+            "Sitting Bull River",
+            "Wounded Knee Creek"
+        ],
+        "answer": [
+            "Wounded Knee Creek"
+        ],
+        "timer": "30",
+        "set": "62a2091cdc9823defec38973"
+    },
+    {
+        "question": "Which two military defeats were caused by both an opposing army/navy and the weather?",
+        "type": "multiple_choice",
+        "options": [
+            "The defeat of the Spanish Armada",
+            "The Italian defeat in Ethiopia",
+            "The charge of the Light Brigade",
+            "Napoleon's defeat in Russia"
+        ],
+        "answer": [
+            "Napoleon's defeat in Russia"
+        ],
+        "timer": "30",
+        "set": "62a2091cdc9823defec38973"
+    },
+    {
+        "question": "The charge of the Light Brigade at Balaklava inspired a poem by which famous poet?",
+        "type": "multiple_choice",
+        "options": [
+            "Lali Long Soldier",
+            "Alfred Lord Tennyson",
+            "Edgar Allen Poe",
+            "John Keats"
+        ],
+        "answer": [
+            "Alfred Lord Tennyson"
+        ],
+        "timer": "30",
+        "set": "62a2091cdc9823defec38973"
+    },
+    {
+        "question": "Which car sometimes exploded after even a slight impact?",
+        "type": "multiple_choice",
+        "options": [
+            "Ford Pinto",
+            "Tesla",
+            "Ford Explorer",
+            "Toyota Corolla"
+        ],
+        "answer": [
+            "Ford Pinto"
+        ],
+        "timer": "30",
+        "set": "62a2091cdc9823defec38973"
+    },
+    {
+        "question": "What are two possible meanings of mokusatsu?",
+        "type": "multiple_choice",
+        "options": [
+            "Deadly bomb",
+            "Treat with silent contempt",
+            "No comment",
+            "Respectfully decline to submit"
+        ],
+        "answer": [
+            "No comment"
+        ],
+        "timer": "30",
+        "set": "62a2091cdc9823defec38973"
+    },
+    {
+        "question": "Which historical mistake was commemorated with a musical piece by Tchaikovsky?",
+        "type": "multiple_choice",
+        "options": [
+            "Napoleon's retreat from Moscow",
+            "The Battle of Adwa",
+            "The Halifax explosion",
+            "The sinking of the Titanic"
+        ],
+        "answer": [
+            "Napoleon's retreat from Moscow"
+        ],
+        "timer": "30",
+        "set": "62a2091cdc9823defec38973"
+    }
+    
+]

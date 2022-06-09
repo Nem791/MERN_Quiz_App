@@ -1,0 +1,22 @@
+{
+    "_id": {
+        "$oid": "62a2091cdc9823defec38973"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/epic-mistakes-of-history-62a2091cdc9823defec38973.png",
+    "quizzes": [],
+    "tags": [
+        "English",
+        "History"
+    ],
+    "title": "Epic Mistakes of History",
+    "type": "questions",
+    "user": "628e2b597105592acbce1fd5",
+    "user_liked": []
+}

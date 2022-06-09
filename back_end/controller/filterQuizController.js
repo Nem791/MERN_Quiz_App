@@ -3,6 +3,7 @@ var path = require('path');
 
 const Quiz = require('../models/Quiz');
 const QuizSet = require('../models/QuizSet');
+const Users = require('../models/Users');
 const randomNumers = require('../utils/randomNumers');
 const toSlug = require('../utils/vietnamese-slug-converter');
 
@@ -22,6 +23,12 @@ const privateFilter = async (req, res) => {
 
             case "draftQuizzes":
                 quizzes = await QuizSet.find({ user: user._id, draft: false });
+                break;
+
+            case "likedQuizzes":
+                user = await Users.findById(user._id);
+                await Users.populate(user, { path: "liked_quiz" });
+                quizzes = user.liked_quiz;
                 break;
 
             default:
