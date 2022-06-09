@@ -1,18 +1,20 @@
 import cn from "classnames";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
-import { useDevActions } from "../../hooks";
+// import { useDevActions } from "../../hooks";
 import { getColor } from "../../styledComponents/helpers";
 import { breakpoints } from "../../theme";
+import PreviewModal from "./PreviewModal";
 import SideBar from "./SideBar";
 import TopBar from "./TopBar";
 
 export default function HomePage() {
   const [focusing, setFocusing] = useState(false);
   const [sidebarOn, setSidebarOn] = useState(false);
-
-  useDevActions();
+  const previewing = useSelector((state) => state.ui.previewedSet.title.length);
+  // useDevActions();
 
   return (
     <StyledHomePage className="full-w full-w flex">
@@ -31,6 +33,7 @@ export default function HomePage() {
           <Outlet />
         </div>
       </div>
+      {previewing ? <PreviewModal /> : null}
     </StyledHomePage>
   );
 }

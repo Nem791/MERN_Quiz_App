@@ -58,8 +58,14 @@
 .fs-075 {
   font-size: 0.75rem;
 }
+.fs-0875 {
+  font-size: 0.875rem;
+}
 .fs-1 {
   font-size: 1rem;
+}
+.lh-1rem {
+  line-height: 1rem;
 }
 .lh-15 {
   line-height: 1.5;

@@ -1,21 +1,23 @@
 import cn from "classnames";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { OPEN_PREVIEW } from "../../app/uiSlice";
 import { getColor } from "../../styledComponents/helpers";
 import { boxShadows, breakpoints } from "../../theme";
 
-const details = {
+export const details = {
+  id: 1234,
   title: "Liberation of Netherlands",
-  img:
-    "https://quizizz.com/media/resource/gs/quizizz-media/quizzes/b866dcde-01f7-4082-a6e9-72a8683e96a0?w=400&h=400",
+  img: "https://quizizz.com/media/resource/gs/quizizz-media/quizzes/b866dcde-01f7-4082-a6e9-72a8683e96a0?w=400&h=400",
   type: "lesson",
   plays: 419,
-  quests: 20
+  quests: 20,
 };
 
 export default function Card() {
+  const dispatch = useDispatch();
   return (
-    <StyledCard to="/">
+    <StyledCard onClick={() => dispatch(OPEN_PREVIEW(details))}>
       <div className="full-h flex-col">
         <div className={cn("flex top-part", { "with-desc": details.desc })}>
           <img className="full-w full-h" src={details.img} alt="" />
@@ -35,7 +37,7 @@ export default function Card() {
   );
 }
 
-const StyledCard = styled(Link)`
+const StyledCard = styled.div`
   --br: 0.75rem;
   margin: 8px 8px 16px;
   border-radius: var(--br);

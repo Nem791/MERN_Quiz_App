@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { getColor } from "../../../styledComponents/helpers";
 import { Box } from "../../../styledComponents/Layout";
+import { boxShadows } from "../../../theme";
+import TimeLimitSelect from "../TimeLimitSelect";
 import BotSec from "./BotSec";
 import MidSec from "./MidSec";
 import TopSec from "./TopSec";
@@ -39,8 +41,18 @@ function Quest({ id, index }) {
       <Box className="p-4" bgColor="white">
         <MidSec question={quest.question} answers={quest.answers} />
       </Box>
-      <Box borderRadius="0 0 0.5rem 0.5rem" bgColor="#F9F9F9">
-        <BotSec timeLimit={quest.timeLimit} />
+      <Box
+        className="p-2 flex"
+        borderRadius="0 0 0.5rem 0.5rem"
+        bgColor="#F9F9F9"
+      >
+        <div className="ml-auto">
+          <TimeLimitSelect
+            btnCn="py-2 full-w fs-0875"
+            collapseInnerCn="collapse-inner custom-sb"
+            timeLimit={quest.timeLimit}
+          />
+        </div>
       </Box>
     </StyledQuest>
   );
@@ -51,11 +63,14 @@ const StyledQuest = styled.div`
   .btm-sec {
     background-color: #f9f9f9;
   }
-  button {
+  button,
+  .btn {
     border: 1px solid ${getColor("dividerLight")};
     border-radius: 0.25rem;
-    padding: 0.5rem;
     background-color: ${getColor("white1")};
+  }
+  button {
+    padding: 0.5rem;
   }
   .ans-choice-divider {
     bottom: -0.5rem;
@@ -63,5 +78,26 @@ const StyledQuest = styled.div`
     background-color: ${getColor("white1")};
     color: ${getColor("text3")};
     line-height: 1;
+  }
+  .collapse {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: white;
+    box-shadow: ${boxShadows.common};
+  }
+  .collapse-inner {
+    max-height: 17.5rem;
+  }
+  .collapse-option {
+    padding: 6px 12px;
+    &:hover {
+      background-color: rgba(9, 9, 9, 0.1);
+    }
+    p {
+      color: ${getColor("text2")};
+    }
   }
 `;

@@ -4,13 +4,14 @@ import { FaSave } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
+  CHANGE_TIME_LIMIT,
   CLOSE_EDITOR,
   SAVE_QUEST,
   TOGGLE_MULTI_CORRECT_ANSWERS,
 } from "../../../../app/creatorSlice/actions";
 import { _QUEST_TYPES } from "../../../../configs";
 import { getColor } from "../../../../styledComponents/helpers";
-import TimeSelect from "./TimeSelect";
+import TimeLimitSelect from "../../TimeLimitSelect";
 import TypeSelect from "./TypeSelect";
 
 export default function BottomBar() {
@@ -18,7 +19,9 @@ export default function BottomBar() {
   const multiCorrect = useSelector(
     (state) => state.creator.editor.multiCorrect
   );
+  const timeLimit = useSelector((state) => state.creator.editor.timeLimit);
   const dispatch = useDispatch();
+
   return (
     <StyledBottomBar className="mt-2 flex justify-between">
       <TypeSelect />
@@ -35,7 +38,12 @@ export default function BottomBar() {
           <span>More than one correct answer</span>
         </div>
       )}
-      <TimeSelect />
+      <TimeLimitSelect
+        btnCn="full-h fw-600"
+        short
+        timeLimit={timeLimit}
+        setTimeLimit={(time) => dispatch(CHANGE_TIME_LIMIT({ time }))}
+      />
       <button
         className="ml-auto px-4 py-1 btn"
         onClick={() => dispatch(CLOSE_EDITOR())}
@@ -152,9 +160,6 @@ const StyledBottomBar = styled.div`
   }
   .shaking {
     animation: shaking 100ms linear infinite;
-  }
-  .top-tooltip {
-    width: 140%;
   }
   .save-btn .top-tooltip {
     background-color: ${getColor("error")};

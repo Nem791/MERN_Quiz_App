@@ -53,7 +53,7 @@ const StyledTopBar = styled.div`
       display: none;
     }
     .notif-btn {
-      display: block;
+      display: flex;
       width: 2.5rem;
       height: 2.5rem;
       background-color: ${getColor("white2")};

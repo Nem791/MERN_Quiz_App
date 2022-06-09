@@ -1,12 +1,15 @@
+import { AiOutlineEdit } from "react-icons/ai";
+import { BiBox, BiUser } from "react-icons/bi";
 import {
+  FaRegHeart,
   FaMapMarkedAlt,
+  FaRegCheckSquare,
   FaRegFolder,
   FaRegUserCircle,
-  FaRegCheckSquare,
 } from "react-icons/fa";
+import { GiBackwardTime } from "react-icons/gi";
 import { HiOutlineCog } from "react-icons/hi";
 import { VscLibrary } from "react-icons/vsc";
-import { AiOutlineEdit } from "react-icons/ai";
 import { mausac } from "./theme";
 
 export const _USER_NAME_MIN_LEN = 4;
@@ -68,6 +71,36 @@ export const _EXPLORE_FIELDS = [
     path: "Health and Physical Education",
   },
 ];
+
+export const _LIBRARY_NAMES = [
+  // "allMyContent",
+  "createdByMe",
+  "previouslyUsed",
+  "likedByMe",
+];
+
+export const _LIBRARY_INFOS = {
+  [_LIBRARY_NAMES[0]]: {
+    text: "All my content",
+    Icon: BiBox,
+    endpoint: "",
+  },
+  [_LIBRARY_NAMES[1]]: {
+    text: "Created by me",
+    Icon: BiUser,
+    endpoint: "",
+  },
+  [_LIBRARY_NAMES[2]]: {
+    text: "Previously used",
+    Icon: GiBackwardTime,
+    endpoint: "",
+  },
+  [_LIBRARY_NAMES[3]]: {
+    text: "Liked by me",
+    Icon: FaRegHeart,
+    endpoint: "",
+  },
+};
 
 export const _TAGS = [
   "Mathematics",
