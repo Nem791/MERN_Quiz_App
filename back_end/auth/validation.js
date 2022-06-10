@@ -1,10 +1,13 @@
-const Joi = require('joi');
+const Joi = require('joi').extend(require('@joi/date'));;
+
 
 const registerValidation = function (data) {
     const schema = Joi.object({
         name: Joi.string().min(4).required(),
         email: Joi.string().email().min(4).required(),
-        password: Joi.string().min(6).required()
+        password: Joi.string().min(6).required(),
+        gender: Joi.string(),
+        birthday: Joi.date().format('YYYY/MM/DD').utc()
     });
 
     return schema.validate(data);

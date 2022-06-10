@@ -60,6 +60,8 @@ const registerUser = async (req, res) => {
   console.log(req.body.email);
   newUser.email = req.body.email;
   newUser.password = hashedPassword;
+  newUser.gender = req.body.gender;
+  newUser.birthday = req.body.birthday;
   console.log(newUser);
 
   try {
