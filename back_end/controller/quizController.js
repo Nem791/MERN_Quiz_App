@@ -1,7 +1,9 @@
 const { default: mongoose } = require('mongoose');
 var path = require('path');
+
 const Quiz = require('../models/Quiz');
 const QuizSet = require('../models/QuizSet');
+const Users = require('../models/Users');
 const randomNumers = require('../utils/randomNumers');
 const toSlug = require('../utils/vietnamese-slug-converter');
 
@@ -38,6 +40,7 @@ const getQuizzesForHomePage = async (req, res) => {
 
         // Find and populate
         const quizzes = await QuizSet.aggregate([
+            { $match: { draft: false } },
             { $unwind: "$tags" },
             {
                 $bucket: {
@@ -108,12 +111,10 @@ const test = async (req, res) => {
 
 // Lay post theo ID 
 const getQuizSetByTag = async (req, res) => {
-    let username = (req.user !== undefined) ? req.user : undefined;
+    let user = req.user;
 
     try {
-        console.log(req.params.id);
         console.log(req.query.tags);
-        console.log(req.query.load);
         console.log("lastId:", lastId);
 
         let tags = req.query.tags.toLowerCase();
@@ -122,11 +123,11 @@ const getQuizSetByTag = async (req, res) => {
         let pageNumber = Number(req.query.page);
         const limit = 1;
 
-        if (pageNumber === 1 && pageNumber === undefined) {
-            quizzes = await QuizSet.find({ $toLower: { tags: tags } }).limit(limit);
+        if (pageNumber === 1 || pageNumber === undefined) {
+            quizzes = await QuizSet.find({ draft: false, $toLower: { tags: tags } }).limit(limit);
 
         } else {
-            quizzes = await QuizSet.find().limit(limit).skip(limit * pageNumber);
+            quizzes = await QuizSet.find({ draft: false, $toLower: { tags: tags } }).limit(limit).skip(limit * pageNumber);
         }
 
         // Join User vs QuizSet
@@ -155,7 +156,7 @@ const getQuizSetById = async (req, res) => {
         const quiz = await QuizSet.findById(slug);
 
         // Join User vs QuizSet
-        await QuizSet.populate(quiz, { path: "user quizzes", select: '-password -user._id' });
+        await QuizSet.populate(quiz, { path: "user quizzes", select: '-password -user._id -answer' });
         console.log('quiz: ', quiz.quizzes[0]);
 
         // Xu ly question type fill_blank_2 
@@ -170,7 +171,7 @@ const getQuizSetById = async (req, res) => {
                 }
                 element.answer = element.options;
             }
-            
+
         }
 
         return res.json(quiz);
@@ -182,86 +183,246 @@ const getQuizSetById = async (req, res) => {
 
 };
 
-const newPost = (req, res) => {
-    let username = (req.user !== undefined) ? req.user : undefined;
-    res.render('create', { username: username });
+const updateDraft = async (req, res) => {
+    let setData = req.body;
+    try {
+        const set = await QuizSet.findByIdAndUpdate({ _id: setData._id }, { draft: false }, { new: true });
+        return res.send(set);
+    } catch (error) {
+        console.log(error);
+        return res.send({ error });
+    }
 };
 
-const saveQuiz = async (req, res) => {
-    let username = (req.user !== undefined) ? req.user : undefined;
+const saveQuizSet = async (req, res) => {
+    let user = req.user;
     // Luu DataTransferItemList, content, image to database 
     console.log('req.body-', req.body);
-    console.log('req.user-', req.user);
-    // let image = req.files.image;
-    const { quizzes, ...setData } = req.body;
+    let files = req.files;
 
-    // let set;
+    let setData = req.body;
 
-    // await image.mv(path.join(__dirname, '..', '/public/upload/', image.name), function (error) {
-    //     set = QuizSet.create({
-    //         ...setData,
-    //         quiz_img: '/upload/' + image.name,
-    //         user: mongoose.Types.ObjectId(req.user._id)
-    //     }, function (err) {
-    //         // res.redirect('/');
-    //         console.log(err);
-    //         return res.json(err)
-    //     })
-    // });
+    let set;
+    try {
+        // Neu co _id => Update 
+        // Ko co _id => Tao moi
+        if (!setData._id) {
+            setData._id = new mongoose.Types.ObjectId().toString();
+        }
 
+        // set user ID 
+        setData.user = user._id;
+
+        console.log("setData._id---: ", setData._id);
+
+        let { _id, ...updatedData } = setData;
+
+        // Neu co anh => luu vao public & cap nhat quiz_img
+        if (files) {
+            // Convert image duoi dang string base64 
+            // let quiz_img = files.image.data.toString('base64');
+            // setData = { ...setData, quiz_img };
+
+            let image = files.image;
+
+            // Lay index cua duoi .png, .jpeg, ... 
+            const index = image.name.lastIndexOf('.');
+            const after = image.name.slice(index);
+
+            // ten anh = title + id quizset . png, jpeg,...
+            image.name = toSlug(setData.title) + '-' + _id + after;
+            console.log(image.name);
+
+            // Luu anh vao public 
+            await image.mv(path.join(__dirname, '..', '/public/images/', image.name));
+            // cap nhat quiz_img
+            updatedData = { ...updatedData, quiz_img: '/images/' + image.name };
+            console.log("updatedData: ", updatedData);
+
+        }
+
+        // $set operator replaces the value of a field with the specified value
+        let queryData = { $set: updatedData };
+
+        set = await QuizSet.findByIdAndUpdate(
+            { _id: setData._id },
+            queryData,
+            // set the new option to true to get the doc that was created by the upsert
+            { upsert: true, new: true }
+        ).clone();
+
+    } catch (error) {
+        console.log('Final error');
+        console.log(error);
+        return res.json(error);
+    }
+
+    console.log('End');
+    return res.json(set);
+    // return res.json(set._id);
+    // const quizList = await Quiz.create()
+};
+
+
+const saveQuizzes = async (req, res) => {
+    // Luu DataTransferItemList, content, image to database 
+    console.log('req.body-', req.body);
+    let files = req.files;
+    let setData = req.body;
+
+    // console.log(files);
+    // for (var key in files) {
+    //     console.log(key, ' - ', files[key]);
+    // }
+    // Câu trả lời là a1_1 a1_2... là ảnh answer 1, ảnh answer 2... của q1
+
+    // return res.send(files.image.data.toString('base64'));
 
     let set;
     try {
 
-        // Set ObjectId cho tung` Quiz sau do luu vao 1 array 
-        let quizIdArray = [];
-        for (let index = 0; index < req.body.quizzes.length; index++) {
-            const element = req.body.quizzes[index];
-            element._id = new mongoose.Types.ObjectId();
-            quizIdArray.push(element._id);
+        // Neu co _id => Update 
+        // Ko co _id => Tao moi
+        if (!setData._id) {
+            setData._id = new mongoose.Types.ObjectId();
         }
 
-        // Tao QuizSet 
-        set = await QuizSet.create({
-            ...setData,
-            quizzes: quizIdArray,
-            quiz_img: "https://redzonekickboxing.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
-            user: mongoose.Types.ObjectId(req.user._id)
-        })
+        console.log("setData._id: ", setData._id);
+        const { _id, ...updatedData } = setData;
+        updatedData.set = mongoose.Types.ObjectId(updatedData.set);
 
-        // Cach 2 de set ID (tao array moi) 
-        // let newArray = req.body.quizzes.map(obj => ({ ...obj, set: set._id }));
-        // console.log(newArray);
+        let queryData = { $set: updatedData };
+        console.log(queryData);
 
-        // Gan ID cua Set cho tung Quiz 
-        for (let index = 0; index < req.body.quizzes.length; index++) {
-            const element = req.body.quizzes[index];
-            element.set = set._id;
-        }
+        set = await Quiz.findByIdAndUpdate(
+            { _id: setData._id },
+            queryData,
+            // set the new option to true to get the doc that was created by the upsert
+            { upsert: true, new: true }
+        ).clone();
 
-        // Tao so cau hoi cua QuizSet 
-        const quiz = await Quiz.create(req.body.quizzes);
-        console.log("quiz: ", quiz);
+        console.log(setData.set.toString());
+        console.log(setData._id);
+
+        // Add _id to QuizSet 
+        await QuizSet.findByIdAndUpdate(
+            { _id: setData.set.toString() },
+            { $push: { quizzes: setData._id } }
+        );
+
     } catch (error) {
+        console.log('Final error');
+        console.log(error);
+        return res.json(error);
+    }
+
+    console.log('End');
+    return res.json(set);
+    // return res.json(set._id);
+    // const quizList = await Quiz.create()
+};
+
+
+const saveQuizzesMock = async (req, res) => {
+    // Luu DataTransferItemList, content, image to database 
+    console.log('req.body-', req.body);
+    let files = req.files;
+    let data = req.body;
+
+    // console.log(files);
+    // for (var key in files) {
+    //     console.log(key, ' - ', files[key]);
+    // }
+    // Câu trả lời là a1_1 a1_2... là ảnh answer 1, ảnh answer 2... của q1
+
+    // return res.send(files.image.data.toString('base64'));
+
+    let set;
+    try {
+        for (let index = 0; index < data.length; index++) {
+            const setData = data[index];
+            // Neu co _id => Update 
+            // Ko co _id => Tao moi
+            if (!setData._id) {
+                setData._id = new mongoose.Types.ObjectId();
+            }
+
+            console.log("setData._id: ", setData._id);
+            const { _id, ...updatedData } = setData;
+            updatedData.set = mongoose.Types.ObjectId(updatedData.set);
+
+            let queryData = { $set: updatedData };
+            console.log(queryData);
+
+            set = await Quiz.findByIdAndUpdate(
+                { _id: setData._id },
+                queryData,
+                // set the new option to true to get the doc that was created by the upsert
+                { upsert: true, new: true }
+            ).clone();
+
+            console.log(setData.set.toString());
+            console.log(setData._id);
+
+            // Add _id to QuizSet 
+            await QuizSet.findByIdAndUpdate(
+                { _id: setData.set.toString() },
+                { $push: { quizzes: setData._id } }
+            );
+        }
+    } catch (error) {
+        console.log('Final error');
         console.log(error);
         return res.json(error);
     }
 
 
-    return res.json(set._id);
+    console.log('End');
+    return res.json(set);
+    // return res.json(set._id);
     // const quizList = await Quiz.create()
 };
 
-const recommendArticle = (req, res) => {
-    const posts = BlogPost.aggregate();
+const likeFunction = async (req, res) => {
+    let user = req.user;
+    console.log(req.params.type);
+
+    let quizSetId = req.query._id;
+
+    let quizSet;
+    let userSet;
+    try {
+        switch (req.params.type) {
+            case 'like':
+                // set the new option to true to get the doc that was updated
+                quizSet = await QuizSet.findByIdAndUpdate(quizSetId, { $push: { user_liked: user._id } }, { new: true });
+                userSet = await Users.findByIdAndUpdate(user._id, { $push: { liked_quiz: quizSetId } }, { new: true });
+                return res.send({ quizSet, userSet });
+
+            case 'unlike':
+                // set the new option to true to get the doc that was updated
+                quizSet = await QuizSet.findByIdAndUpdate(quizSetId, { $pull: { user_liked: user._id } }, { new: true });
+                userSet = await Users.findByIdAndUpdate(user._id, { $pull: { liked_quiz: quizSetId } }, { new: true });
+                return res.send({ quizSet, userSet });
+
+            default:
+                return res.status(400).send({ error: "Invalid params" });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send(error);
+    }
 }
 
 module.exports = {
     getQuizzes,
-    newPost,
-    saveQuiz,
     getQuizSetById,
     getQuizzesForHomePage,
     getQuizSetByTag,
+    saveQuizSet,
+    saveQuizzes,
+    updateDraft,
+    likeFunction,
+    saveQuizzesMock,
     test
 }

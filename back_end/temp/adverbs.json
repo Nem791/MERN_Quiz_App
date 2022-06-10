@@ -1,0 +1,88 @@
+[
+    {
+        "_id": "62a1f6e96ab9f8ebc78ed215",
+        "__v": 0,
+        "answer": [
+            "carefully"
+        ],
+        "date_created": "2022-06-09T13:34:03.455Z",
+        "options": [
+            "soon",
+            "excitedly",
+            "carefully"
+        ],
+        "question": "She ____ laid the baby in the crib.",
+        "set": "62a1f834b6e8255625c097b1",
+        "timer": 30,
+        "type": "multiple_choice"
+    },
+    {
+        "_id": "62a2006a2e9563a0b4d4f1c3",
+        "question": "256Kb/s là tốc độ của mạng nào?",
+        "type": "multiple_choice_answers",
+        "options": [
+            "Yesterday",
+            "Wisely",
+            "Here"
+        ],
+        "answer": [
+            "Yesterdayx"
+        ],
+        "set": "62a1f834b6e8255625c097b1",
+        "date_created": "2022-06-09T13:34:03.455Z",
+        "timer": 30,
+        "__v": 0
+    },
+    {
+        "_id": "62a2006a2e9563a0b4d4f1c3",
+        "question": "256Kb/s là tốc độ của mạng nào?",
+        "type": "multiple_choice_answers",
+        "options": [
+            "Yesterday",
+            "Wisely",
+            "Here"
+        ],
+        "answer": [
+            "Yesterdayx"
+        ],
+        "set": "62a1f834b6e8255625c097b1",
+        "date_created": "2022-06-09T13:34:03.455Z",
+        "timer": 30,
+        "__v": 0
+    },
+    {
+        "_id": "62a2006a2e9563a0b4d4f1c3",
+        "question": "256Kb/s là tốc độ của mạng nào?",
+        "type": "multiple_choice_answers",
+        "options": [
+            "Yesterday",
+            "Wisely",
+            "Here"
+        ],
+        "answer": [
+            "Yesterdayx"
+        ],
+        "set": "62a1f834b6e8255625c097b1",
+        "date_created": "2022-06-09T13:34:03.455Z",
+        "timer": 30,
+        "__v": 0
+    },
+    {
+        "_id": "62a2006a2e9563a0b4d4f1c3",
+        "question": "256Kb/s là tốc độ của mạng nào?",
+        "type": "multiple_choice_answers",
+        "options": [
+            "Yesterday",
+            "Wisely",
+            "Here"
+        ],
+        "answer": [
+            "Yesterdayx"
+        ],
+        "set": "62a1f834b6e8255625c097b1",
+        "date_created": "2022-06-09T13:34:03.455Z",
+        "timer": 30,
+        "__v": 0
+    }
+    
+]

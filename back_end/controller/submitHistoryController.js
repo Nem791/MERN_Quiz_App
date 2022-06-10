@@ -26,12 +26,14 @@ const submitAnswers = async (req, res) => {
 
 const test = async (req, res) => {
 
-    let username = (req.user !== undefined) ? req.user : undefined;
+    console.log('gg');
+
+    let user = req.user;
     let { answers } = req.body;
 
-    for (const answer of answers) {
-        answer.quiz = mongoose.Types.ObjectId(answer.quiz);
-    }
+    // for (const answer of answers) {
+    //     answer.quiz = mongoose.Types.ObjectId(answer.quiz);
+    // }
 
     const userAnswers = await UserAnswerHistory.create(answers);
     await UserAnswerHistory.populate(userAnswers, { path: "quiz" });
@@ -41,6 +43,8 @@ const test = async (req, res) => {
     let totalQuizzes = userAnswers.length;
 
     for (const answer of userAnswers) {
+        console.log(answer);
+
         let rightAnswer;
         let submitAnswer;
         let question;
@@ -79,13 +83,15 @@ const test = async (req, res) => {
         }
     }
 
-    let user_id = username._id;
+    let user_id = user._id;
     let score = (countCorrectAnswer / totalQuizzes) * 10;
     let quiz_set_id = userAnswers[0].quiz._id;
     let user_answers = [];
 
+    console.log(userAnswers);
+
     for (const iterator of userAnswers) {
-        user_answers.push(iterator.quiz._id);
+        user_answers.push(iterator._id);
     }
 
     const doc = await UserQuestionHistory.create({user_id, score, quiz_set_id, user_answers});

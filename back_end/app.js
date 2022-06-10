@@ -18,6 +18,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var quizzesRouter = require("./routes/quiz");
 var submitRouter = require("./routes/submit");
+var filterQuiztRouter = require("./routes/filter-quiz");
 
 var app = express();
 
@@ -35,7 +36,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     secret: "keyboard cat",
-    cookie: { maxAge: 8 * 60 * 60 * 1000 },
+    cookie: { maxAge: 10000 },
     store: MongoStore.create({
       mongoUrl: db,
     }),
@@ -49,5 +50,6 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/quizzes", quizzesRouter);
 app.use("/submit", submitRouter);
+app.use("/filter-quiz", filterQuiztRouter);
 
 module.exports = app;

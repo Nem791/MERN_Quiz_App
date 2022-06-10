@@ -49,8 +49,26 @@ const QuizSetSchema = new Schema({
     comments: {
         type: Array,
         default: []
-    }
+    },
+    draft: {
+        type: Boolean,
+        default: true,
+        required: true
+    },
+    deleted: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
+    user_liked: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }]
+    
 });
+
+// Tao index cho title de search 
+QuizSetSchema.index({ title: "text", tags: "text" }); 
 
 const QuizSet = mongoose.model('QuizSet', QuizSetSchema);
 module.exports = QuizSet;

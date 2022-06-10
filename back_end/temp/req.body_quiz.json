@@ -1,63 +1,10 @@
 {
-    "title": "So / Neither / Either / Too",
+    "_id": "629f08af2c436203d1f5bd2a",
+    "title": "So / Neither / Either",
     "type": "questions",
-    "quizzes": [
-        {
-            "question": "I really miss Kate. -_________do I.",
-            "type": "multiple_choice",
-            "options": ["So", "Too", "Either", "Neither"],
-            "answer": ["So"],
-            "timer": "5000"
-        },
-        {
-            "question": "I was so tired after the game. - ___________________",
-            "type": "multiple_choice",
-            "options": [
-                "So was I",
-                "I did too",
-                "Neither was I",
-                "I wasn't either"
-            ],
-            "answer": [
-                "So was I"
-            ],
-            "timer": "5000"
-        },
-        {
-            "question": "I haven't tried Chinese food before. - I haven't ____________.",
-            "type": "multiple_choice",
-            "options": [
-                "So",
-                "Too",
-                "Either",
-                "Neither"
-            ],
-            "answer": [
-                "Either"
-            ],
-            "timer": "5000"
-        },
-        {
-            "question": "I have never seen anything like this before. - _______________ has my sister",
-            "type": "multiple_choice",
-            "options": [
-                "So",
-                "Too",
-                "Either",
-                "Neither"
-            ],
-            "answer": [
-                "Neither"
-            ],
-            "timer": "15000"
-        }
-    ],
-    "quiz_img": "https://redzonekickboxing.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
-    "user": {
-        "$oid": "628d04eefc13ae295a00005a"
-    },
+    "user": "628d04eefc13ae295a00005a",
     "tags": [
-        "Math",
-        "English"
+        "English",
+        "Japanese 1"
     ]
 }

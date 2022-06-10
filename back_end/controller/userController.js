@@ -46,11 +46,9 @@ const registerUser = async (req, res) => {
   const emailExist = await User.findOne({ email: req.body.email });
   console.log("emailExits", emailExist);
   if (emailExist) {
-    return res
-      .status(400)
-      .json({
-        error: "Email exists in database. Please register with other email",
-      });
+    return res.status(400).json({
+      error: "Email exists in database. Please register with other email",
+    });
   }
 
   // Hash password
@@ -114,7 +112,8 @@ const loginUser = async (req, res, next) => {
   // 4. Return token jwt
   const token = jwt.sign(
     { _id: userLogin._id, name: userLogin.name, email: userLogin.email },
-    "masobimat01"
+    "masobimat01",
+    { expiresIn: 60 * 60 }
   );
 
   // 5. Add token to header
@@ -127,6 +126,7 @@ const loginUser = async (req, res, next) => {
 
   // res.render('index');
   sessData.auth_token = token;
+  sessData.last_login = Date.now();
   // res.redirect('/');
   res.json({ token: token });
   // res.status(204).send();
@@ -140,6 +140,12 @@ const logOutUser = async (req, res) => {
       return res.redirect("/");
     }
   });
+};
+
+const checkLoginStatus = async (req, res) => {
+  let user = req.user !== undefined ? req.user : undefined;
+
+  return res.send(user);
 };
 
 const userProfile = async (req, res) => {
@@ -168,4 +174,5 @@ module.exports = {
   loginUser,
   logOutUser,
   userProfile,
+  checkLoginStatus,
 };

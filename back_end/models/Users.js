@@ -25,7 +25,11 @@ const UserSchema = new Schema({
     },
     birthday: {
         type: Date
-    }
+    },
+    liked_quiz: [{
+        type: Schema.Types.ObjectId,
+        ref: "QuizSet"
+    }]
 
 });
 
