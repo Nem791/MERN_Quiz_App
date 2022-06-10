@@ -13,7 +13,10 @@ export default function Player() {
 
   useEffect(() => {
     setTimeout(() => setStep(0), 4000);
-    callApi({ endpoint: `quizzes/${params.id}`, method: "GET" })
+    callApi({
+      endpoint: `quizzes/${params.id}`,
+      method: "GET",
+    })
       .then((res) => {
         if (res.ok) return res.json();
       })

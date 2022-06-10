@@ -1,9 +1,11 @@
 export async function handleResponse(res) {
+  if (!res.ok) {
+    console.log(res);
+  }
   const response = await res.json();
   if (response.error) {
     throw new Error(response.error);
   }
-  console.log(response);
   return response;
 }
 

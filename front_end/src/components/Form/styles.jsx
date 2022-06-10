@@ -28,12 +28,11 @@ const FormLayout = styled.div`
       }
     }
   }
-  .submit-error {
+  .submitError {
     color: ${getColor("error")};
-    text-align: center;
   }
   .bottom,
-  .submit-error {
+  .submitError {
     border-top: 1px solid #dadde1;
   }
   .group-label {

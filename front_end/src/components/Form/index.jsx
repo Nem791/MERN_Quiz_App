@@ -40,12 +40,14 @@ export default function MyForm({
   fieldsInfo = [],
   validate,
   handleSubmit,
-  submitText,
+  submitText = "Submit",
   cancelBtn,
   submitting,
   submitError,
+  successMsg,
   close,
 }) {
+  const msg = submitError || successMsg;
   return (
     <FormLayout>
       <div className="top">
@@ -68,13 +70,15 @@ export default function MyForm({
                     <FormGroup key={info.name} info={info} />
                   ))}
                 </Row>
-                {submitError && (
-                  <p className="pt-4 submit-error fw-600">{submitError}</p>
+                {msg && (
+                  <p className={cn("pt-4 fw-600 text-center", { submitError })}>
+                    {msg}
+                  </p>
                 )}
                 <div className="mt-4 mx-auto">
                   {cancelBtn}
                   <MainButton type="submit" disabled={submitting}>
-                    {submitText || "Submit"}
+                    {submitText}
                   </MainButton>
                 </div>
               </Form>

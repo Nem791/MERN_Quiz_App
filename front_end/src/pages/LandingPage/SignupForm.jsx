@@ -7,8 +7,9 @@ import { _PASSWORD_MIN_LEN, _USER_NAME_MIN_LEN } from "../../configs";
 
 export default function SignupForm({ close }) {
   const dispatch = useDispatch();
-  const submitting = useSelector((state) => state.user.reqPending);
-  const submitError = useSelector((state) => state.user.reqError);
+  const { reqPending, reqError, reqSuccess } = useSelector(
+    (state) => state.user.formInfo
+  );
 
   const closeForm = () => {
     dispatch(RESET_ERROR());
@@ -86,23 +87,21 @@ export default function SignupForm({ close }) {
         }}
         handleSubmit={(values, { setSubmitting }) => {
           let { birthday } = values;
-          const month = birthday.getMonth() + 1;
-          const day = birthday.getDate();
-          birthday = `${birthday.getFullYear()}/${
-            month < 10 ? `0${month}` : month
-          }/${day < 10 ? `0${day}` : day}`;
+          const addZeroIfNeeded = (n) => (n < 10 ? `0${n}` : n);
+          const month = addZeroIfNeeded(birthday.getMonth() + 1);
+          const day = addZeroIfNeeded(birthday.getDate());
           const info = {
             name: values.name,
             email: values.email,
             password: values.password,
             gender: values.gender,
-            birthday,
+            birthday: `${birthday.getFullYear()}/${month}/${day}`,
           };
-          console.log(info);
           dispatch(SIGNUP(info));
         }}
-        submitting={submitting}
-        submitError={submitError}
+        submitting={reqPending}
+        submitError={reqError}
+        successMsg={reqSuccess && "Sign up successfully!"}
         close={closeForm}
       />
     </Modal>

@@ -5,7 +5,7 @@ import { getColor } from "../../styledComponents/helpers";
 import { breakpoints } from "../../theme";
 import { EmergedButton } from "./styles";
 
-export default function Hero({ setModal }) {
+export default function Hero({ openForm }) {
   return (
     <StyledHero className="pos-relative">
       <div className="layout pos-absolute full-stretch">
@@ -19,12 +19,12 @@ export default function Hero({ setModal }) {
             learner.
           </h2>
           <div className="mt-4 flex-col">
-            <EmergedButton onClick={() => setModal("signup")}>
+            <EmergedButton onClick={() => openForm("signup")}>
               Sign up for free <FaChevronRight className="ml-3" />
             </EmergedButton>
             <p className="login">
               Already have an account?{" "}
-              <span className="pointer" onClick={() => setModal("login")}>
+              <span className="pointer" onClick={() => openForm("login")}>
                 Login
               </span>
             </p>

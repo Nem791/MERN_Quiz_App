@@ -77,14 +77,14 @@ export default function Core({ step, setId, currentQuest }) {
       endpoint: "submit/calculate-quiz-score",
       method: "POST",
       reqData,
+      token: localStorage.getItem("token"),
     })
       .then((res) => {
         if (res.ok) return res.json();
       })
       .then((data) => {
-        console.log(data);
-        // setPoint((prev) => prev + 1);
-        // setRightOpts(data.indexOfAnswers);
+        setPoint((prev) => prev + data.score);
+        setRightOpts(data.indexOfAnswers);
       })
       .catch(console.log);
   };

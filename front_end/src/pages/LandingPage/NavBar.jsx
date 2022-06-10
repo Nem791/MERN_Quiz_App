@@ -9,7 +9,7 @@ import { getColor } from "../../styledComponents/helpers";
 import { boxShadows, breakpoints } from "../../theme";
 import { LandingButton } from "./styles";
 
-export default function NavBar({ scrolled, setModal }) {
+export default function NavBar({ scrolled, openForm }) {
   const notSm = window.innerWidth >= breakpoints.md;
   const dispatch = useDispatch();
   return (
@@ -32,7 +32,7 @@ export default function NavBar({ scrolled, setModal }) {
             <LandingButton
               className="flex align-center"
               fs="1rem"
-              onClick={() => setModal("signup")}
+              onClick={() => openForm("signup")}
             >
               Sign up <FaChevronRight className="ml-2" />
             </LandingButton>
