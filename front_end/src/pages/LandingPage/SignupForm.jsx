@@ -21,7 +21,7 @@ export default function SignupForm({ close }) {
         initialValues={{
           name: "",
           gender: "",
-          dob: null,
+          birthday: null,
           email: "",
           password: "",
           repassword: "",
@@ -44,7 +44,7 @@ export default function SignupForm({ close }) {
           },
           {
             label: "Date of Birth",
-            name: "dob",
+            name: "birthday",
             placeholder: "YYYY/MM/DD",
             type: "date",
             maxDate: new Date(),
@@ -52,7 +52,7 @@ export default function SignupForm({ close }) {
             inline: true,
           },
         ]}
-        validate={({ name, email, password, repassword, gender, dob }) => {
+        validate={({ name, email, password, repassword, gender, birthday }) => {
           const errors = {};
           if (name.length < _USER_NAME_MIN_LEN) {
             errors.name = `Your name must contain atleast ${_USER_NAME_MIN_LEN} letters.`;
@@ -77,24 +77,27 @@ export default function SignupForm({ close }) {
           if (!gender.length) {
             errors.gender = "Please choose a gender.";
           }
-          if (dob === null) {
-            errors.dob = "Please enter or choose a valid date.";
-          } else if (new Date().getFullYear() - dob.getFullYear() < 3) {
-            errors.dob = "You must be atleast 3-year-old to sign up.";
+          if (birthday === null) {
+            errors.birthday = "Please enter or choose a valid date.";
+          } else if (new Date().getFullYear() - birthday.getFullYear() < 3) {
+            errors.birthday = "You must be atleast 3-year-old to sign up.";
           }
           return errors;
         }}
         handleSubmit={(values, { setSubmitting }) => {
-          console.log(values.dob.toDateString());
-          dispatch(
-            SIGNUP({
-              name: values.name,
-              email: values.email,
-              password: values.password,
-              gender: values.gender,
-              dob: values.dob.toDateString(),
-            })
-          );
+          let { birthday } = values;
+          birthday = `${birthday.getDate()}/${
+            birthday.getMonth() + 1
+          }/${birthday.getFullYear()}`;
+          const info = {
+            name: values.name,
+            email: values.email,
+            password: values.password,
+            gender: values.gender,
+            birthday,
+          };
+          console.log(info);
+          dispatch(SIGNUP(info));
         }}
         submitting={submitting}
         submitError={submitError}
