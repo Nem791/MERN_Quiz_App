@@ -120,7 +120,9 @@ const loginUser = async (req, res, next) => {
     sessData.auth_token = token;
     sessData.last_login = Date.now();
     // res.redirect('/');
-    res.json({token : token})
+    let decoded = jwt.verify(token, 'masobimat01');
+    console.log(decoded);
+    return res.json({token : token, user: decoded})
     // res.status(204).send();
 }
 
