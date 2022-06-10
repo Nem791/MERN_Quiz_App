@@ -6,7 +6,7 @@ const UserQuestionHistory = require('../models/UserQuestionHistory');
 const { markMultipleChoice, markFillBlank1, markFillBlank2, markMultipleChoiceAnswers } = require('../utils/mark');
 const toSlug = require('../utils/vietnamese-slug-converter');
 
-const submitAnswers = async (req, res) => {
+const test = async (req, res) => {
 
     try {
         // Find and populate
@@ -24,7 +24,7 @@ const submitAnswers = async (req, res) => {
     }
 };
 
-const test = async (req, res) => {
+const submitAnswers = async (req, res) => {
 
     console.log('gg');
 

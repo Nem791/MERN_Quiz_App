@@ -7,6 +7,6 @@ const { test, submitAnswers } = require('../controller/submitHistoryController')
 router.post('/test', checkToken, test);
 
 // Tinh diem & luu score 
-router.post('/', checkToken, submitAnswers)
+router.post('/calculate-quiz-score', checkToken, submitAnswers)
 
 module.exports = router;
