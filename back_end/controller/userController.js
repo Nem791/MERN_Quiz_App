@@ -77,60 +77,56 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res, next) => {
-  var sessData = req.session;
-  // res.send(req.body);
-  // 1. Validate user info
-  const { error } = loginValidation(req.body);
-  if (error) {
-    sessData.error = `${error.details[0].message}`;
-    return res.status(400).json({ error: error.details[0].message });
-    // return res.redirect('back');
-  }
+    var sessData = req.session;
+    // res.send(req.body);
+    // 1. Validate user info 
+    const { error } = loginValidation(req.body);
+    if (error) {
+        sessData.error = `${error.details[0].message}`;
+        return res.status(400).json({ error: error.details[0].message });
+        // return res.redirect('back');
+    }
 
-  // 2. Check email exists in db
-  const userLogin = await User.findOne({ email: req.body.email });
-  console.log("userLogin: " + userLogin);
-  if (!userLogin) {
-    // return res.status(400).send('Email not exists in database');
-    sessData.error = `Email not exists in database`;
-    return res.status(400).json({ error: `Email not exists in database` });
-    // return res.redirect('back');
-  }
+    // 2. Check email exists in db 
+    const userLogin = await User.findOne({ email: req.body.email });
+    console.log('userLogin: ' + userLogin);
+    if (!userLogin) {
+        // return res.status(400).send('Email not exists in database');
+        sessData.error = `Email not exists in database`;
+        return res.status(400).json({ error: `Email not exists in database` });
+        // return res.redirect('back');
+    }
 
-  // 3. Check password
-  const checkPassword = await bcrypt.compare(
-    req.body.password,
-    userLogin.password
-  );
-  if (!checkPassword) {
-    sessData.error = `Password invalid`;
-    return res.status(400).json({ error: `Password invalid` });
-    // return res.redirect('back');
-    // return res.status(400).send();
-  }
+    // 3. Check password 
+    const checkPassword = await bcrypt.compare(req.body.password, userLogin.password);
+    if (!checkPassword) {
+        sessData.error = `Password invalid`;
+        return res.status(400).json({ error: `Password invalid` });
+        // return res.redirect('back');
+        // return res.status(400).send();
+    }
 
-  // 4. Return token jwt
-  const token = jwt.sign(
-    { _id: userLogin._id, name: userLogin.name, email: userLogin.email },
-    "masobimat01",
-    { expiresIn: 60 * 60 }
-  );
+    // 4. Return token jwt
+    const token = jwt.sign({ _id: userLogin._id, name: userLogin.name, email: userLogin.email }, 'masobimat01', { expiresIn: 60 * 60 });
 
-  // 5. Add token to header
-  // req.headers['auth-token'] = token;
-  // console.log(req.headers['auth-token']);
-  // res.set('lol', 't');
-  // res.header('auth-token', token);
 
-  // res.header('auth-token', token);
+    // 5. Add token to header
+    // req.headers['auth-token'] = token;
+    // console.log(req.headers['auth-token']);
+    // res.set('lol', 't');
+    // res.header('auth-token', token);
 
-  // res.render('index');
-  sessData.auth_token = token;
-  sessData.last_login = Date.now();
-  // res.redirect('/');
-  res.json({ token: token });
-  // res.status(204).send();
-};
+    // res.header('auth-token', token);
+
+    // res.render('index');
+    sessData.auth_token = token;
+    sessData.last_login = Date.now();
+    // res.redirect('/');
+    let decoded = jwt.verify(token, 'masobimat01');
+    console.log(decoded);
+    return res.json({token : token, user: decoded})
+    // res.status(204).send();
+}
 
 const logOutUser = async (req, res) => {
   req.session.destroy(function (err) {

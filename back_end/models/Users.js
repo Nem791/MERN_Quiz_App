@@ -29,7 +29,10 @@ const UserSchema = new Schema({
     liked_quiz: [{
         type: Schema.Types.ObjectId,
         ref: "QuizSet"
-    }]
+    }],
+    gender: {
+        type: String
+    }
 
 });
 
