@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { EXPLORE_FIELDS } from "../../configs";
+import { _EXPLORE_FIELDS } from "../../configs";
 import FieldDisplay from "./FieldDisplay";
 import FieldSum from "./FieldSum";
 import SearchArea from "./SearchArea";
 import { breakpoints } from "../../theme";
-import { useGetSetOnExploreQuery } from "../../app/thunks";
+import { useGetExploreSetsQuery } from "../../app/thunks";
 
 export default function Explore() {
-  const { data, error, isLoading } = useGetSetOnExploreQuery();
+  const { data, error, isLoading } = useGetExploreSetsQuery();
   console.log(data);
   return (
     <StyledExplore>
@@ -17,7 +17,7 @@ export default function Explore() {
         <FieldSum />
       </div>
       <div className="sets-by-field">
-        {EXPLORE_FIELDS.map(({ label }) => (
+        {_EXPLORE_FIELDS.map(({ label }) => (
           <FieldDisplay key={label} heading={label} />
         ))}
       </div>

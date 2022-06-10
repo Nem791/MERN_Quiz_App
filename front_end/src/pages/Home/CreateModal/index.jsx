@@ -1,9 +1,11 @@
 import { Form, Formik } from "formik";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { OPEN_CREATOR } from "../../../app/creatorSlice/actions";
 import Layout from "../../../components/Form/styles";
 import TextGroup from "../../../components/Form/TextGroup";
 import Modal from "../../../components/Modal";
-import { TAGS } from "../../../configs";
+import { _TAGS, _QUEST_SET_TYPES } from "../../../configs";
 import { Button, MainButton } from "../../../styledComponents/Inputs";
 import { Col, Row } from "../../../styledComponents/Layout";
 import TagGroup from "./TagGroup";
@@ -11,6 +13,7 @@ import TypeGroup from "./TypeGroup";
 
 export default function CreateModal({ close }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <Modal close={close}>
       <Layout className="full-h hide-sb" width="360px">
@@ -38,9 +41,10 @@ export default function CreateModal({ close }) {
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              navigate("/creator", { state: values });
+              dispatch(OPEN_CREATOR(values));
+              navigate("/creator");
               // setSubmitting(false);
-            }, 2000);
+            }, 1000);
           }}
           children={renderForm(close)}
         />
@@ -50,37 +54,33 @@ export default function CreateModal({ close }) {
 }
 
 function renderForm(close) {
-  return ({ values, errors, touched, isSubmitting }) => {
-    const type = values.type || "lesson/quiz";
+  return ({ values, isSubmitting }) => {
+    const type =
+      _QUEST_SET_TYPES[values.type] ||
+      `${_QUEST_SET_TYPES.sliders}/${_QUEST_SET_TYPES.questions}`;
     return (
       <Form className="p-4 flex-col">
         <TypeGroup
           name="type"
           options={[
             {
-              value: "lesson",
+              label: _QUEST_SET_TYPES.questions,
+              value: "questions",
               img: "https://cf.quizizz.com/img/illustrations/lesson.png",
             },
             {
-              value: "quiz",
+              label: _QUEST_SET_TYPES.sliders,
+              value: "sliders",
               img: "https://cf.quizizz.com/img/illustrations/quiz.png",
             },
           ]}
-          errors={errors}
-          touched={touched}
         />
 
         <p className="group-label">1. Name your {type}</p>
         <TextGroup name="name" placeholder={`Enter a ${type} name`} />
 
         <p className="group-label mt-1">2. Choose relevant subjects</p>
-        <TagGroup
-          name="tags"
-          chosen={values.tags}
-          options={TAGS}
-          errors={errors}
-          touched={touched}
-        />
+        <TagGroup name="tags" chosen={values.tags} options={_TAGS} />
 
         <Row gap={12}>
           <Col span={12}>

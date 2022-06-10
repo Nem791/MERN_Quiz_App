@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { LOGIN } from "../../app/thunks";
+import { LOGIN } from "../../app/userSlice/thunks";
 import { RESET_ERROR } from "../../app/userSlice";
 import Form from "../../components/Form";
 import Modal from "../../components/Modal";
-import { PASSWORD_MIN_LEN } from "../../configs";
+import { _PASSWORD_MIN_LEN } from "../../configs";
 
 export default function LoginForm({ close }) {
   const dispatch = useDispatch();
@@ -21,14 +21,14 @@ export default function LoginForm({ close }) {
         initialValues={{ email: "", password: "" }}
         fieldsInfo={[
           { name: "email", placeholder: "Email", type: "email" },
-          { name: "password", placeholder: "Password", type: "password" }
+          { name: "password", placeholder: "Password", type: "password" },
         ]}
         validate={({ email, password }) => {
           const errors = {};
           if (!email.length) {
             errors.email = "Please enter your email address.";
           }
-          if (password.length < PASSWORD_MIN_LEN) {
+          if (password.length < _PASSWORD_MIN_LEN) {
             errors.password = "Please enter a valid password.";
           }
           return errors;

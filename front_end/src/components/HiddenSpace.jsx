@@ -6,9 +6,9 @@ import { useGetHeight } from "../hooks";
 const StyledDiv = styled.div`
   height: 0;
   overflow: hidden;
-  transition: ${(props) => props.transition};
+  transition: ${(pr) => pr.transition};
   &.open {
-    height: ${(props) => props.openHeight};
+    height: ${(pr) => pr.openHeight};
   }
 `;
 
@@ -60,6 +60,7 @@ export function OutOfScreen({
   moveTime = 200,
   unmountWhenOut,
   children,
+  className,
   ...rest
 }) {
   const [mounted, setMounted] = useState(!unmountWhenOut);
@@ -76,7 +77,7 @@ export function OutOfScreen({
 
   return (
     <StyledOutOfScreen
-      className={cn({ "slide-in": active })}
+      className={cn(className, { "slide-in": active })}
       moveTime={moveTime}
       {...rest}
     >

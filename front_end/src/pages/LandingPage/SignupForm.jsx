@@ -1,9 +1,9 @@
-import Modal from "../../components/Modal";
-import Form from "../../components/Form";
-import { USER_NAME_MIN_LEN, PASSWORD_MIN_LEN } from "../../configs";
 import { useDispatch, useSelector } from "react-redux";
 import { RESET_ERROR } from "../../app/userSlice";
-import { SIGNUP } from "../../app/thunks";
+import { SIGNUP } from "../../app/userSlice/thunks";
+import Form from "../../components/Form";
+import Modal from "../../components/Modal";
+import { _PASSWORD_MIN_LEN, _USER_NAME_MIN_LEN } from "../../configs";
 
 export default function SignupForm({ close }) {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export default function SignupForm({ close }) {
         initialValues={{
           name: "",
           gender: "",
-          dob: new Date(),
+          dob: null,
           email: "",
           password: "",
           repassword: "",
@@ -45,21 +45,25 @@ export default function SignupForm({ close }) {
           {
             label: "Date of Birth",
             name: "dob",
+            placeholder: "YYYY/MM/DD",
             type: "date",
+            maxDate: new Date(),
+            yearRange: 100,
+            inline: true,
           },
         ]}
-        validate={({ name, email, password, repassword, gender }) => {
+        validate={({ name, email, password, repassword, gender, dob }) => {
           const errors = {};
-          if (name.length < USER_NAME_MIN_LEN) {
-            errors.name = `Your name must contain atleast ${USER_NAME_MIN_LEN} letters.`;
+          if (name.length < _USER_NAME_MIN_LEN) {
+            errors.name = `Your name must contain atleast ${_USER_NAME_MIN_LEN} letters.`;
           } else if (/[^a-zA-Z ]/g.test(name)) {
             errors.name = "Your name can only contain spaces and a-z letters.";
           }
           if (!/\S+@\S+/.test(email)) {
             errors.email = "Invalid email address.";
           }
-          if (password.length < PASSWORD_MIN_LEN) {
-            errors.password = `Password must contain atleast ${PASSWORD_MIN_LEN} characters`;
+          if (password.length < _PASSWORD_MIN_LEN) {
+            errors.password = `Password must contain atleast ${_PASSWORD_MIN_LEN} characters`;
           } else if (
             password.search(/[0-9]/) === -1 ||
             password.search(/[A-Z]/) === -1
@@ -73,20 +77,24 @@ export default function SignupForm({ close }) {
           if (!gender.length) {
             errors.gender = "Please choose a gender.";
           }
+          if (dob === null) {
+            errors.dob = "Please enter or choose a valid date.";
+          } else if (new Date().getFullYear() - dob.getFullYear() < 3) {
+            errors.dob = "You must be atleast 3-year-old to sign up.";
+          }
           return errors;
         }}
         handleSubmit={(values, { setSubmitting }) => {
+          console.log(values.dob.toDateString());
           dispatch(
             SIGNUP({
               name: values.name,
               email: values.email,
               password: values.password,
+              gender: values.gender,
+              dob: values.dob.toDateString(),
             })
           );
-          // setTimeout(() => {
-          //   alert(JSON.stringify(values, null, 2));
-          //   setSubmitting(false);
-          // }, 200);
         }}
         submitting={submitting}
         submitError={submitError}

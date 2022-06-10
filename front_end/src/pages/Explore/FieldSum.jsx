@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { EXPLORE_FIELDS } from "../../configs";
+import { _EXPLORE_FIELDS } from "../../configs";
 import { imgLink } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { breakpoints } from "../../theme";
@@ -14,7 +14,7 @@ export default function FieldSum() {
     <StyledFieldSum className="pos-relative">
       <div ref={wrapperRef} className="pb-1 overflow-hidden smooth-scroll">
         <div className="list flex">
-          {EXPLORE_FIELDS.map(({ label, img, path }) => (
+          {_EXPLORE_FIELDS.map(({ label, img, path }) => (
             <Link key={label} to={path} className="flex-col align-center">
               <div className="p-1 mb-2 img-wrapper b-radius-round">
                 <img

@@ -4,7 +4,6 @@ import { breakpoints } from "../../theme";
 
 const FormLayout = styled.div`
   --padding: 12px;
-  --error-color: #be4b49;
   --primary-color: ${getColor("primaryDark")};
   width: 100%;
   height: 100%;
@@ -30,17 +29,19 @@ const FormLayout = styled.div`
     }
   }
   .submit-error {
-    color: var(--error-color);
+    color: ${getColor("error")};
     text-align: center;
   }
   .bottom,
   .submit-error {
     border-top: 1px solid #dadde1;
-    padding: 16px;
   }
   .group-label {
-    margin-bottom: 8px;
-    font-weight: 700;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    &.inline {
+      margin: 0 0.5rem 0.75rem 0;
+    }
   }
   .input-box {
     background-color: #f5f6f7;
@@ -51,20 +52,20 @@ const FormLayout = styled.div`
       border-color: black;
     }
     &.error:not(:focus):hover {
-      box-shadow: 0 0 0 1px var(--error-color) inset;
+      box-shadow: 0 0 0 1px ${getColor("error")} inset;
     }
   }
   .error-text {
-    min-width: 60%;
     border-radius: 4px;
     padding: 0.5rem 0.75rem;
-    background-color: var(--error-color);
+    background-color: ${getColor("error")};
     color: white;
+    font-size: 0.875rem;
     line-height: 1.5;
   }
   .error-icon {
     position: absolute;
-    color: var(--error-color);
+    color: ${getColor("error")};
     font-size: 1.25rem;
   }
   @media (min-width: ${breakpoints.md}px) {
@@ -75,3 +76,27 @@ const FormLayout = styled.div`
 `;
 
 export default FormLayout;
+
+export const StyledCommonTextInput = styled.div`
+  input {
+    width: 100%;
+    &.error {
+      border-color: ${getColor("error")};
+    }
+    &:focus {
+      border: 1px solid var(--primary-color);
+      box-shadow: 0 0 0 1px var(--primary-color) inset;
+    }
+  }
+  input:focus ~ .error-text {
+    display: block;
+  }
+  input:focus ~ .error-icon {
+    display: none;
+  }
+  .error-icon {
+    top: var(--padding);
+    right: var(--padding);
+    pointer-events: none;
+  }
+`;

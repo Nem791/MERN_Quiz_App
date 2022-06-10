@@ -1,78 +1,80 @@
-const { default: mongoose } = require('mongoose');
+const { default: mongoose } = require("mongoose");
 const User = require("../models/Users");
-const { registerValidation, loginValidation } = require('../auth/validation');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const { registerValidation, loginValidation } = require("../auth/validation");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const getUsers = async (req, res) => {
-    const users = await User.find();
-    console.log(users);
+  const users = await User.find();
+  console.log(users);
 
-    let username = (req.user !== undefined) ? req.user : undefined;
+  let username = req.user !== undefined ? req.user : undefined;
 
-    // return res.render("user-list", {
-    //     users, username
-    // });
-    return res.json(users);
+  // return res.render("user-list", {
+  //     users, username
+  // });
+  return res.json(users);
 };
 
 const getUserById = async (req, res) => {
-    // const users = await User.find();
-    // const users1 = await User.findById(req.params.id).catch((err) => {
-    //   console.log(err);
-    // });
-    const users = await User.find({ _id: req.params.id }).catch((err) => {
-        return null;
-    });
+  // const users = await User.find();
+  // const users1 = await User.findById(req.params.id).catch((err) => {
+  //   console.log(err);
+  // });
+  const users = await User.find({ _id: req.params.id }).catch((err) => {
+    return null;
+  });
 
-    let username = (req.user !== undefined) ? req.user : undefined;
+  let username = req.user !== undefined ? req.user : undefined;
 
-    // console.log(users1);
-    // return res.render("user-list", {
-    //     users, username
-    // });
-    return res.json(users);
+  // console.log(users1);
+  // return res.render("user-list", {
+  //     users, username
+  // });
+  return res.json(users);
 };
 
 const registerUser = async (req, res) => {
-    // validate info of user
-    const { error } = registerValidation(req.body);
-    if (error) {
-        // return res.status(400).send(error.details[0].message);
-        return res.status(400).json({ error: error.details[0].message });
-    }
+  // validate info of user
+  const { error } = registerValidation(req.body);
+  if (error) {
+    // return res.status(400).send(error.details[0].message);
+    return res.status(400).json({ error: error.details[0].message });
+  }
 
-    // Check email exists in db
-    const emailExist = await User.findOne({ email: req.body.email });
-    console.log('emailExits', emailExist);
-    if (emailExist) {
-        return res.status(400).json({ error: 'Email exists in database. Please register with other email' });
-    }
+  // Check email exists in db
+  const emailExist = await User.findOne({ email: req.body.email });
+  console.log("emailExits", emailExist);
+  if (emailExist) {
+    return res.status(400).json({
+      error: "Email exists in database. Please register with other email",
+    });
+  }
 
-    // Hash password
-    const passwordSalt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, passwordSalt);
+  // Hash password
+  const passwordSalt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(req.body.password, passwordSalt);
 
-    const newUser = new User();
-    newUser.name = req.body.name;
-    console.log(req.body.email);
-    newUser.email = req.body.email;
-    newUser.password = hashedPassword;
-    console.log(newUser);
+  const newUser = new User();
+  newUser.name = req.body.name;
+  console.log(req.body.email);
+  newUser.email = req.body.email;
+  newUser.password = hashedPassword;
+  console.log(newUser);
 
-    try {
-        console.log('gg');
-        const user = await newUser.save().then(savedDoc => {
-            // console.log(savedDoc);
-            return savedDoc;
-        });;
-        // console.log(user);
-        return res.json(user);
-        // res.redirect('/auth/login');
-    } catch (error) {
-        res.status(400).json(error);
-    };
-}
+  try {
+    console.log("gg");
+    const user = await newUser.save().then((savedDoc) => {
+      // console.log(savedDoc);
+      return savedDoc;
+    });
+    // console.log(user);
+    return res.json(user);
+    // res.redirect('/auth/login');
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
 
 const loginUser = async (req, res, next) => {
     var sessData = req.session;
@@ -127,48 +129,46 @@ const loginUser = async (req, res, next) => {
 }
 
 const logOutUser = async (req, res) => {
-    req.session.destroy(function (err) {
-        if (err) {
-            return next(err);
-        } else {
-            return res.redirect('/');
-        }
-    });
+  req.session.destroy(function (err) {
+    if (err) {
+      return next(err);
+    } else {
+      return res.redirect("/");
+    }
+  });
 };
 
-
 const checkLoginStatus = async (req, res) => {
-    let user = (req.user !== undefined) ? req.user : undefined;
+  let user = req.user !== undefined ? req.user : undefined;
 
-    return res.send(user);
-    
+  return res.send(user);
 };
 
 const userProfile = async (req, res) => {
-    let username = (req.user !== undefined) ? req.user : undefined;
+  let username = req.user !== undefined ? req.user : undefined;
 
-    console.log(req.params.id);
-    // get ID
-    const slug = req.params.id.split('-').pop();
-    console.log(slug);
+  console.log(req.params.id);
+  // get ID
+  const slug = req.params.id.split("-").pop();
+  console.log(slug);
 
-    // Tim post theo ID 
-    const user = await User.findById(slug);
-    console.log('user: ', user);
-    console.log('username: ', username);
+  // Tim post theo ID
+  const user = await User.findById(slug);
+  console.log("user: ", user);
+  console.log("username: ", username);
 
-    // return res.render("profile", {
-    //     username, user
-    // });
-    return res.json(user);
+  // return res.render("profile", {
+  //     username, user
+  // });
+  return res.json(user);
 };
 
 module.exports = {
-    getUsers,
-    getUserById,
-    registerUser,
-    loginUser,
-    logOutUser,
-    userProfile,
-    checkLoginStatus
-}
+  getUsers,
+  getUserById,
+  registerUser,
+  loginUser,
+  logOutUser,
+  userProfile,
+  checkLoginStatus,
+};

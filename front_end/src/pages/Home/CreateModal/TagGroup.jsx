@@ -1,17 +1,11 @@
 import cn from "classnames";
-import { FieldArray } from "formik";
+import { FieldArray, useField } from "formik";
 import { FaExclamationCircle } from "react-icons/fa";
 import styled from "styled-components";
 import { getColor } from "../../../styledComponents/helpers";
 
-export default function TagGroup({
-  name = "",
-  options = [],
-  chosen = [],
-  errors = {},
-  touched = {},
-}) {
-  const error = errors[name] && touched[name];
+export default function TagGroup({ name = "", options = [], chosen = [] }) {
+  const [, { error, touched }] = useField({ name });
   return (
     <StyledTagGroup className="mb-5">
       <FieldArray
@@ -34,10 +28,10 @@ export default function TagGroup({
           </div>
         )}
       />
-      {error && (
+      {error && touched && (
         <p className="mt-2 error-text flex align-center">
           <FaExclamationCircle size="1.25rem" />
-          <span className="ml-2">{errors[name]}</span>
+          <span className="ml-2">{error}</span>
         </p>
       )}
     </StyledTagGroup>

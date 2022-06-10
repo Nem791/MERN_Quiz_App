@@ -5,7 +5,8 @@ import { Collapse } from "../../../components/HiddenSpace";
 import { useDebounce } from "../../../hooks";
 import { getColor } from "../../../styledComponents/helpers";
 
-export default function SearchBox({ collapse, setCollapse, setFocusing }) {
+export default function SearchBox({ setFocusing }) {
+  const [collapsed, setCollapsed] = useState(false);
   const [input, setInput] = useState("");
   const [results, setResults] = useState([]);
   const keyword = useDebounce(input, 800);
@@ -24,8 +25,8 @@ export default function SearchBox({ collapse, setCollapse, setFocusing }) {
   }, [keyword]);
 
   useEffect(() => {
-    if (results.length) setCollapse("input");
-  }, [results.length, setCollapse]);
+    if (results.length) setCollapsed(true);
+  }, [results.length]);
 
   return (
     <StyledSearchBox className="inherit-br grow-1 pos-relative">
@@ -37,21 +38,21 @@ export default function SearchBox({ collapse, setCollapse, setFocusing }) {
         onChange={(e) => {
           const { value } = e.target;
           if (value.length < 3) {
-            setCollapse(null);
+            setCollapsed(false);
             setResults([]);
           }
           setInput(value);
         }}
         onFocus={() => {
-          if (results.length) setCollapse("input");
+          if (results.length) setCollapsed(true);
           setFocusing(true);
         }}
         onBlur={() => {
-          setCollapse(null);
+          setCollapsed(false);
           setFocusing(false);
         }}
       />
-      <Collapse className="collapse" open={collapse === "input"}>
+      <Collapse className="collapse" open={collapsed}>
         <div className="py-2">
           {results.map((result, i) => (
             <p key={i} className="pointer">

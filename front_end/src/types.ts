@@ -1,4 +1,4 @@
-import { TAGS } from "./configs";
+import { _TAGS, _ANSWER_COLORS } from "./configs";
 
 interface SignupInfo {
   name: string;
@@ -10,11 +10,10 @@ interface SignupInfo {
 
 type LoginInfo = Pick<SignupInfo, "email" | "password">;
 
-type SetType = "lesson" | "quiz";
+type SetType = "questions" | "sliders";
 
 interface SetInfoOnExplore {
   title: string;
-  desc: string; // ?
   img: string;
   type: SetType;
   plays: number;
@@ -24,5 +23,14 @@ interface SetInfoOnExplore {
 interface SetCreateInfo {
   name: string;
   type: SetType;
-  tags: typeof TAGS[number];
+  tags: typeof _TAGS[number];
+}
+
+interface QuestAnswerBeingCreated {
+  id: number;
+  color: typeof _ANSWER_COLORS[number];
+  text: string;
+  correct: boolean;
+  warnNoText: boolean;
+  animation: "deleting" | "adding" | null;
 }

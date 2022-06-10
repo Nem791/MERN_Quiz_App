@@ -4,9 +4,10 @@ import { LOGIN, SIGNUP } from "./thunks";
 const userSlice = createSlice({
   name: "user",
   initialState: {
+    _id: null,
     name: "",
     reqError: "",
-    reqPending: false
+    reqPending: false,
   },
   reducers: {
     LOGOUT: (state) => {
@@ -18,7 +19,7 @@ const userSlice = createSlice({
     },
     SNEAKIN: (state) => {
       state.name = "Huan";
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -30,19 +31,22 @@ const userSlice = createSlice({
       });
     builder
       .addCase(SIGNUP.fulfilled, (state, action) => {
-        login(state, action.payload);
+        // login(state, action.payload);
+        state.reqError = "";
+        state.reqPending = false;
       })
       .addCase(SIGNUP.pending, (state) => {
         state.reqPending = true;
       });
-  }
+  },
 });
 
 function login(state, res) {
   if (res.error) {
     state.reqError = res.error;
   } else {
-    const { name, token } = res;
+    const { _id, name, token } = res;
+    state._id = _id;
     state.name = name;
     state.reqError = "";
     localStorage.setItem("token", token);

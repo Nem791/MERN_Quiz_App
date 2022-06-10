@@ -1,15 +1,11 @@
-import { Field } from "formik";
+import { Field, useFormikContext } from "formik";
 import { FaExclamationCircle } from "react-icons/fa";
 import styled from "styled-components";
+import { getColor } from "../../styledComponents/helpers";
 import { Row, Col } from "../../styledComponents/Layout";
 
-export default function RadioGroup({
-  name = "",
-  options = [],
-  spans = [],
-  errors = {},
-  touched = {}
-}) {
+export default function RadioGroup({ name = "", options = [], spans = [] }) {
+  const { errors, touched } = useFormikContext();
   const defaultSpan = 24 / (spans.length || 1);
   const error = errors[name] && touched[name];
   return (
@@ -36,10 +32,11 @@ const StyledRadioGroup = styled.div`
     position: absolute;
     right: 2rem;
     bottom: calc(100% + 5px);
+    max-width: 60%;
     &:after {
       content: "";
       border-style: solid;
-      border-color: transparent transparent transparent var(--error-color);
+      border-color: transparent transparent transparent ${getColor("error")};
       border-width: 6px;
       position: absolute;
       bottom: 5px;

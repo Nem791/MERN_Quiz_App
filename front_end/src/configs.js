@@ -1,18 +1,21 @@
+import { AiOutlineEdit } from "react-icons/ai";
+import { BiBox, BiUser } from "react-icons/bi";
 import {
+  FaRegHeart,
   FaMapMarkedAlt,
+  FaRegCheckSquare,
   FaRegFolder,
   FaRegUserCircle,
-  FaRegCheckSquare,
 } from "react-icons/fa";
+import { GiBackwardTime } from "react-icons/gi";
 import { HiOutlineCog } from "react-icons/hi";
 import { VscLibrary } from "react-icons/vsc";
-import { AiOutlineEdit } from "react-icons/ai";
 import { mausac } from "./theme";
 
-export const USER_NAME_MIN_LEN = 4;
-export const PASSWORD_MIN_LEN = 4;
+export const _USER_NAME_MIN_LEN = 4;
+export const _PASSWORD_MIN_LEN = 6;
 
-export const SIDEBAR_LINKS = [
+export const _SIDEBAR_LINKS = [
   { Icon: FaMapMarkedAlt, label: "Explore", path: "/" },
   { Icon: VscLibrary, label: "My library", path: "private" },
   { Icon: HiOutlineCog, label: "Settings", path: "settings" },
@@ -20,7 +23,7 @@ export const SIDEBAR_LINKS = [
   { Icon: FaRegUserCircle, label: "Profile", path: "profile" },
 ];
 
-export const EXPLORE_FIELDS = [
+export const _EXPLORE_FIELDS = [
   {
     label: "BTS",
     img: "bts_templates",
@@ -69,7 +72,37 @@ export const EXPLORE_FIELDS = [
   },
 ];
 
-export const TAGS = [
+export const _LIBRARY_NAMES = [
+  // "allMyContent",
+  "createdByMe",
+  "previouslyUsed",
+  "likedByMe",
+];
+
+export const _LIBRARY_INFOS = {
+  [_LIBRARY_NAMES[0]]: {
+    text: "All my content",
+    Icon: BiBox,
+    endpoint: "",
+  },
+  [_LIBRARY_NAMES[1]]: {
+    text: "Created by me",
+    Icon: BiUser,
+    endpoint: "",
+  },
+  [_LIBRARY_NAMES[2]]: {
+    text: "Previously used",
+    Icon: GiBackwardTime,
+    endpoint: "",
+  },
+  [_LIBRARY_NAMES[3]]: {
+    text: "Liked by me",
+    Icon: FaRegHeart,
+    endpoint: "",
+  },
+};
+
+export const _TAGS = [
   "Mathematics",
   "English",
   "World Languages",
@@ -101,7 +134,33 @@ export const TAGS = [
   "Other",
 ];
 
-export const QUIZ_TYPES = [
-  { Icon: FaRegCheckSquare, text: "Multiple-choice", bgColor: mausac.xanhngoc },
-  { Icon: AiOutlineEdit, text: "Fill-in-the-blank", bgColor: "#EFA929" },
+export const _QUEST_SET_TYPES = {
+  sliders: "lesson",
+  questions: "quiz",
+};
+
+export const _QUEST_TYPES = {
+  multipleChoice: "Multiple-choice",
+  fillInTheBlank: "Fill-in-the-blank",
+};
+
+export const _QUEST_TYPE_RENDER_INFOS = [
+  {
+    Icon: FaRegCheckSquare,
+    text: _QUEST_TYPES.multipleChoice,
+    bgColor: mausac.xanhngoc,
+  },
+  {
+    Icon: AiOutlineEdit,
+    text: _QUEST_TYPES.fillInTheBlank,
+    bgColor: mausac.vang,
+  },
+];
+
+export const _ANSWER_COLORS = [
+  mausac.xanhbien,
+  mausac.xanhngoc,
+  mausac.vang,
+  mausac.dohong,
+  mausac.timnhat,
 ];
