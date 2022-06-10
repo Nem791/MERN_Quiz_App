@@ -16,5 +16,5 @@ export default function callApi({ endpoint, method, reqData, token, queries }) {
       .join("&");
     query = "?" + query;
   }
-  return fetch(`http://localhost:5000/${endpoint}${query}`, options);
+  return fetch(`http://localhost:3000/${endpoint}${query}`, options);
 }
