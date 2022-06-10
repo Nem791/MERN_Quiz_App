@@ -119,7 +119,7 @@ const StyledPrepare = styled.div`
     left: 50%;
     z-index: 3;
     transform: translate(-50%, -50%) scale(0);
-    font-size: 160px;
+    font-size: 10rem;
     font-weight: 700;
     color: white;
     &:not(.final) {

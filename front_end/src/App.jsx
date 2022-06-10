@@ -25,10 +25,10 @@ export default function App() {
   const mode = useSelector((state) => state.ui.mode);
   const userId = useSelector((state) => state.user._id);
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(SNEAKIN());
-  // }, []);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(SNEAKIN());
+  }, []);
 
   return (
     <ThemeProvider theme={colors[mode]}>

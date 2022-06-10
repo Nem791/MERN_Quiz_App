@@ -1,81 +1,39 @@
-import cn from "classnames";
 import { useCallback, useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import callApi from "../../helpers/callApi";
 import { mausac } from "../../theme";
+import Core from "./Core";
 import Prepare from "./Prepare";
-import Question from "./Question";
-
-const Timer = ({ timeLimit, setQuestResult }) => {
-  const [timer, setTimer] = useState(timeLimit);
-  const pct = (timer / timeLimit) * 100;
-
-  useEffect(() => {
-    if (timer > 0) {
-      setTimeout(() => setTimer((prev) => prev - 0.01), [10]);
-    } else setQuestResult(false);
-  }, [timer, setQuestResult]);
-
-  useEffect(() => {
-    setTimer(timeLimit);
-  }, [timeLimit]);
-
-  return (
-    <div
-      className={cn("timer", { warning: pct < 25 })}
-      style={{ maxWidth: pct + "%" }}
-    />
-  );
-};
 
 export default function Player() {
-  const [playingSet, setPlayingSet] = useState({
-    quests: [
-      {
-        question: "What?",
-        answers: ["A", "B", "C", "D"],
-        timeLimit: 30,
-      },
-      {
-        question: "How?",
-        answers: ["1", "2", "3"],
-        timeLimit: 30,
-      },
-    ],
-  });
+  const [playingSet, setPlayingSet] = useState();
   const [step, setStep] = useState(-1);
-  const [questResult, setQuestResult] = useState(false);
-  const [point, setPoint] = useState(0);
-  const currentQuest = playingSet.quests[step];
-  // const params = useParams();
+  const params = useParams();
 
   useEffect(() => {
     setTimeout(() => setStep(0), 4000);
-    // callApi({ endpoint: "", method: "POST", reqData: {} });
-  }, []);
+    callApi({ endpoint: `quizzes/${params.id}`, method: "GET" })
+      .then((res) => {
+        if (res.ok) return res.json();
+      })
+      .then((data) => {
+        // console.log(data);
+        setPlayingSet({
+          _id: data._id,
+          quests: data.quizzes,
+        });
+      })
+      .catch(console.log);
+  }, [params.id]);
 
+  const currentQuest = playingSet?.quests[step];
   return (
     <StyledPlayer className="flex-col pos-relative">
-      <div className="p-1 full-w">
-        <Timer
-          timeLimit={currentQuest?.timeLimit || 0}
-          setQuestResult={setQuestResult}
-        />
-      </div>
-      <div className="px-2 py-3" style={{ height: "2.5rem" }}></div>
-      {step >= 0 && (
-        <div className="qna-sec grow-1">
-          <Question
-            question={currentQuest.question}
-            answers={currentQuest.answers}
-            questResult={questResult}
-            setQuestResult={setQuestResult}
-          />
-        </div>
+      {currentQuest && (
+        <Core step={step} setId={playingSet._id} currentQuest={currentQuest} />
       )}
-      <div style={{ height: "88px" }}>{questResult}</div>
-      {step === -1 && <Prepare />}
+      {step === -1 && <Prepare step={step} />}
     </StyledPlayer>
   );
 }
@@ -97,3 +55,18 @@ const StyledPlayer = styled.div`
     padding: 0 8px 8px;
   }
 `;
+
+// {
+//   quests: [
+//     {
+//       question: "What?",
+//       answers: ["A", "B", "C", "D"],
+//       timeLimit: 30,
+//     },
+//     {
+//       question: "How?",
+//       answers: ["1", "2", "3"],
+//       timeLimit: 30,
+//     },
+//   ],
+// }

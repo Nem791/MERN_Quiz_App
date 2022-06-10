@@ -11,6 +11,7 @@ const userSlice = createSlice({
   },
   reducers: {
     LOGOUT: (state) => {
+      state._id = null;
       state.name = "";
       localStorage.removeItem("token");
     },
@@ -18,6 +19,7 @@ const userSlice = createSlice({
       state.reqError = "";
     },
     SNEAKIN: (state) => {
+      state._id = 1;
       state.name = "Huan";
     },
   },
@@ -45,9 +47,9 @@ function login(state, res) {
   if (res.error) {
     state.reqError = res.error;
   } else {
-    const { _id, name, token } = res;
-    state._id = _id;
-    state.name = name;
+    const { user, token } = res;
+    state._id = user._id;
+    state.name = user.name;
     state.reqError = "";
     localStorage.setItem("token", token);
   }

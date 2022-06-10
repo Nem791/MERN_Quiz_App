@@ -13,7 +13,7 @@ export default function MyLibrary() {
           <LeftSec library={library} setLibrary={setLibrary} />
         </div>
         <div className="right-sec">
-          <RightSec />
+          <RightSec library={library} />
         </div>
       </div>
     </StyleLibrary>

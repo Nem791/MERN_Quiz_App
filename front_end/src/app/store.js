@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { exploreSetsApi } from "./thunks";
+import { backendApi } from "./thunks";
 import uiReducer from "./uiSlice";
 import userReducer from "./userSlice";
 import creatorReducer from "./creatorSlice";
@@ -9,10 +9,10 @@ const store = configureStore({
     ui: uiReducer,
     user: userReducer,
     creator: creatorReducer,
-    [exploreSetsApi.reducerPath]: exploreSetsApi.reducer,
+    [backendApi.reducerPath]: backendApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(exploreSetsApi.middleware),
+    getDefaultMiddleware().concat(backendApi.middleware),
 });
 
 export default store;

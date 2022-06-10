@@ -4,11 +4,8 @@ import FieldDisplay from "./FieldDisplay";
 import FieldSum from "./FieldSum";
 import SearchArea from "./SearchArea";
 import { breakpoints } from "../../theme";
-import { useGetExploreSetsQuery } from "../../app/thunks";
 
 export default function Explore() {
-  const { data, error, isLoading } = useGetExploreSetsQuery();
-  console.log(data);
   return (
     <StyledExplore>
       <div className="flex-col align-center">
@@ -18,7 +15,7 @@ export default function Explore() {
       </div>
       <div className="sets-by-field">
         {_EXPLORE_FIELDS.map(({ label }) => (
-          <FieldDisplay key={label} heading={label} />
+          <FieldDisplay key={label} label={label} />
         ))}
       </div>
     </StyledExplore>

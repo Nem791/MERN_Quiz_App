@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultSet = {
-  id: 0,
+  _id: "",
   title: "",
-  img: "",
   type: "",
-  plays: 0,
-  quests: 0,
+  quiz_img: "",
+  user: "",
+  completions: 0,
+  tags: "",
+  numberOfQuestion: 0,
 };
 
 const uiSlice = createSlice({

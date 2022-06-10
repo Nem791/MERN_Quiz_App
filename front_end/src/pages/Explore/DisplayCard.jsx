@@ -1,35 +1,31 @@
-import cn from "classnames";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { OPEN_PREVIEW } from "../../app/uiSlice";
+import { _QUEST_SET_TYPES } from "../../configs";
+import { renderBackendImg } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { boxShadows, breakpoints } from "../../theme";
 
-export const details = {
-  id: 1234,
-  title: "Liberation of Netherlands",
-  img: "https://quizizz.com/media/resource/gs/quizizz-media/quizzes/b866dcde-01f7-4082-a6e9-72a8683e96a0?w=400&h=400",
-  type: "lesson",
-  plays: 419,
-  quests: 20,
-};
-
-export default function Card() {
+export default function Card(info) {
   const dispatch = useDispatch();
   return (
-    <StyledCard onClick={() => dispatch(OPEN_PREVIEW(details))}>
+    <StyledCard onClick={() => dispatch(OPEN_PREVIEW(info))}>
       <div className="full-h flex-col">
-        <div className={cn("flex top-part", { "with-desc": details.desc })}>
-          <img className="full-w full-h" src={details.img} alt="" />
+        <div className="flex top-part">
+          <img
+            className="full-w full-h"
+            src={renderBackendImg(info.quiz_img)}
+            alt=""
+          />
         </div>
         <div className="btm-part full-h flex-col">
           <div className="flex">
-            <span className="type">{details.type}</span>
+            <span className="type">{_QUEST_SET_TYPES[info.type]}</span>
           </div>
-          <p className="title mt-2 mb-4">{details.title}</p>
+          <p className="title mt-2 mb-4">{info.title}</p>
           <div className="footer mt-auto">
-            <span className="mr-1">{details.quests} questions</span> •{" "}
-            <span>{details.plays} plays</span>
+            <span className="mr-1">{info.numberOfQuestion} questions</span> •{" "}
+            <span>{info.completions} plays</span>
           </div>
         </div>
       </div>

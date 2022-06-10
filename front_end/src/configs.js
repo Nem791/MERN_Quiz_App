@@ -1,5 +1,5 @@
 import { AiOutlineEdit } from "react-icons/ai";
-import { BiBox, BiUser } from "react-icons/bi";
+import { BiBox, BiEdit, BiUser } from "react-icons/bi";
 import {
   FaRegHeart,
   FaMapMarkedAlt,
@@ -11,6 +11,8 @@ import { GiBackwardTime } from "react-icons/gi";
 import { HiOutlineCog } from "react-icons/hi";
 import { VscLibrary } from "react-icons/vsc";
 import { mausac } from "./theme";
+
+export const _IMG_BASE_URL = "http://localhost:3000";
 
 export const _USER_NAME_MIN_LEN = 4;
 export const _PASSWORD_MIN_LEN = 6;
@@ -29,23 +31,25 @@ export const _EXPLORE_FIELDS = [
     img: "bts_templates",
     path: "Ice-breakers and Bell Ringers",
   },
-  {
-    label: "Math",
-    img: "2%20-%20Mathematics",
-    path: "Mathematics",
-  },
+  // {
+  //   label: "Math",
+  //   img: "2%20-%20Mathematics",
+  //   path: "Mathematics",
+  // },
   {
     label: "English",
     img: "1%20-%20English%20and%20Language%20Arts",
     path: "English and Language Arts",
   },
   {
-    label: "Social Studies",
+    // label: "Social Studies",
+    label: "History",
     img: "3%20-%20Social%20Studies",
     path: "Social Studies",
   },
   {
-    label: "Languages",
+    // label: "Languages",
+    label: "Grammar",
     img: "5-%20World%20Languages",
     path: "World Languages",
   },
@@ -76,28 +80,34 @@ export const _LIBRARY_NAMES = [
   // "allMyContent",
   "createdByMe",
   "previouslyUsed",
-  "likedByMe",
+  "likedQuizzes",
+  "draftQuizzes",
 ];
 
 export const _LIBRARY_INFOS = {
+  // [_LIBRARY_NAMES[0]]: {
+  //   text: "All my content",
+  //   Icon: BiBox,
+  //   endpoint: "",
+  // },
   [_LIBRARY_NAMES[0]]: {
-    text: "All my content",
-    Icon: BiBox,
-    endpoint: "",
-  },
-  [_LIBRARY_NAMES[1]]: {
     text: "Created by me",
     Icon: BiUser,
     endpoint: "",
   },
-  [_LIBRARY_NAMES[2]]: {
-    text: "Previously used",
+  [_LIBRARY_NAMES[1]]: {
+    text: "Previously played",
     Icon: GiBackwardTime,
     endpoint: "",
   },
-  [_LIBRARY_NAMES[3]]: {
+  [_LIBRARY_NAMES[2]]: {
     text: "Liked by me",
     Icon: FaRegHeart,
+    endpoint: "",
+  },
+  [_LIBRARY_NAMES[3]]: {
+    text: "Draft",
+    Icon: BiEdit,
     endpoint: "",
   },
 };

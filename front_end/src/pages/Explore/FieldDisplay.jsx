@@ -4,20 +4,26 @@ import { getColor } from "../../styledComponents/helpers";
 import { breakpoints } from "../../theme";
 import DisplayCard from "./DisplayCard";
 import useSlideCtrl from "./useSlideCtrl";
+import { useGetExploreSetsQuery } from "../../app/thunks";
 
-export default function FieldDisplay({ heading }) {
+export default function FieldDisplay({ label }) {
   const [wrapperRef, controllers] = useSlideCtrl();
+  const { data } = useGetExploreSetsQuery();
+  if (!data) return null;
+  const set = data.find(({ _id }) => _id === label);
+  if (!set) return null;
+
   return (
     <StyledFieldDisplay>
       <div className="pl-1 field-heading flex align-center">
         <FaStar className="mb-1" color="#efa929" size="1.25rem" />
-        <p className="ml-2">{heading}</p>
+        <p className="ml-2">{label}</p>
       </div>
       <div className="field-content pos-relative">
         <div ref={wrapperRef} className="overflow-hidden smooth-scroll">
           <div className="flex">
-            {[...Array(10)].map((_, i) => (
-              <DisplayCard key={i} />
+            {set.quizzes.map((info) => (
+              <DisplayCard key={info._id} {...info} />
             ))}
           </div>
         </div>

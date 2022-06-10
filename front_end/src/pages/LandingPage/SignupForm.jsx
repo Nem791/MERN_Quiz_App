@@ -86,9 +86,11 @@ export default function SignupForm({ close }) {
         }}
         handleSubmit={(values, { setSubmitting }) => {
           let { birthday } = values;
-          birthday = `${birthday.getDate()}/${
-            birthday.getMonth() + 1
-          }/${birthday.getFullYear()}`;
+          const month = birthday.getMonth() + 1;
+          const day = birthday.getDate();
+          birthday = `${birthday.getFullYear()}/${
+            month < 10 ? `0${month}` : month
+          }/${day < 10 ? `0${day}` : day}`;
           const info = {
             name: values.name,
             email: values.email,

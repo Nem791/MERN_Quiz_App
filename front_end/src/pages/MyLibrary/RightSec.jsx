@@ -6,24 +6,28 @@ import {
   FaRegTrashAlt,
 } from "react-icons/fa";
 import styled from "styled-components";
+import { useGetMyLibraryQuery } from "../../app/thunks";
+import { _QUEST_SET_TYPES } from "../../configs";
+import { renderBackendImg } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { Box } from "../../styledComponents/Layout";
-import { details } from "../Explore/DisplayCard";
 
-export default function RightSec() {
+export default function RightSec({ library }) {
+  const { data } = useGetMyLibraryQuery(library);
+  if (!data) return null;
   return (
     <StyledRightSec className="full-w">
       <Box className="mb-4 flex" height="2rem"></Box>
       <div className="quest-list flex-col">
-        {[...Array(4)].map((_, i) => (
-          <Quest key={i} />
+        {data.map((info, i) => (
+          <Quest key={i} {...info} />
         ))}
       </div>
     </StyledRightSec>
   );
 }
 
-function Quest() {
+function Quest(info) {
   const buttons = [
     { Icon: FaRegTrashAlt, text: "Delete", onClick: () => {} },
     { Icon: FaRegHeart, text: "Like", onClick: () => {} },
@@ -34,7 +38,11 @@ function Quest() {
       <div className="flex">
         <div className="img-wrapper flex align-center">
           <div>
-            <img className="full-w full-h" src={details.img} alt="" />
+            <img
+              className="full-w full-h"
+              src={renderBackendImg(info.quiz_img)}
+              alt=""
+            />
           </div>
         </div>
         <div className="ml-3 grow-1">
@@ -42,23 +50,25 @@ function Quest() {
             className="mb-1 flex align-center justify-between"
             height="1.5rem"
           >
-            <span className="type fs-075">{details.type.toUpperCase()}</span>
+            <span className="type fs-075">
+              {_QUEST_SET_TYPES[info.type].toUpperCase()}
+            </span>
             <span className="draft fw-600">DRAFT</span>
           </Box>
           <p className="mb-1 lh-15">
-            <b>{details.title}</b>
+            <b>{info.title}</b>
           </p>
           <div className="mb-3 flex fs-075 lh-1rem">
             <FaList className="mr-2" />
-            <span className="mr-3">{details.quests} Question</span>
+            <span className="mr-3">{info.quizzes.length} Question</span>
             <FaPlay className="mr-2" />
-            <span className="mr-3">{details.plays} play</span>
+            <span className="mr-3">{info.completions} play</span>
             <FaRegHeart className="mr-2" />
             <span>0</span>
           </div>
           <div className="flex align-center justify-between">
             <div className="flex align-center">
-              <div>
+              {/* <div>
                 <img
                   className="mr-2 b-radius-round avatar"
                   src="https://picsum.photos/id/237/15/15"
@@ -67,7 +77,7 @@ function Quest() {
               </div>
               <div className="username fs-075">
                 <span>username</span>
-              </div>
+              </div> */}
             </div>
             <div className="flex">
               {buttons.map(({ Icon, text, onClick }) => (
