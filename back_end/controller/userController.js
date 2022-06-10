@@ -71,7 +71,7 @@ const registerUser = async (req, res) => {
       return savedDoc;
     });
     // console.log(user);
-    return res.json(user);
+    return res.status(200).send({message: "Register success", status: 200});
     // res.redirect('/auth/login');
   } catch (error) {
     res.status(400).json(error);
