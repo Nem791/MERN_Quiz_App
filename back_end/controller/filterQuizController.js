@@ -3,6 +3,7 @@ var path = require('path');
 
 const Quiz = require('../models/Quiz');
 const QuizSet = require('../models/QuizSet');
+const UserQuestionHistory = require('../models/UserQuestionHistory');
 const Users = require('../models/Users');
 const randomNumers = require('../utils/randomNumers');
 const toSlug = require('../utils/vietnamese-slug-converter');
@@ -30,6 +31,10 @@ const privateFilter = async (req, res) => {
                 user = await Users.findById(user._id);
                 await Users.populate(user, { path: "liked_quiz" });
                 quizzes = user.liked_quiz;
+                break;
+
+            case "previouslyPlayed":
+                quizzes = await UserQuestionHistory.aggregate().match({ user_id: mongoose.Types.ObjectId(user._id) });
                 break;
 
             default:
@@ -86,7 +91,7 @@ const searchQuiz = async (req, res) => {
                 // Sort theo ngay tao 
                 pipeline.push({ $sort: { date_created: -1 } });
                 break;
-        
+
             default:
                 break;
         }

@@ -1,8 +1,9 @@
-function markMultipleChoice(rightAnswer, submitAnswer) {
+function markMultipleChoice(rightAnswer, submitAnswer, options) {
+    let indexAnswer = options.findIndex(a => a.toLowerCase().trim() === rightAnswer.toLowerCase().trim());
     if (rightAnswer === submitAnswer) {
-        return 1;
+        return {mark1: 1, indexAnswers1: indexAnswer};
     }
-    return 0;
+    return {mark1: 0, indexAnswers1: indexAnswer};
 }
 
 function markFillBlank1(rightAnswer, submitAnswer) {
@@ -26,8 +27,11 @@ function markFillBlank2(rightAnswer, submitAnswer, question) {
     return mark;
 }
 
-function markMultipleChoiceAnswers(rightAnswer, submitAnswer) {
+// rightAnswer = answer.quiz.answer; // ["LAN_1","LAN_2", "LAN_3"]
+// submitAnswer = answer.user_answers; // ["LAN_1","LAN_2"]
+function markMultipleChoiceAnswers(rightAnswer, submitAnswer, options) {
     let mark = 0;
+    let indexAnswers = [];
 
     for (const answer of submitAnswer) {
         let check = rightAnswer.some(a => a.toLowerCase().trim() === answer.toLowerCase().trim());
@@ -35,7 +39,12 @@ function markMultipleChoiceAnswers(rightAnswer, submitAnswer) {
             mark += 1 / rightAnswer.length;
         }
     }
-    return mark;
+
+    for (const iterator of rightAnswer) {
+        let indexAnswer = options.findIndex(a => a.toLowerCase().trim() === iterator.toLowerCase().trim());
+        indexAnswers.push(indexAnswer);
+    }
+    return {mark, indexAnswers};
 }
 
-module.exports = {markFillBlank1, markFillBlank2, markMultipleChoice, markMultipleChoiceAnswers};
+module.exports = { markFillBlank1, markFillBlank2, markMultipleChoice, markMultipleChoiceAnswers };

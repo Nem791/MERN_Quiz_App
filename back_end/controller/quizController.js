@@ -57,7 +57,8 @@ const getQuizzesForHomePage = async (req, res) => {
                                 "quiz_img": "$quiz_img",
                                 "user": "$user",
                                 "completions": "$completions",
-                                "tags": "$tags"
+                                "tags": "$tags",
+                                "numberOfQuestion": { $size: "$quizzes" }
                             }
                         }
                     }
@@ -117,21 +118,21 @@ const getQuizSetByTag = async (req, res) => {
         console.log(req.query.tags);
         console.log("lastId:", lastId);
 
-        let tags = req.query.tags.toLowerCase();
+        let tags = req.query.tags;
 
         let quizzes;
-        let pageNumber = Number(req.query.page);
-        const limit = 1;
+        let pageNumber = (req.query.page === undefined) ? 1 : Number(req.query.page);
+        const limit = 10;
 
         if (pageNumber === 1 || pageNumber === undefined) {
-            quizzes = await QuizSet.find({ draft: false, $toLower: { tags: tags } }).limit(limit);
+            quizzes = await QuizSet.aggregate().unwind('tags').match({ draft: false, tags: tags }).limit(limit);
 
         } else {
-            quizzes = await QuizSet.find({ draft: false, $toLower: { tags: tags } }).limit(limit).skip(limit * pageNumber);
+            quizzes = await QuizSet.aggregate().unwind('tags').match({ draft: false, tags: tags }).limit(limit).skip(limit * pageNumber);
         }
 
         // Join User vs QuizSet
-        await QuizSet.populate(quizzes, { path: "user quizzes", select: '-password -_id' });
+        // await QuizSet.populate(quizzes, { path: "user quizzes", select: '-password -_id' });
 
         return res.json(quizzes);
 

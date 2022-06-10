@@ -41,6 +41,7 @@ const test = async (req, res) => {
 
     let countCorrectAnswer = 0;
     let totalQuizzes = userAnswers.length;
+    let indexOfAnswers = [0];
 
     for (const answer of userAnswers) {
         console.log(answer);
@@ -48,12 +49,16 @@ const test = async (req, res) => {
         let rightAnswer;
         let submitAnswer;
         let question;
+        let options;
         switch (answer.quiz.type) {
             case "multiple_choice":
+                options = answer.quiz.options;
                 rightAnswer = answer.quiz.answer[0].toLowerCase().trim();
                 submitAnswer = answer.user_answers[0].toLowerCase().trim();
 
-                countCorrectAnswer += markMultipleChoice(rightAnswer, submitAnswer)
+                let { mark1, indexAnswers1 } = markMultipleChoice(rightAnswer, submitAnswer, options);
+                indexOfAnswers = indexAnswers1;
+                countCorrectAnswer += mark1;
                 break;
 
             case "fill_blank_1":
@@ -68,14 +73,20 @@ const test = async (req, res) => {
                 question = answer.quiz.question.split(' ');
                 submitAnswer = answer.user_answers;
 
-                countCorrectAnswer += markFillBlank2(rightAnswer, submitAnswer, question)
+                countCorrectAnswer += markFillBlank2(rightAnswer, submitAnswer, question);
                 break;
 
             case "multiple_choice_answers":
-                rightAnswer = answer.quiz.answer;
-                submitAnswer = answer.user_answers;
+                rightAnswer = answer.quiz.answer; // ["LAN_1","LAN_2", "LAN_3"]
+                console.log("rightAnswer: ", rightAnswer);
+                submitAnswer = answer.user_answers; // ["LAN_1","LAN_2"]
+                options = answer.quiz.options;
 
-                countCorrectAnswer += markMultipleChoiceAnswers(rightAnswer, submitAnswer);
+                let { mark, indexAnswers } = markMultipleChoiceAnswers(rightAnswer, submitAnswer, options);
+
+                indexOfAnswers = indexAnswers;
+
+                countCorrectAnswer += mark;
                 break;
 
             default:
@@ -84,7 +95,7 @@ const test = async (req, res) => {
     }
 
     let user_id = user._id;
-    let score = (countCorrectAnswer / totalQuizzes) * 10;
+    let score = countCorrectAnswer;
     let quiz_set_id = userAnswers[0].quiz._id;
     let user_answers = [];
 
@@ -94,9 +105,11 @@ const test = async (req, res) => {
         user_answers.push(iterator._id);
     }
 
-    const doc = await UserQuestionHistory.create({user_id, score, quiz_set_id, user_answers});
+    return res.send({ user_id, score, quiz_set_id, user_answers, indexOfAnswers });
 
-    return res.send({ doc });
+    // const doc = await UserQuestionHistory.create({user_id, score, quiz_set_id, user_answers});
+
+    // return res.send({ doc });
 };
 
 module.exports = {
