@@ -40,6 +40,7 @@ const getQuizzesForHomePage = async (req, res) => {
 
         // Find and populate
         const quizzes = await QuizSet.aggregate([
+            { $match: { draft: false } },
             { $unwind: "$tags" },
             {
                 $bucket: {
@@ -110,12 +111,10 @@ const test = async (req, res) => {
 
 // Lay post theo ID 
 const getQuizSetByTag = async (req, res) => {
-    let username = (req.user !== undefined) ? req.user : undefined;
+    let user = req.user;
 
     try {
-        console.log(req.params.id);
         console.log(req.query.tags);
-        console.log(req.query.load);
         console.log("lastId:", lastId);
 
         let tags = req.query.tags.toLowerCase();
@@ -124,11 +123,11 @@ const getQuizSetByTag = async (req, res) => {
         let pageNumber = Number(req.query.page);
         const limit = 1;
 
-        if (pageNumber === 1 && pageNumber === undefined) {
-            quizzes = await QuizSet.find({ $toLower: { tags: tags } }).limit(limit);
+        if (pageNumber === 1 || pageNumber === undefined) {
+            quizzes = await QuizSet.find({ draft: false, $toLower: { tags: tags } }).limit(limit);
 
         } else {
-            quizzes = await QuizSet.find().limit(limit).skip(limit * pageNumber);
+            quizzes = await QuizSet.find({ draft: false, $toLower: { tags: tags } }).limit(limit).skip(limit * pageNumber);
         }
 
         // Join User vs QuizSet

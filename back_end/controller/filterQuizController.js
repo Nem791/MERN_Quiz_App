@@ -16,6 +16,7 @@ const privateFilter = async (req, res) => {
 
     try {
 
+        // filter theo cac muc: 
         switch (filter) {
             case "createdByMe":
                 quizzes = await QuizSet.find({ user: user._id });
@@ -42,7 +43,68 @@ const privateFilter = async (req, res) => {
     return res.send(quizzes);
 };
 
+const searchQuiz = async (req, res) => {
+    const query = req.params.query;
+    let additionQuery = req.query;
+
+    // pipeline ban dau se match theo query 
+    let pipeline = [{ $match: { title: { $regex: query, $options: 'i' } } }];
+
+    // Filter theo tags
+    if (additionQuery.tags) {
+        // Unwind Array 
+        pipeline.push({ $unwind: '$tags' });
+        // Match vs tags 
+        pipeline.push({ $match: { tags: additionQuery.tags } });
+    }
+
+    // Filter theo so luong cau hoi 
+    if (additionQuery.size) {
+        // console.log(additionQuery.size.split(','));
+
+        // Modify query thanh` dang Array Number
+        const range = additionQuery.size.split(',').map(number => {
+            return Number(number);
+        });
+
+        console.log(range);
+        pipeline.push({
+            $match: {
+                [`quizzes.${range[0]}`]: {
+                    "$exists": true
+                },
+                [`quizzes.${range[1]}`]: {
+                    "$exists": false
+                }
+            }
+        })
+    }
+
+    if (additionQuery.sort) {
+        switch (additionQuery.sort) {
+            case 'date':
+                // Sort theo ngay tao 
+                pipeline.push({ $sort: { date_created: -1 } });
+                break;
+        
+            default:
+                break;
+        }
+    }
+
+    // Tra ve ket qua 
+    try {
+        const result = await QuizSet.aggregate(pipeline);
+        // await QuizSet.populate(result, { path: "user quizzes", select: '-password -_id -answer' });
+        return res.send(result);
+    } catch (error) {
+        console.log(error);
+        return res.send(error);
+    }
+};
+
 
 module.exports = {
-    privateFilter
+    privateFilter,
+    searchQuiz
 }

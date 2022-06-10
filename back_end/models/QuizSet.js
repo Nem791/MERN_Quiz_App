@@ -67,5 +67,8 @@ const QuizSetSchema = new Schema({
     
 });
 
+// Tao index cho title de search 
+QuizSetSchema.index({ title: "text", tags: "text" }); 
+
 const QuizSet = mongoose.model('QuizSet', QuizSetSchema);
 module.exports = QuizSet;
