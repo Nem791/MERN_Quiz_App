@@ -1,0 +1,97 @@
+[
+  {
+    "_id": {
+        "$oid": "62a20263585dfc2d58832be9"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/some-any-62a20263585dfc2d58832be9.jpg",
+    "quizzes": [],
+    "tags": ["English", "Grammar"],
+    "title": "Some, Any",
+    "type": "questions",
+    "user": "628e2b597105592acbce1fd5",
+    "user_liked": []
+  },
+  {
+    "_id": {
+        "$oid": "62a20d850c202d79ccc04a94"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/passive-sentences-62a20d850c202d79ccc04a94.jpg",
+    "quizzes": [],
+    "tags": ["English", "Grammar"],
+    "title": "Passive Sentences",
+    "type": "questions",
+    "user": "628e2b597105592acbce1fd5",
+    "user_liked": []
+  },
+  {
+    "_id": {
+        "$oid": "62a2142f32ad4675a2c297cb"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/idioms-on-animals-62a2131f496cbeba56e2267f.png",
+    "quizzes": [],
+    "tags": ["English", "Grammar"],
+    "title": "Idioms on Animals",
+    "type": "questions",
+    "user": "628e2b597105592acbce1fd5",
+    "user_liked": []
+  },
+  {
+    "_id": {
+        "$oid": "62a21a98703d2c5656d500b6"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/ving-to-v-62a21a98703d2c5656d500b6.png",
+    "quizzes": [],
+    "tags": ["English", "Grammar"],
+    "title": "Ving-To V",
+    "type": "questions",
+    "user": "628e2b597105592acbce1fd5",
+    "user_liked": []
+  },
+  {
+    "_id": {
+        "$oid": "62a21fbfd1483036d37092d4"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/t-d-id-62a21fbfd1483036d37092d4.png",
+    "quizzes": [],
+    "tags": ["English", "Grammar"],
+    "title": "/t/ - /d/ - /id/",
+    "type": "questions",
+    "user": "628e2b597105592acbce1fd5",
+    "user_liked": []
+  }
+]

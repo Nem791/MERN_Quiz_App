@@ -323,6 +323,67 @@ const saveQuizzes = async (req, res) => {
     // const quizList = await Quiz.create()
 };
 
+
+const saveQuizzesMock = async (req, res) => {
+    // Luu DataTransferItemList, content, image to database 
+    console.log('req.body-', req.body);
+    let files = req.files;
+    let data = req.body;
+
+    // console.log(files);
+    // for (var key in files) {
+    //     console.log(key, ' - ', files[key]);
+    // }
+    // Câu trả lời là a1_1 a1_2... là ảnh answer 1, ảnh answer 2... của q1
+
+    // return res.send(files.image.data.toString('base64'));
+
+    let set;
+    try {
+        for (let index = 0; index < data.length; index++) {
+            const setData = data[index];
+            // Neu co _id => Update 
+            // Ko co _id => Tao moi
+            if (!setData._id) {
+                setData._id = new mongoose.Types.ObjectId();
+            }
+
+            console.log("setData._id: ", setData._id);
+            const { _id, ...updatedData } = setData;
+            updatedData.set = mongoose.Types.ObjectId(updatedData.set);
+
+            let queryData = { $set: updatedData };
+            console.log(queryData);
+
+            set = await Quiz.findByIdAndUpdate(
+                { _id: setData._id },
+                queryData,
+                // set the new option to true to get the doc that was created by the upsert
+                { upsert: true, new: true }
+            ).clone();
+
+            console.log(setData.set.toString());
+            console.log(setData._id);
+
+            // Add _id to QuizSet 
+            await QuizSet.findByIdAndUpdate(
+                { _id: setData.set.toString() },
+                { $push: { quizzes: setData._id } }
+            );
+        }
+    } catch (error) {
+        console.log('Final error');
+        console.log(error);
+        return res.json(error);
+    }
+
+
+    console.log('End');
+    return res.json(set);
+    // return res.json(set._id);
+    // const quizList = await Quiz.create()
+};
+
 const likeFunction = async (req, res) => {
     let user = req.user;
     console.log(req.params.type);
@@ -363,5 +424,6 @@ module.exports = {
     saveQuizzes,
     updateDraft,
     likeFunction,
+    saveQuizzesMock,
     test
 }

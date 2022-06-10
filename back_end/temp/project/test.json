@@ -1,0 +1,470 @@
+[
+    {
+        "question": "Which sentence below is the active sentence for this sentence: A new car was being bought.",
+        "type": "multiple_choice",
+        "options": [
+            "My Dad bought a new car",
+            "My Dad buys a new car",
+            "My Dad was buying a new car",
+            "My Dad will buy a new car next week"
+        ],
+        "answer": [
+            "My Dad was buying a new car"
+        ],
+        "timer": 30,
+        "set": "62a20d850c202d79ccc04a94"
+    },
+    {
+        "question": "Complete this sentence: The bridge ______________ today.",
+        "type": "multiple_choice",
+        "options": [
+            "is been painting",
+            "is painting",
+            "is being painting",
+            "is being painted"
+        ],
+        "answer": [
+            "is being painted"
+        ],
+        "timer": 30,
+        "set": "62a20d850c202d79ccc04a94"
+    },
+    {
+        "question": "Active: Tom is writing an email. Passive: An email ___________________ by Tom.",
+        "type": "multiple_choice",
+        "options": [
+            "was written",
+            "is being written",
+            "is written",
+            "has been written"
+        ],
+        "answer": [
+            "is being written"
+        ],
+        "timer": 30,
+        "set": "62a20d850c202d79ccc04a94"
+    },
+    {
+        "question": "Active: The French team has won the silver medal. Passive: The silver medal _________________ by the French team",
+        "type": "multiple_choice",
+        "options": [
+            "has been won",
+            "had been won",
+            "has been being won",
+            "have been won"
+        ],
+        "answer": [
+            "has been won"
+        ],
+        "timer": 30,
+        "set": "62a20d850c202d79ccc04a94"
+    },
+    {
+        "question": "The bill has been paying by Bob. There is a mistake in this sentence. Point it out",
+        "type": "multiple_choice",
+        "options": [
+            "The bill",
+            "has been",
+            "paying",
+            "by Bob"
+        ],
+        "answer": [
+            "paying"
+        ],
+        "timer": 30,
+        "set": "62a20d850c202d79ccc04a94"
+    },
+    {
+        "question": "What does 'butterflies in my stomach' mean?",
+        "type": "multiple_choice",
+        "options": [
+            "I ate too much",
+            "I swallowed some bugs",
+            "to be nervous about something",
+            "to be very hungry"
+        ],
+        "answer": [
+            "to be nervous about something"
+        ],
+        "timer": 30,
+        "set": "62a2142f32ad4675a2c297cb"
+    },
+    {
+        "question": "Open a can of worms 'means....'",
+        "type": "multiple_choice",
+        "options": [
+            "share information that complicates the situation",
+            "get ready to go fishing",
+            "open up a can with stinky food",
+            "have a difficult time"
+        ],
+        "answer": [
+            "share information that complicates the situation"
+        ],
+        "timer": 30,
+        "set": "62a2142f32ad4675a2c297cb"
+    },
+    {
+        "question": "When some says 'I feel like a fish out of water' what do they mean?",
+        "type": "multiple_choice",
+        "options": [
+            "not knowing how to swim",
+            "having a hard time breathing",
+            "being in an uncomfortable situation that you are not used to",
+            "feeling trapped"
+        ],
+        "answer": [
+            "being in an uncomfortable situation that you are not used to"
+        ],
+        "timer": 30,
+        "set": "62a2142f32ad4675a2c297cb"
+    },
+    {
+        "question": "What does 'I have a frog in my throat' mean?",
+        "type": "multiple_choice",
+        "options": [
+            "repeating a noise over and over",
+            "unable to use your voice",
+            "when your tongue turns green",
+            "when you eat something weird"
+        ],
+        "answer": [
+            "unable to use your voice"
+        ],
+        "timer": 30,
+        "set": "62a2142f32ad4675a2c297cb"
+    },
+    {
+        "question": "Srta. Soto always says 'hold your horses' when you are doing what?",
+        "type": "multiple_choice",
+        "options": [
+            "running around the classroom",
+            "you are not being patient",
+            "when you are carrying too many things",
+            "when you are making horse sounds"
+        ],
+        "answer": [
+            "you are not being patient"
+        ],
+        "timer": 30,
+        "set": "62a2142f32ad4675a2c297cb"
+    },
+    {
+        "question": "It was 'raining cats and dogs' last night! That means that ______________.",
+        "type": "multiple_choice",
+        "options": [
+            "it was raining hard",
+            "dogs were barking very loud",
+            "There were cats on roofs",
+            "when the animals were let loose in the zoo"
+        ],
+        "answer": [
+            "it was raining hard"
+        ],
+        "timer": 30,
+        "set": "62a2142f32ad4675a2c297cb"
+    },
+    {
+        "question": "What does 'sick as a dog' mean?",
+        "type": "multiple_choice",
+        "options": [
+            "when you bark like a dog",
+            "when you ate dog treats",
+            "to be extremely ill or sick",
+            "when you have a lot of energy"
+        ],
+        "answer": [
+            "to be extremely ill or sick"
+        ],
+        "timer": 30,
+        "set": "62a2142f32ad4675a2c297cb"
+    },
+    {
+        "question": "If someone says, 'when pigs fly' what do they mean?",
+        "type": "multiple_choice",
+        "options": [
+            "pigs are running around really fast",
+            "something that will never happen",
+            "when weird animals are flying",
+            "when something impossible will happen"
+        ],
+        "answer": [
+            "something that will never happen"
+        ],
+        "timer": 30,
+        "set": "62a2142f32ad4675a2c297cb"
+    },
+    {
+        "question": "If someone is walking around like a fox in the henhouse...",
+        "type": "multiple_choice",
+        "options": [
+            "He is planning something bad.",
+            "He has bad intentions.",
+            "He is going to cause trouble.",
+            "All the answers are correct."
+        ],
+        "answer": [
+            "All the answers are correct."
+        ],
+        "timer": 30,
+        "set": "62a2142f32ad4675a2c297cb"
+    },
+    {
+        "question": "Mr. Potato Head wants _____ his ear back.",
+        "type": "multiple_choice",
+        "options": [
+            "to find",
+            "finding",
+            "find",
+            "found"
+        ],
+        "answer": [
+            "to find"
+        ],
+        "timer": 30,
+        "set": "62a21a98703d2c5656d500b6"
+    },
+    {
+        "question": "Andy likes _____ with his toys very much.",
+        "type": "multiple_choice",
+        "options": [
+            "to plays",
+            "playing",
+            "to playing",
+            "plays"
+        ],
+        "answer": [
+            "playing"
+        ],
+        "timer": 30,
+        "set": "62a21a98703d2c5656d500b6"
+    },
+    {
+        "question": "Want + ?",
+        "type": "multiple_choice",
+        "options": [
+            "To V",
+            "Ving"
+        ],
+        "answer": [
+            "To V"
+        ],
+        "timer": 30,
+        "set": "62a21a98703d2c5656d500b6"
+    },
+    {
+        "question": "Odd one out",
+        "type": "multiple_choice",
+        "options": [
+            "would like",
+            "love",
+            "enjoy",
+            "like"
+        ],
+        "answer": [
+            "would like"
+        ],
+        "timer": 30,
+        "set": "62a21a98703d2c5656d500b6"
+    },
+    {
+        "question": "I’d love .........coat like that.",
+        "type": "multiple_choice",
+        "options": [
+            "have",
+            "to have",
+            "having",
+            "has"
+        ],
+        "answer": [
+            "to have"
+        ],
+        "timer": 30,
+        "set": "62a21a98703d2c5656d500b6"
+    },
+    {
+        "question": "I like .......to school by bus, but I hate ........ in the rain and wait for it.",
+        "type": "multiple_choice",
+        "options": [
+            "go/to stand",
+            "to go/stand",
+            "going/standing",
+            "went/stood"
+        ],
+        "answer": [
+            "going/standing"
+        ],
+        "timer": 30,
+        "set": "62a21a98703d2c5656d500b6"
+    },
+    {
+        "question": "I’d like ........... there ............... my girlfriend’s parents.",
+        "type": "multiple_choice",
+        "options": [
+            "go/see",
+            "to go/ to see",
+            "going/seeing",
+            "goes/seen"
+        ],
+        "answer": [
+            "going/standing"
+        ],
+        "timer": 30,
+        "set": "62a21a98703d2c5656d500b6"
+    },
+    {
+        "question": "Would you like something …?",
+        "type": "multiple_choice",
+        "options": [
+            "drink",
+            "drinking",
+            "to drink"
+        ],
+        "answer": [
+            "going/standing"
+        ],
+        "timer": 30,
+        "set": "62a21a98703d2c5656d500b6"
+    },
+    {
+        "question": "We hope that the students themselves will enjoy ______ part in the projects.",
+        "type": "multiple_choice",
+        "options": [
+            "to take",
+            "taking",
+            "to be taken",
+            "being taken"
+        ],
+        "answer": [
+            "taking"
+        ],
+        "timer": 30,
+        "set": "62a21a98703d2c5656d500b6"
+    },
+    {
+        "question": "travelled",
+        "type": "multiple_choice",
+        "options": [
+            "-d",
+            "-t",
+            "-Id"
+        ],
+        "answer": [
+            "-d"
+        ],
+        "timer": 30,
+        "set": "62a21fbfd1483036d37092d4"
+    },
+    {
+        "question": "rented",
+        "type": "multiple_choice",
+        "options": [
+            "-d",
+            "-t",
+            "-Id"
+        ],
+        "answer": [
+            "-Id"
+        ],
+        "timer": 30,
+        "set": "62a21fbfd1483036d37092d4"
+    },
+    {
+        "question": "stopped",
+        "type": "multiple_choice",
+        "options": [
+            "-d",
+            "-t",
+            "-Id"
+        ],
+        "answer": [
+            "-t"
+        ],
+        "timer": 30,
+        "set": "62a21fbfd1483036d37092d4"
+    },
+    {
+        "question": "enjoyed",
+        "type": "multiple_choice",
+        "options": [
+            "-d",
+            "-t",
+            "-Id"
+        ],
+        "answer": [
+            "-d"
+        ],
+        "timer": 30,
+        "set": "62a21fbfd1483036d37092d4"
+    },
+    {
+        "question": "ended",
+        "type": "multiple_choice",
+        "options": [
+            "-d",
+            "-t",
+            "-Id"
+        ],
+        "answer": [
+            "-Id"
+        ],
+        "timer": 30,
+        "set": "62a21fbfd1483036d37092d4"
+    },
+    {
+        "question": "wanted",
+        "type": "multiple_choice",
+        "options": [
+            "-d",
+            "-t",
+            "-Id"
+        ],
+        "answer": [
+            "-Id"
+        ],
+        "timer": 30,
+        "set": "62a21fbfd1483036d37092d4"
+    },
+    {
+        "question": "loved",
+        "type": "multiple_choice",
+        "options": [
+            "-d",
+            "-t",
+            "-Id"
+        ],
+        "answer": [
+            "-d"
+        ],
+        "timer": 30,
+        "set": "62a21fbfd1483036d37092d4"
+    },
+    {
+        "question": "worked",
+        "type": "multiple_choice",
+        "options": [
+            "-d",
+            "-t",
+            "-Id"
+        ],
+        "answer": [
+            "-t"
+        ],
+        "timer": 30,
+        "set": "62a21fbfd1483036d37092d4"
+    },
+    {
+        "question": "watched",
+        "type": "multiple_choice",
+        "options": [
+            "-d",
+            "-t",
+            "-Id"
+        ],
+        "answer": [
+            "-t"
+        ],
+        "timer": 30,
+        "set": "62a21fbfd1483036d37092d4"
+    }
+]
