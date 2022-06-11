@@ -15,6 +15,7 @@ export default function Editor() {
   const question = useSelector((state) => state.creator.editor.question);
   const [focusId, setFocusId] = useState(null);
   const dispatch = useDispatch();
+  // console.log(useSelector((state) => state.creator.editor));
 
   const answerSpan = 24 / answerIds.length;
   return (

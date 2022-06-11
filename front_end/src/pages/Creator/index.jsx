@@ -1,4 +1,5 @@
 import cn from "classnames";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { OutOfScreen } from "../../components/HiddenSpace";
@@ -16,6 +17,8 @@ export default function Creator() {
   const numOfQuests = useSelector(
     (state) => state.creator.savedQuests.allIds.length
   );
+  const [img, setImg] = useState(null);
+
   return (
     <StyledCreator className="b-radius-1">
       <div className="creator-topbar">
@@ -40,7 +43,7 @@ export default function Creator() {
           </div>
         </div>
         <div className="right-sec">
-          <Manager />
+          <Manager img={img} setImg={setImg} />
         </div>
         <OutOfScreen
           className="editor-screen-animation"

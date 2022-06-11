@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import { _ANSWER_COLORS, _QUEST_TYPES } from "../../configs";
 
 const initialAnswerInfo = {
@@ -60,7 +60,6 @@ const creatorSlice = createSlice({
     },
     OPEN_EDITOR: ({ editor }, action) => {
       const questType = action.payload;
-      editor.id = Date.now();
       editor.mode = "new";
       editor.questType = questType;
       editor.question = "";
@@ -147,8 +146,9 @@ const creatorSlice = createSlice({
         state.editor.timeLimit = time;
       }
     },
-    SAVE_QUEST_FE: (state) => {
-      const { id, mode, allAnswerIds, answersById, ...rest } = state.editor;
+    SAVE_QUEST_FE: (state, action) => {
+      const id = action.payload;
+      const { mode, allAnswerIds, answersById, ...rest } = state.editor;
       const answers = allAnswerIds.map((ansId) => {
         const { text, correct } = answersById[ansId];
         return { text, correct };
@@ -157,17 +157,19 @@ const creatorSlice = createSlice({
         state.savedQuests.allIds.push(id);
       }
       state.savedQuests.byId[id] = {
-        id,
         ...rest,
+        id,
         answers,
       };
       state.editor = initialEditor;
     },
     EDIT_QUEST: (state, action) => {
-      const { answers, ...rest } = state.savedQuests.byId[action.payload];
+      const id = action.payload;
+      const { answers, ...rest } = state.savedQuests.byId[id];
       state.editor = {
-        mode: "old",
         ...rest,
+        mode: "old",
+        id,
       };
       initAnswers(state.editor, answers);
     },

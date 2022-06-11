@@ -75,6 +75,7 @@ function SaveButton() {
   const question = useSelector((state) => state.creator.editor.question);
   const answersById = useSelector((state) => state.creator.editor.answersById);
   const setId = useSelector((state) => state.creator._id);
+  const questId = useSelector((state) => state.creator.editor.id);
   const [shaking, setShaking] = useState(false);
   const dispatch = useDispatch();
   const [savable, msg] = isSavable(question, Object.values(answersById));
@@ -90,7 +91,7 @@ function SaveButton() {
       )}
       onClick={() => {
         if (savable) {
-          dispatch(SAVE_QUEST(setId));
+          dispatch(SAVE_QUEST(setId, questId));
         } else {
           setShaking(true);
           setTimeout(() => setShaking(false), 500);

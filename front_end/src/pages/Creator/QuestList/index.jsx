@@ -5,7 +5,6 @@ import { getColor } from "../../../styledComponents/helpers";
 import { Box } from "../../../styledComponents/Layout";
 import { boxShadows } from "../../../theme";
 import TimeLimitSelect from "../TimeLimitSelect";
-import BotSec from "./BotSec";
 import MidSec from "./MidSec";
 import TopSec from "./TopSec";
 

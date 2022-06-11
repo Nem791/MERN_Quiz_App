@@ -20,11 +20,12 @@ export const CREATE_NEW_SET = (reqData) => (dispatch, getState) => {
     .catch(console.log);
 };
 
-export const SAVE_QUEST = (setId) => (dispatch, getState) => {
-  const convertQuestType = {
-    [_QUEST_TYPES.multipleChoice]: "multiple_choice",
-    [_QUEST_TYPES.fillInTheBlank]: "multiple_choice",
-  };
+const convertQuestType = {
+  [_QUEST_TYPES.multipleChoice]: "multiple_choice",
+  [_QUEST_TYPES.fillInTheBlank]: "multiple_choice",
+};
+
+export const SAVE_QUEST = (setId, questId) => (dispatch, getState) => {
   const {
     question,
     questType,
@@ -52,20 +53,18 @@ export const SAVE_QUEST = (setId) => (dispatch, getState) => {
     timer,
     set: setId,
   };
-  console.log(reqData);
+  if (questId) {
+    reqData._id = questId;
+  }
   callApi({
     endpoint: "quizzes/store-quiz",
     method: "POST",
     reqData,
     token: localStorage.getItem("token"),
   })
-    .then((res) => {
-      console.log(res);
-      return res.json();
-    })
+    .then(handleResponse)
     .then((data) => {
-      console.log(data);
-      dispatch(SAVE_QUEST_FE());
+      dispatch(SAVE_QUEST_FE(data._id));
     })
     .catch(console.log);
 };
