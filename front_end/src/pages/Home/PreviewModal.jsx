@@ -1,6 +1,6 @@
 import { FaPlay } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { CLOSE_PREVIEW } from "../../app/uiSlice";
 import Modal from "../../components/Modal";
@@ -20,6 +20,7 @@ export default function PreviewModal() {
     numberOfQuestion,
   } = useSelector((state) => state.ui.previewedSet);
   const dispatch = useDispatch();
+  const location = useLocation();
   const close = () => dispatch(CLOSE_PREVIEW());
 
   return (
@@ -32,7 +33,11 @@ export default function PreviewModal() {
           <span className="ml-2 capitalize">{type}</span>
         </div>
         <p className="mt-2">{completions} plays</p>
-        <Link to={`/${_QUEST_SET_TYPES[type]}/${_id}`} className="mt-3 mx-auto">
+        <Link
+          to={`/${_QUEST_SET_TYPES[type]}/${_id}`}
+          state={{ root: location.pathname }}
+          className="mt-3 mx-auto"
+        >
           <button className="px-4 py-2 play-btn fs-1 b-radius-2 flex align-center">
             <FaPlay className="mr-2" />
             Start

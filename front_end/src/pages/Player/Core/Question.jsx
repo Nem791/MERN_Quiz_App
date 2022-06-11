@@ -1,10 +1,9 @@
 import cn from "classnames";
 import styled from "styled-components";
-import { getColor } from "../../styledComponents/helpers";
-import { mausac } from "../../theme";
+import { getColor } from "../../../styledComponents/helpers";
+import { mausac } from "../../../theme";
 
 export default function Question({
-  step,
   question,
   answers,
   chosenOpts,
@@ -20,19 +19,17 @@ export default function Question({
           <div
             key={i}
             className={cn(
-              "p-2 answer flex-center grow-1 full-h b-radius-3 pointer no-" + i,
+              "p-4 answer flex-center grow-1 full-h b-radius-3 pointer no-" + i,
+              "w-" + 100 / answers.length,
               { selectDone },
               chosenOpts.includes(i) ? "chosen" : "hidden",
               !!rightOpts.length && (rightOpts.includes(i) ? "right" : "wrong")
             )}
             onClick={() => choose(i)}
           >
-            <p>{ans}</p>
+            <p className="text-center">{ans}</p>
           </div>
         ))}
-      </div>
-      <div className="intro-layout pos-fixed full-stretch flex-center">
-        <p>{step + 1}</p>
       </div>
     </StyledQuestion>
   );
@@ -41,21 +38,6 @@ export default function Question({
 const StyledQuestion = styled.div`
   border-radius: 16px;
   background-color: ${getColor("primaryDark")};
-  .intro-layout {
-    background-color: black;
-    color: white;
-    font-size: 10rem;
-    animation: fading 400ms linear forwards;
-    pointer-events: none;
-  }
-  @keyframes fading {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
   .question {
     height: 242px;
     font-size: 1.5rem;
@@ -68,6 +50,21 @@ const StyledQuestion = styled.div`
     font-size: 1.5rem;
     color: white;
     transition: all 300ms linear;
+    &.w-20 {
+      width: 50%;
+    }
+    &.w-25 {
+      width: 25%;
+    }
+    &.w-33 {
+      width: 33.333%;
+    }
+    &.w-50 {
+      width: 50%;
+    }
+    &.selectDone {
+      cursor: default;
+    }
     &.chosen:not(.wrong),
     &.right {
       position: relative;

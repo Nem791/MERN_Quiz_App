@@ -1,7 +1,7 @@
 import { Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { OPEN_CREATOR } from "../../../app/creatorSlice/actions";
+import { CREATE_NEW_SET } from "../../../app/creatorSlice/thunks";
 import Layout from "../../../components/Form/styles";
 import TextGroup from "../../../components/Form/TextGroup";
 import Modal from "../../../components/Modal";
@@ -41,7 +41,7 @@ export default function CreateModal({ close }) {
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              dispatch(OPEN_CREATOR(values));
+              dispatch(CREATE_NEW_SET(values));
               navigate("/creator");
               // setSubmitting(false);
             }, 1000);

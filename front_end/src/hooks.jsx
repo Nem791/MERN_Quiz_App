@@ -7,8 +7,8 @@ import {
   EDIT_QUESTION,
   OPEN_CREATOR,
   OPEN_EDITOR,
-  SAVE_QUEST,
 } from "./app/creatorSlice/actions";
+import { SAVE_QUEST } from "./app/creatorSlice/thunks";
 import { _QUEST_TYPES } from "./configs";
 
 export function useDevActions() {

@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { _ANSWER_COLORS, _QUEST_TYPES } from "../../configs";
 
 const initialAnswerInfo = {
@@ -33,6 +33,7 @@ const initialEditor = {
 };
 
 const initialState = {
+  _id: "",
   type: "",
   name: "",
   tags: [],
@@ -48,7 +49,8 @@ const creatorSlice = createSlice({
   initialState,
   reducers: {
     OPEN_CREATOR: (state, action) => {
-      const { type, name, tags } = action.payload;
+      const { _id, type, name, tags } = action.payload;
+      state._id = _id;
       state.type = type;
       state.name = name;
       state.tags = tags;
@@ -145,7 +147,7 @@ const creatorSlice = createSlice({
         state.editor.timeLimit = time;
       }
     },
-    SAVE_QUEST: (state) => {
+    SAVE_QUEST_FE: (state) => {
       const { id, mode, allAnswerIds, answersById, ...rest } = state.editor;
       const answers = allAnswerIds.map((ansId) => {
         const { text, correct } = answersById[ansId];

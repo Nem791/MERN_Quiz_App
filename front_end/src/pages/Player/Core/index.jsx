@@ -1,36 +1,19 @@
-import cn from "classnames";
-import { useEffect, useState } from "react";
-import callApi, { handleResponse } from "../../helpers/callApi";
-import BottomBar from "./BottomBar";
+import { useState } from "react";
+import callApi, { handleResponse } from "../../../helpers/callApi";
 import Question from "./Question";
+import BottomBar from "./BottomBar";
+import Timer from "./Timer";
 import TopBar from "./TopBar";
 
-const Timer = ({ timeLimit, questResult, setQuestResult }) => {
-  const [timer, setTimer] = useState(timeLimit);
-  const pct = (timer / timeLimit) * 100;
-
-  useEffect(() => {
-    if (questResult === null) {
-      if (timer > 0) {
-        setTimeout(() => setTimer((prev) => prev - 0.01), [10]);
-      } else setQuestResult(0);
-    }
-  }, [timer, setQuestResult, questResult]);
-
-  useEffect(() => {
-    setTimer(timeLimit);
-  }, [timeLimit]);
-
-  return (
-    <div
-      className={cn("timer", { warning: pct < 25 })}
-      style={{ maxWidth: pct + "%" }}
-    />
-  );
-};
-
-export default function Core({ step, setStep, currentQuest }) {
-  const [point, setPoint] = useState(0);
+export default function Core({
+  step,
+  setStep,
+  point,
+  setPoint,
+  currentQuest,
+  exit,
+  setUserAnswers,
+}) {
   const [chosenOpts, setChosenOpts] = useState([]);
   const [rightOpts, setRightOpts] = useState([]);
   const [questResult, setQuestResult] = useState(null);
@@ -39,12 +22,13 @@ export default function Core({ step, setStep, currentQuest }) {
   const choose = (ansNo) => {
     if (selectDone) return;
     switch (currentQuest.type) {
-      case "multiple_choice":
+      case "multiple_choice": {
         setChosenOpts([ansNo]);
         setSelectDone(true);
         setTimeout(() => submit([ansNo]), 1000);
         break;
-      case "multiple_choice_answers":
+      }
+      case "multiple_choice_answers": {
         setChosenOpts((prev) => {
           if (prev.includes(ansNo)) {
             return prev.filter((opt) => opt !== ansNo);
@@ -52,12 +36,16 @@ export default function Core({ step, setStep, currentQuest }) {
           return [...prev, ansNo];
         });
         break;
+      }
       default:
         return;
     }
   };
 
-  const submit = (chosenOpts) => {
+  const submit = (chosenOpts, markDone) => {
+    if (markDone) {
+      setSelectDone(true);
+    }
     const reqData = {
       answers: [
         {
@@ -66,7 +54,7 @@ export default function Core({ step, setStep, currentQuest }) {
         },
       ],
     };
-    console.log(reqData);
+    // console.log(reqData);
     callApi({
       endpoint: "submit/calculate-quiz-score",
       method: "POST",
@@ -75,7 +63,7 @@ export default function Core({ step, setStep, currentQuest }) {
     })
       .then(handleResponse)
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setPoint((prev) => prev + data.score);
         setRightOpts(data.indexOfAnswers);
         setQuestResult(
@@ -84,6 +72,7 @@ export default function Core({ step, setStep, currentQuest }) {
             0
           )
         );
+        setUserAnswers((prev) => [...prev, data.user_answers]);
         setTimeout(() => {
           setChosenOpts([]);
           setRightOpts([]);
@@ -94,16 +83,18 @@ export default function Core({ step, setStep, currentQuest }) {
       })
       .catch(console.log);
   };
+
   return (
     <>
-      <div className="p-1 full-w">
-        <Timer
-          timeLimit={currentQuest.timer || 0}
-          questResult={questResult}
-          setQuestResult={setQuestResult}
-        />
-      </div>
-      <TopBar point={point} />
+      <Timer
+        questId={currentQuest._id}
+        timeLimit={currentQuest.timer || 0}
+        selectDone={selectDone}
+        setStep={setStep}
+        setQuestResult={setQuestResult}
+        setSelectDone={setSelectDone}
+      />
+      <TopBar step={step} point={point} exit={exit} />
       {step >= 0 && (
         <div className="qna-sec grow-1">
           <Question
@@ -117,7 +108,11 @@ export default function Core({ step, setStep, currentQuest }) {
           />
         </div>
       )}
-      <BottomBar questResult={questResult} submit={() => submit(chosenOpts)} />
+      <BottomBar
+        questType={currentQuest.type}
+        questResult={questResult}
+        submit={() => submit(chosenOpts, true)}
+      />
     </>
   );
 }

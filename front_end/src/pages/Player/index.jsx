@@ -1,15 +1,24 @@
-import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import callApi from "../../helpers/callApi";
 import { mausac } from "../../theme";
 import Core from "./Core";
+import EndScreen from "./EndScreen";
 import Prepare from "./Prepare";
 
 export default function Player() {
   const [playingSet, setPlayingSet] = useState();
+  const [point, setPoint] = useState(0);
   const [step, setStep] = useState(-1);
+  const [userAnswers, setUserAnswers] = useState([]);
   const params = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const exit = () => {
+    navigate(location.state.root);
+  };
 
   useEffect(() => {
     setTimeout(() => setStep(0), 4000);
@@ -34,7 +43,26 @@ export default function Player() {
   return (
     <StyledPlayer className="flex-col pos-relative">
       {currentQuest && (
-        <Core step={step} setStep={setStep} currentQuest={currentQuest} />
+        <Core
+          currentQuest={currentQuest}
+          step={step}
+          setStep={setStep}
+          point={point}
+          setPoint={setPoint}
+          exit={exit}
+          setUserAnswers={setUserAnswers}
+        />
+      )}
+      {(playingSet?.quests.length || -1) === step && (
+        <EndScreen
+          setId={playingSet?._id}
+          point={point}
+          setStep={setStep}
+          setPoint={setPoint}
+          exit={exit}
+          userAnswers={userAnswers}
+          setUserAnswers={setUserAnswers}
+        />
       )}
       {step === -1 && <Prepare step={step} />}
     </StyledPlayer>

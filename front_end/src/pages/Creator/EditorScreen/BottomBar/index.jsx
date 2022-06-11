@@ -6,9 +6,9 @@ import styled from "styled-components";
 import {
   CHANGE_TIME_LIMIT,
   CLOSE_EDITOR,
-  SAVE_QUEST,
   TOGGLE_MULTI_CORRECT_ANSWERS,
 } from "../../../../app/creatorSlice/actions";
+import { SAVE_QUEST } from "../../../../app/creatorSlice/thunks";
 import { _QUEST_TYPES } from "../../../../configs";
 import { getColor } from "../../../../styledComponents/helpers";
 import TimeLimitSelect from "../../TimeLimitSelect";
@@ -74,6 +74,7 @@ function isSavable(question, answers) {
 function SaveButton() {
   const question = useSelector((state) => state.creator.editor.question);
   const answersById = useSelector((state) => state.creator.editor.answersById);
+  const setId = useSelector((state) => state.creator._id);
   const [shaking, setShaking] = useState(false);
   const dispatch = useDispatch();
   const [savable, msg] = isSavable(question, Object.values(answersById));
@@ -89,7 +90,7 @@ function SaveButton() {
       )}
       onClick={() => {
         if (savable) {
-          dispatch(SAVE_QUEST());
+          dispatch(SAVE_QUEST(setId));
         } else {
           setShaking(true);
           setTimeout(() => setShaking(false), 500);
