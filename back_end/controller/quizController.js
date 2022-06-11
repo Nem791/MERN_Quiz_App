@@ -478,4 +478,4 @@ module.exports = {
     deleteQuizSet,
     deleteQuiz,
     test
-}
+} 
