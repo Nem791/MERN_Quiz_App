@@ -1,0 +1,170 @@
+[
+  {
+    "_id": {
+        "$oid": "62a35b9e5a79fb1b731aa7f5"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/great-wall-of-china-junior-1-62a35b9e5a79fb1b731aa7f5.jpg",
+    "quizzes": [],
+    "tags": ["Geography"],
+    "title": "Great Wall of China - Junior 1",
+    "type": "questions",
+    "user": {
+      "$oid": "628e2b597105592acbce1fd5"
+    },
+    "user_liked": []
+  },
+  {
+    "_id": {
+        "$oid": "62a35ea1d9bf4e3d8c0c976e"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/wonders-of-the-past-62a35ea1d9bf4e3d8c0c976e.jpg",
+    "quizzes": [],
+    "tags": ["English", "History"],
+    "title": "Wonders of the Past",
+    "type": "questions",
+    "user": {
+      "$oid": "628e2b597105592acbce1fd5"
+    },
+    "user_liked": []
+  },
+  {
+    "_id": {
+        "$oid": "62a3625da73cdb7257ef7913"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/mekong-amazing-62a3625da73cdb7257ef7913.png",
+    "quizzes": [],
+    "tags": ["Geography", "World Language"],
+    "title": "Mekong Amazing",
+    "type": "questions",
+    "user": {
+      "$oid": "628e2b597105592acbce1fd5"
+    },
+    "user_liked": []
+  },
+  {
+    "_id": {
+        "$oid": "62a36583031fa2a33bc38d5d"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/epic-mistakes-of-history-62a36583031fa2a33bc38d5d.jpg",
+    "quizzes": [],
+    "tags": ["History"],
+    "title": "Epic Mistakes of History",
+    "type": "questions",
+    "user": {
+      "$oid": "628e2b597105592acbce1fd5"
+    },
+    "user_liked": []
+  },
+  {
+    "_id": {
+        "$oid": "62a36a259a37ae6720ac85a8"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/gender-equality-62a36a259a37ae6720ac85a8.png",
+    "quizzes": [],
+    "tags": ["Social Studies"],
+    "title": "Gender Equality",
+    "type": "questions",
+    "user": {
+      "$oid": "628e2b597105592acbce1fd5"
+    },
+    "user_liked": []
+  },
+  {
+    "_id": {
+        "$oid": "62a36ddd7b25295743ed5ac3"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/ecosystems-62a36ddd7b25295743ed5ac3.png",
+    "quizzes": [],
+    "tags": ["Biology", "Science"],
+    "title": "Ecosystems",
+    "type": "questions",
+    "user": {
+      "$oid": "628e2b597105592acbce1fd5"
+    },
+    "user_liked": []
+  },
+  {
+    "_id": {
+        "$oid": "62a370c0d34eabf98b7403f2"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/animal-respiratory-systems-62a370c0d34eabf98b7403f2.jpg",
+    "quizzes": [],
+    "tags": ["Biology"],
+    "title": "Animal Respiratory Systems",
+    "type": "questions",
+    "user": {
+      "$oid": "628e2b597105592acbce1fd5"
+    },
+    "user_liked": []
+  },
+  {
+    "_id": {
+        "$oid": "62a3729964024979268a18d6"
+    },
+    "comments": [],
+    "completions": 0,
+    "date_created": "2022-06-09T13:27:55.832Z",
+    "deleted": false,
+    "draft": false,
+    "likes": 0,
+    "max_score": 0,
+    "quiz_img": "/images/galaxies-62a3729964024979268a18d6.jpg",
+    "quizzes": [],
+    "tags": ["Science"],
+    "title": "Galaxies",
+    "type": "questions",
+    "user": {
+      "$oid": "628e2b597105592acbce1fd5"
+    },
+    "user_liked": []
+  }
+]

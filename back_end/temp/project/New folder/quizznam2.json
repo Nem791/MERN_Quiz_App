@@ -1,0 +1,540 @@
+[
+  {
+    "question": "Where is the Great Wall of China?",
+    "type": "multiple_choice",
+    "options": ["Asia", "Africa", "Europe", "America"],
+    "answer": ["Asia"],
+    "timer": 30,
+    "set": "62a35b9e5a79fb1b731aa7f5"
+  },
+  {
+    "question": "How long did it take to build and finish the Great Wall of China?",
+    "type": "multiple_choice",
+    "options": ["2 years", "20 years", "200 years", "2000 years"],
+    "answer": ["2000 years"],
+    "timer": 30,
+    "set": "62a35b9e5a79fb1b731aa7f5"
+  },
+  {
+    "question": "Why did they build the Great Wall of China?",
+    "type": "multiple_choice",
+    "options": [
+      "to make China more beautiful",
+      "to protect China from enemies",
+      "to be in World Record",
+      "to make Chinese people exercise more"
+    ],
+    "answer": ["to protect China from enemies"],
+    "timer": 30,
+    "set": "62a35b9e5a79fb1b731aa7f5"
+  },
+  {
+    "question": "What is length of the Great Wall of China?",
+    "type": "multiple_choice",
+    "options": [
+      "about 2100 meters",
+      "about 21,000 meters",
+      "about 2100 kilometers",
+      "about 21,000 kilometers"
+    ],
+    "answer": ["about 21,000 kilometers"],
+    "timer": 30,
+    "set": "62a35b9e5a79fb1b731aa7f5"
+  },
+  {
+    "question": "The Great Wall of China is located in ...",
+    "type": "multiple_choice",
+    "options": [
+      "the North of China",
+      "the South of China",
+      "the West of China",
+      "the East of China"
+    ],
+    "answer": ["the North of China"],
+    "timer": 30,
+    "set": "62a35b9e5a79fb1b731aa7f5"
+  },
+  {
+    "question": "How long does it take to walk the Great Wall for the full length?",
+    "type": "multiple_choice",
+    "options": [
+      "at least 5 months",
+      "at least 10 months",
+      "at least 17 months",
+      "at least 2 years"
+    ],
+    "answer": ["at least 17 months"],
+    "timer": 30,
+    "set": "62a35b9e5a79fb1b731aa7f5"
+  },
+  {
+    "question": "What were the Seven Wonders of the Ancient World?",
+    "type": "multiple_choice",
+    "options": [
+      " Monuments built in Asia. Some of the cities include Thailand, Hong Kong, and Singapore.",
+      "Monuments built in Egypt, Rome, and Thailand.",
+      "Monuments built in Europe, Africa, and Western Asia.",
+      "Monuments built in the U.S."
+    ],
+    "answer": ["Monuments built in Europe, Africa, and Western Asia."],
+    "timer": 30,
+    "set": "62a35ea1d9bf4e3d8c0c976e"
+  },
+  {
+    "question": "Where was the Great Pyramid of Giza built?",
+    "type": "multiple_choice",
+    "options": ["Turkey.", "Giza.", "Europe.", "Egypt."],
+    "answer": ["Egypt."],
+    "timer": 30,
+    "set": "62a35ea1d9bf4e3d8c0c976e"
+  },
+  {
+    "question": "The Taj Mahal is a tomb for",
+    "type": "multiple_choice",
+    "options": ["soldiers", "a king's wife", "rich people", "the poor"],
+    "answer": ["a king's wife"],
+    "timer": 30,
+    "set": "62a35ea1d9bf4e3d8c0c976e"
+  },
+  {
+    "question": "The Eiffel Tower opened in 1880 for",
+    "type": "multiple_choice",
+    "options": [
+      "the World's Fair",
+      "the end of the French Revolution",
+      "the Olympic games",
+      "the celebration of Paris' 100th birthday"
+    ],
+    "answer": ["the World's Fair"],
+    "timer": 30,
+    "set": "62a35ea1d9bf4e3d8c0c976e"
+  },
+  {
+    "question": "Stonehenge is located in",
+    "type": "multiple_choice",
+    "options": ["England", "Ireland", "France", "Spain"],
+    "answer": ["England"],
+    "timer": 30,
+    "set": "62a35ea1d9bf4e3d8c0c976e"
+  },
+  {
+    "question": "Why was the Great Wall of China bulit?",
+    "type": "multiple_choice",
+    "options": [
+      "As a means of defense",
+      "To be a tourist attraction",
+      "To use up leftover bricks",
+      "All of these answers."
+    ],
+    "answer": ["As a means of defense"],
+    "timer": 30,
+    "set": "62a35ea1d9bf4e3d8c0c976e"
+  },
+  {
+    "question": "What was Chichen Itza used for?",
+    "type": "multiple_choice",
+    "options": [
+      "hosting dances and celebrations",
+      "religious ceremonies",
+      "performing medical procedures",
+      "growing food"
+    ],
+    "answer": ["religious ceremonies"],
+    "timer": 30,
+    "set": "62a35ea1d9bf4e3d8c0c976e"
+  },
+  {
+    "question": "What is the oldest structure on the ancient list of the seven wonders?",
+    "type": "multiple_choice",
+    "options": [
+      "The Great Pyramids of Giza",
+      "Lighthouse of Alexandria",
+      "Great Wall of China",
+      "Statue of Zeus at Olympia"
+    ],
+    "answer": ["The Great Pyramids of Giza"],
+    "timer": 30,
+    "set": "62a35ea1d9bf4e3d8c0c976e"
+  },
+  {
+    "question": "Some medicines are only available on ................",
+    "type": "multiple_choice",
+    "options": ["description", "instruction", "inscription", "prescription"],
+    "answer": ["prescription"],
+    "timer": 30,
+    "set": "62a3625da73cdb7257ef7913"
+  },
+  {
+    "question": "It's difficult to ................... the difference between margarine and butter.",
+    "type": "multiple_choice",
+    "options": ["speak", "tell", "say", "look"],
+    "answer": ["tell"],
+    "timer": 30,
+    "set": "62a3625da73cdb7257ef7913"
+  },
+  {
+    "question": "A .................. is a printed pamphlet about a place, product, or company that is used for advertising.",
+    "type": "multiple_choice",
+    "options": ["media", "visa", "passport", "brochure"],
+    "answer": ["brochure"],
+    "timer": 30,
+    "set": "62a3625da73cdb7257ef7913"
+  },
+  {
+    "question": "You can’t leave Phu Quoc ................. tasting 'bun quay'.",
+    "type": "multiple_choice",
+    "options": ["without", "with", "in", "to"],
+    "answer": ["without"],
+    "timer": 30,
+    "set": "62a3625da73cdb7257ef7913"
+  },
+  {
+    "question": "The beginning of Mekong River is ..............",
+    "type": "multiple_choice",
+    "options": [
+      "Tibetan Plateau, China",
+      "Beijing, China",
+      "Ningxia, China",
+      "Xinjiang, China"
+    ],
+    "answer": ["Tibetan Plateau, China"],
+    "timer": 30,
+    "set": "62a3625da73cdb7257ef7913"
+  },
+  {
+    "question": "What is the other name of Mekong River basin in Vietnam?",
+    "type": "multiple_choice",
+    "options": ["Red River", "Tien River", "Nine-Dragon River", "Cai Be River"],
+    "answer": ["Nine-Dragon River"],
+    "timer": 30,
+    "set": "62a3625da73cdb7257ef7913"
+  },
+  {
+    "question": "Since we live by an airport, we can easily watch the airplanes ……… off",
+    "type": "multiple_choice",
+    "options": ["take", "to take", "be taking", "will take"],
+    "answer": ["take"],
+    "timer": 30,
+    "set": "62a3625da73cdb7257ef7913"
+  },
+  {
+    "question": "I seldom forget ……… my teeth before going to bed",
+    "type": "multiple_choice",
+    "options": ["brush", "to brush", "brushing", "brushed"],
+    "answer": ["to brush"],
+    "timer": 30,
+    "set": "62a3625da73cdb7257ef7913"
+  },
+  {
+    "question": "When was the Spanish Armada defeated?",
+    "type": "multiple_choice",
+    "options": ["1688", "1588", "1701", "1401"],
+    "answer": ["1588"],
+    "timer": 30,
+    "set": "62a36583031fa2a33bc38d5d"
+  },
+  {
+    "question": "Who was the Ethiopian emperor who defeated an invading Italian army?",
+    "type": "multiple_choice",
+    "options": ["Menelik II", "Taytu Betul", "Oreste Baratieri", "Aaron Burr"],
+    "answer": ["Menelik II"],
+    "timer": 30,
+    "set": "62a36583031fa2a33bc38d5d"
+  },
+  {
+    "question": "Which general's mistake caused the Zhao to lose the battle of Changping?",
+    "type": "multiple_choice",
+    "options": ["Bao Qi", "Lian Po", "Zhao She", "Zhao Kuo"],
+    "answer": ["Zhao Kuo"],
+    "timer": 30,
+    "set": "62a36583031fa2a33bc38d5d"
+  },
+  {
+    "question": "Which former vice president plotted against the US government in the 1800s?",
+    "type": "multiple_choice",
+    "options": [
+      "Richard Nixon",
+      "Aaron Burr",
+      "Harry Truman",
+      "George H.W. Bush"
+    ],
+    "answer": ["Aaron Burr"],
+    "timer": 30,
+    "set": "62a36583031fa2a33bc38d5d"
+  },
+  {
+    "question": "Where were hundreds of Native Americans massacred by U.S. troops in 1890?",
+    "type": "multiple_choice",
+    "options": [
+      "Lakota Reservation Hill",
+      "Little Big Horn",
+      "Sitting Bull River",
+      "Wounded Knee Creek"
+    ],
+    "answer": ["Wounded Knee Creek"],
+    "timer": 30,
+    "set": "62a36583031fa2a33bc38d5d"
+  },
+  {
+    "question": "Which two military defeats were caused by both an opposing army/navy and the weather?",
+    "type": "multiple_choice",
+    "options": [
+      "The defeat of the Spanish Armada",
+      "The Italian defeat in Ethiopia",
+      "The charge of the Light Brigade",
+      "Napoleon's defeat in Russia"
+    ],
+    "answer": ["The defeat of the Spanish Armada"],
+    "timer": 30,
+    "set": "62a36583031fa2a33bc38d5d"
+  },
+  {
+    "question": "Which car sometimes exploded after even a slight impact?",
+    "type": "multiple_choice",
+    "options": ["Ford Pinto", "Tesla", "Ford Explorer", "Toyota Corolla"],
+    "answer": ["Ford Pinto"],
+    "timer": 30,
+    "set": "62a36583031fa2a33bc38d5d"
+  },
+  {
+    "question": "How do the roles of men and women differ in your family?",
+    "type": "multiple_choice",
+    "options": [
+      "Most of men don’t want to stay at home.",
+      "Women are changing their roles.",
+      "Most men are very bossy and arrogant.",
+      "Men are breadwinners and women are caregivers."
+    ],
+    "answer": ["Men are breadwinners and women are caregivers."],
+    "timer": 30,
+    "set": "62a36a259a37ae6720ac85a8"
+  },
+  {
+    "question": "Gender discrimination must ____ in order to create a better society.",
+    "type": "multiple_choice",
+    "options": ["be extended", "be eliminated", "eliminating", "extend"],
+    "answer": ["be eliminated"],
+    "timer": 30,
+    "set": "62a36a259a37ae6720ac85a8"
+  },
+  {
+    "question": "Domestic violence ____ women and girls must be wiped out at any cost. a better society.",
+    "type": "multiple_choice",
+    "options": ["on", "at", "against", "for"],
+    "answer": ["against"],
+    "timer": 30,
+    "set": "62a36a259a37ae6720ac85a8"
+  },
+  {
+    "question": "Gender discrimination should _______ eliminated so that everyone has equal opportunities in education.",
+    "type": "multiple_choice",
+    "options": ["have", "been", "be", "have be"],
+    "answer": ["be"],
+    "timer": 30,
+    "set": "62a36a259a37ae6720ac85a8"
+  },
+  {
+    "question": "Which diagram can show us the AMOUNT OF ENERGY that flows from producers to consumers?",
+    "type": "multiple_choice",
+    "options": ["Food chain", "Food web", "Food pyramid"],
+    "answer": ["Food pyramid"],
+    "timer": 30,
+    "set": "62a36ddd7b25295743ed5ac3"
+  },
+  {
+    "question": "What will happen to a population if they do not have enough resources?",
+    "type": "multiple_choice",
+    "options": [
+      "The population will grow bigger",
+      "The population will all die",
+      "The population will have to move away or they will die",
+      "The population will sit and wait for new resources"
+    ],
+    "answer": ["The population will have to move away or they will die"],
+    "timer": 30,
+    "set": "62a36ddd7b25295743ed5ac3"
+  },
+  {
+    "question": "Which is a HARMFUL change that plants can make to their ecosystem?",
+    "type": "multiple_choice",
+    "options": [
+      "They put oxygen in the atmosphere.",
+      "They can grow over other plants and steal their space and nutrients.",
+      "Their roots keep the ground stable and prevents erosion.",
+      "They provide shelter for many animals."
+    ],
+    "answer": [
+      "They can grow over other plants and steal their space and nutrients."
+    ],
+    "timer": 30,
+    "set": "62a36ddd7b25295743ed5ac3"
+  },
+  {
+    "question": "Humans change their ecosystem all the time. Most of these changes are harmful. How can we stop harming our environment?",
+    "type": "multiple_choice",
+    "options": [
+      "Continue to use fossil fuels for cars and vehicles.",
+      "Make more green spaces in cities with lots of plants.",
+      "Wear masks when we go outside.",
+      "Continue to develop and build bigger cities."
+    ],
+    "answer": ["Make more green spaces in cities with lots of plants."],
+    "timer": 30,
+    "set": "62a36ddd7b25295743ed5ac3"
+  },
+  {
+    "question": "Some animals change their environment by burrowing in the ground. This means they make tunnels in the ground. How can this be a HELPFUL change?",
+    "type": "multiple_choice",
+    "options": [
+      "They can destroy the roots of plants.",
+      "They put air in the ground that makes it easy for water to flow through.",
+      "They can cause erosion- the ground moves away.",
+      "They destroy habitats of other animals that live in the ground."
+    ],
+    "answer": [
+      "They put air in the ground that makes it easy for water to flow through."
+    ],
+    "timer": 30,
+    "set": "62a36ddd7b25295743ed5ac3"
+  },
+  {
+    "question": "When does COMPETITION happen in an ecosystem?",
+    "type": "multiple_choice",
+    "options": [
+      "When there is enough resources for all living things to survive.",
+      "When animals move away from their ecosystem.",
+      "When two or more living things need the same resource to survive."
+    ],
+    "answer": [
+      "When two or more living things need the same resource to survive."
+    ],
+    "timer": 30,
+    "set": "62a36ddd7b25295743ed5ac3"
+  },
+  {
+    "question": "_______ is the process of taking oxygen into the body and releasing carbon dioxide back into the environment.",
+    "type": "multiple_choice",
+    "options": [
+      "cellular respiration",
+      "breathing",
+      "diffusion",
+      "respiratory system"
+    ],
+    "answer": ["breathing"],
+    "timer": 30,
+    "set": "62a370c0d34eabf98b7403f2"
+  },
+  {
+    "question": "Why do animals need oxygen?",
+    "type": "multiple_choice",
+    "options": [
+      "To get food for their bodies",
+      "To burn food for energy",
+      "To get rid of carbon dioxide",
+      "To protect themselves from predators"
+    ],
+    "answer": ["To burn food for energy"],
+    "timer": 30,
+    "set": "62a370c0d34eabf98b7403f2"
+  },
+  {
+    "question": "Which shows the correct path oxygen flows through our body?",
+    "type": "multiple_choice",
+    "options": [
+      "mouth → blood → cells → lungs",
+      "mouth → lungs → blood → cells",
+      "cells → blood → lungs → mouth",
+      "blood → cells → mouth → lungs"
+    ],
+    "answer": ["mouth → lungs → blood → cells"],
+    "timer": 30,
+    "set": "62a370c0d34eabf98b7403f2"
+  },
+  {
+    "question": "Which is NOT a respiratory structure found in animals?",
+    "type": "multiple_choice",
+    "options": ["Lungs", "Gills", "Skin", "Fur"],
+    "answer": ["Fur"],
+    "timer": 30,
+    "set": "62a370c0d34eabf98b7403f2"
+  },
+  {
+    "question": "How do axolotls obtain oxygen?",
+    "type": "multiple_choice",
+    "options": [
+      "Their gills absorb it from the water.",
+      "They take it in when they breathe the air.",
+      "Their eyes absorb it from the water.",
+      "Axolotls do not need oxygen."
+    ],
+    "answer": ["Their gills absorb it from the water."],
+    "timer": 30,
+    "set": "62a370c0d34eabf98b7403f2"
+  },
+  {
+    "question": "Galaxies are composed of (best answer)",
+    "type": "multiple_choice",
+    "options": [
+      "stars",
+      "stars and gas",
+      "stars, dust, and gas",
+      "stars, dust, and gas held together by gravity"
+    ],
+    "answer": ["stars, dust, and gas held together by gravity"],
+    "timer": 30,
+    "set": "62a3729964024979268a18d6"
+  },
+  {
+    "question": "The Milky Way Galaxy is a _____________ galaxy.",
+    "type": "multiple_choice",
+    "options": ["spiral", "lenticular", "elliptical", "irregular"],
+    "answer": ["spiral"],
+    "timer": 30,
+    "set": "62a3729964024979268a18d6"
+  },
+  {
+    "question": "Which is not a type of galaxy?",
+    "type": "multiple_choice",
+    "options": [
+      "Optical Galaxy",
+      "Spiral Galaxy",
+      "Elliptical Galaxy",
+      "Irregular Galaxy"
+    ],
+    "answer": ["Optical Galaxy"],
+    "timer": 30,
+    "set": "62a3729964024979268a18d6"
+  },
+  {
+    "question": "How many stars are in a galaxy?",
+    "type": "multiple_choice",
+    "options": ["millions or billions", "thousands", "hundreds", "Ten"],
+    "answer": ["millions or billions"],
+    "timer": 30,
+    "set": "62a3729964024979268a18d6"
+  },
+  {
+    "question": "How many stars are there in our galaxy?",
+    "type": "multiple_choice",
+    "options": ["200", "200,000", "200 million", "200 billion"],
+    "answer": ["200 billion"],
+    "timer": 30,
+    "set": "62a3729964024979268a18d6"
+  },
+  {
+    "question": "How many exoplanets have been found around other stars?",
+    "type": "multiple_choice",
+    "options": ["none", "5,000", "18", "1,789"],
+    "answer": ["5,000"],
+    "timer": 30,
+    "set": "62a3729964024979268a18d6"
+  },
+  {
+    "question": "Stars that have two stars in one solar system are called ____________ stars.",
+    "type": "multiple_choice",
+    "options": ["binary", "tertiary", "quaternary", "hybrid"],
+    "answer": ["binary"],
+    "timer": 30,
+    "set": "62a3729964024979268a18d6"
+  }
+]

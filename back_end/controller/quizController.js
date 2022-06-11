@@ -200,6 +200,7 @@ const saveQuizSet = async (req, res) => {
     // Luu DataTransferItemList, content, image to database 
     console.log('req.body-', req.body);
     let files = req.files;
+    console.log(files);
 
     let setData = req.body;
 
@@ -439,6 +440,23 @@ const deleteQuizSet = async (req, res) => {
         // Find and populate
         const quizSet = await QuizSet.findByIdAndDelete(id);
         console.log(quizSet);
+        const quizzes = await Quiz.deleteMany({set: id});
+        console.log(quizzes);
+        return res.json({deleted: true, type: 'delete'});
+    } catch (error) {
+        console.log(error);
+        return res.json({ error: String(error) });
+    }
+};
+
+const deleteQuiz = async (req, res) => {
+
+    let id = req.params.id;
+
+    try {
+        // Find and populate
+        const quiz = await Quiz.findByIdAndDelete(id);
+        console.log(quiz);
         return res.json({deleted: true, type: 'delete'});
     } catch (error) {
         console.log(error);
@@ -458,5 +476,6 @@ module.exports = {
     saveQuizzesMock,
     softDeleteQuizSet,
     deleteQuizSet,
+    deleteQuiz,
     test
 }
