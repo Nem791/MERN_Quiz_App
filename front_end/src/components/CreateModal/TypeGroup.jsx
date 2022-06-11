@@ -1,8 +1,8 @@
 import { Field, useField } from "formik";
 import { FaExclamationCircle } from "react-icons/fa";
 import styled from "styled-components";
-import { getColor } from "../../../styledComponents/helpers";
-import { Row, Col } from "../../../styledComponents/Layout";
+import { getColor } from "../../styledComponents/helpers";
+import { Row, Col } from "../../styledComponents/Layout";
 
 export default function TypeGroup({ name = "", options = [] }) {
   const [, { error, touched }] = useField({ name });

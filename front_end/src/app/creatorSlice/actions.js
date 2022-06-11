@@ -2,7 +2,7 @@ import { actions } from "./index";
 
 export const {
   OPEN_CREATOR,
-  CLOSE_CREATOR,
+  CLOSE_CREATOR_FE,
   OPEN_EDITOR,
   CLOSE_EDITOR,
   EDIT_QUESTION,
@@ -18,5 +18,5 @@ export const {
   SAVE_QUEST_FE,
   EDIT_QUEST,
   DUPLICATE_QUEST,
-  DELETE_QUEST,
+  DELETE_QUEST_FE,
 } = actions;

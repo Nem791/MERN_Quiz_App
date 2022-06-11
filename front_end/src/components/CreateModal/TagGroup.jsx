@@ -2,7 +2,7 @@ import cn from "classnames";
 import { FieldArray, useField } from "formik";
 import { FaExclamationCircle } from "react-icons/fa";
 import styled from "styled-components";
-import { getColor } from "../../../styledComponents/helpers";
+import { getColor } from "../../styledComponents/helpers";
 
 export default function TagGroup({ name = "", options = [], chosen = [] }) {
   const [, { error, touched }] = useField({ name });

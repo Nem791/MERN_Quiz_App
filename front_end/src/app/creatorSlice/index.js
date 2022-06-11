@@ -55,7 +55,7 @@ const creatorSlice = createSlice({
       state.name = name;
       state.tags = tags;
     },
-    CLOSE_CREATOR: () => {
+    CLOSE_CREATOR_FE: () => {
       return initialState;
     },
     OPEN_EDITOR: ({ editor }, action) => {
@@ -182,7 +182,7 @@ const creatorSlice = createSlice({
       };
       savedQuests.allIds.push(newId);
     },
-    DELETE_QUEST: ({ savedQuests }, action) => {
+    DELETE_QUEST_FE: ({ savedQuests }, action) => {
       const id = action.payload;
       delete savedQuests.byId[id];
       savedQuests.allIds = savedQuests.allIds.filter(

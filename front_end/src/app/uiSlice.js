@@ -16,6 +16,7 @@ const uiSlice = createSlice({
   initialState: {
     mode: "light",
     previewedSet: defaultSet,
+    deletedIds: {},
   },
   reducers: {
     CHANGE_MODE: (state) => {
@@ -27,9 +28,13 @@ const uiSlice = createSlice({
     CLOSE_PREVIEW: (state) => {
       state.previewedSet = defaultSet;
     },
+    FAKE_DELETE: (state, action) => {
+      state.deletedIds[action.payload] = true;
+    },
   },
 });
 
-export const { CHANGE_MODE, OPEN_PREVIEW, CLOSE_PREVIEW } = uiSlice.actions;
+export const { CHANGE_MODE, OPEN_PREVIEW, CLOSE_PREVIEW, FAKE_DELETE } =
+  uiSlice.actions;
 
 export default uiSlice.reducer;

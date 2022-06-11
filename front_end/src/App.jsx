@@ -15,6 +15,7 @@ import { getColor } from "./styledComponents/helpers";
 import { colors } from "./theme";
 import Profile from "./pages/Profile";
 import Player from "./pages/Player";
+import Search from "./pages/Search";
 
 const StyledApp = styled.div`
   min-height: 100vh;
@@ -39,10 +40,11 @@ export default function App() {
               <Route index element={<Explore />} />
               <Route path="private" element={<MyLibrary />} />
               <Route path="profile" element={<Profile />} />
+              <Route path="creator" element={<Creator />} />
+              <Route path="quiz/:id" element={<Player />} />
+              <Route path="lesson/:id" element={<Player />} />
+              <Route path="search/:key" element={<Search />} />
             </Route>
-            <Route path="creator" element={<Creator />} />
-            <Route path="quiz/:id" element={<Player />} />
-            <Route path="lesson/:id" element={<Player />} />
           </Routes>
         </BrowserRouter>
       </StyledApp>

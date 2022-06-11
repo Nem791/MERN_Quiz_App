@@ -13,6 +13,7 @@ import { VscLibrary } from "react-icons/vsc";
 import { mausac } from "./theme";
 
 export const _IMG_BASE_URL = "http://localhost:3000";
+// export const _IMG_BASE_URL = "https://quiz-app-791.herokuapp.com";
 
 export const _USER_NAME_MIN_LEN = 4;
 export const _PASSWORD_MIN_LEN = 6;

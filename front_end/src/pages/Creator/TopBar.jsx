@@ -8,7 +8,7 @@ import { imgLink } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { breakpoints } from "../../theme";
 import { useDispatch } from "react-redux";
-import { CLOSE_CREATOR } from "../../app/creatorSlice/actions";
+import { CLOSE_CREATOR, SAVE } from "../../app/creatorSlice/thunks";
 
 export default function TopBar() {
   const dispatch = useDispatch();
@@ -21,11 +21,17 @@ export default function TopBar() {
       text: "Discard",
       className: "out-creator",
       onClick: () => {
-        dispatch(CLOSE_CREATOR());
-        navigate("/");
+        dispatch(CLOSE_CREATOR(() => navigate("/")));
       },
     },
-    { Icon: FaCloudUploadAlt, text: "Save", className: "out-creator" },
+    {
+      Icon: FaCloudUploadAlt,
+      text: "Save",
+      className: "out-creator",
+      onClick: () => {
+        dispatch(SAVE(() => navigate("/")));
+      },
+    },
   ];
   return (
     <CreatorTopBar className="p-2 flex align-center justify-between">

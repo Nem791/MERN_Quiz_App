@@ -1,18 +1,16 @@
 import { Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { CREATE_NEW_SET } from "../../../app/creatorSlice/thunks";
-import Layout from "../../../components/Form/styles";
-import TextGroup from "../../../components/Form/TextGroup";
-import Modal from "../../../components/Modal";
-import { _TAGS, _QUEST_SET_TYPES } from "../../../configs";
-import { Button, MainButton } from "../../../styledComponents/Inputs";
-import { Col, Row } from "../../../styledComponents/Layout";
+import { CREATE_NEW_SET } from "../../app/creatorSlice/thunks";
+import Layout from "../../components/Form/styles";
+import TextGroup from "../../components/Form/TextGroup";
+import Modal from "../../components/Modal";
+import { _TAGS, _QUEST_SET_TYPES } from "../../configs";
+import { Button, MainButton } from "../../styledComponents/Inputs";
+import { Col, Row } from "../../styledComponents/Layout";
 import TagGroup from "./TagGroup";
 import TypeGroup from "./TypeGroup";
 
-export default function CreateModal({ close }) {
-  const navigate = useNavigate();
+export default function CreateModal({ initialValues, onSuccess, close }) {
   const dispatch = useDispatch();
   return (
     <Modal close={close}>
@@ -21,11 +19,13 @@ export default function CreateModal({ close }) {
           <h1>Create Your Own</h1>
         </div>
         <Formik
-          initialValues={{
-            type: "",
-            name: "",
-            tags: [],
-          }}
+          initialValues={
+            initialValues || {
+              type: "",
+              name: "",
+              tags: [],
+            }
+          }
           validate={({ type, name, tags }) => {
             const errors = {};
             if (!type.length) {
@@ -41,8 +41,7 @@ export default function CreateModal({ close }) {
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              dispatch(CREATE_NEW_SET(values));
-              navigate("/creator");
+              dispatch(CREATE_NEW_SET(values, onSuccess));
               // setSubmitting(false);
             }, 1000);
           }}

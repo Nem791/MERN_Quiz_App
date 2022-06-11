@@ -2,19 +2,20 @@ import { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { LOGOUT } from "../../app/userSlice";
+import CreateModal from "../../components/CreateModal";
 import { SiteLogo } from "../../components/Misc";
 import { _SIDEBAR_LINKS } from "../../configs";
 import { getColor } from "../../styledComponents/helpers";
 import { MainButton } from "../../styledComponents/Inputs";
-import CreateModal from "./CreateModal";
 
 export default function SideBar({ setSidebarOn }) {
   const [modalOn, setModalOn] = useState(false);
   const userName = useSelector((state) => state.user.name);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <StyledSideBar className="flex-col">
       <div className="mt-2 ml-3 logo-wrapper">
@@ -49,7 +50,12 @@ export default function SideBar({ setSidebarOn }) {
           Log out
         </p>
       </div>
-      {modalOn && <CreateModal close={() => setModalOn(false)} />}
+      {modalOn && (
+        <CreateModal
+          onSuccess={() => navigate("/creator")}
+          close={() => setModalOn(false)}
+        />
+      )}
     </StyledSideBar>
   );
 }

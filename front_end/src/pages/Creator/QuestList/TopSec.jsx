@@ -1,11 +1,8 @@
 import { FaRegCopy, FaRegTrashAlt, FaSort } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import {
-  DELETE_QUEST,
-  DUPLICATE_QUEST,
-  EDIT_QUEST,
-} from "../../../app/creatorSlice/actions";
+import { DUPLICATE_QUEST, EDIT_QUEST } from "../../../app/creatorSlice/actions";
+import { DELETE_QUEST } from "../../../app/creatorSlice/thunks";
 import { _QUEST_TYPE_RENDER_INFOS } from "../../../configs";
 import { Box, Col, Row } from "../../../styledComponents/Layout";
 

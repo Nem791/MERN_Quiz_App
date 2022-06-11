@@ -17,6 +17,10 @@ export default function callApi({ endpoint, method, reqData, token, queries }) {
     query = "?" + query;
   }
   return fetch(`http://localhost:3000/${endpoint}${query}`, options);
+  // return fetch(
+  //   `https://quiz-app-791.herokuapp.com/${endpoint}${query}`,
+  //   options
+  // );
 }
 
 export function handleResponse(res) {

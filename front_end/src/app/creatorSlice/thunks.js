@@ -1,21 +1,31 @@
 import { _QUEST_TYPES } from "../../configs";
 import callApi, { handleResponse } from "../../helpers/callApi";
-import { OPEN_CREATOR, SAVE_QUEST_FE } from "./actions";
+import {
+  CLOSE_CREATOR_FE,
+  DELETE_QUEST_FE,
+  OPEN_CREATOR,
+  SAVE_QUEST_FE,
+} from "./actions";
 
-export const CREATE_NEW_SET = (reqData) => (dispatch, getState) => {
+export const CREATE_NEW_SET = (data, onSuccess) => (dispatch, getState) => {
+  const reqData = {
+    type: data.type,
+    tags: data.tags,
+    title: data.name,
+  };
+  if (data.setId) {
+    reqData._id = data.setId;
+  }
   callApi({
     endpoint: "quizzes/store-quiz-set",
     method: "POST",
-    reqData: {
-      type: reqData.type,
-      tags: reqData.tags,
-      title: reqData.name,
-    },
+    reqData,
     token: localStorage.getItem("token"),
   })
     .then(handleResponse)
-    .then((data) => {
-      dispatch(OPEN_CREATOR({ ...reqData, _id: data._id }));
+    .then((resData) => {
+      onSuccess();
+      dispatch(OPEN_CREATOR({ ...data, _id: resData._id }));
     })
     .catch(console.log);
 };
@@ -65,6 +75,50 @@ export const SAVE_QUEST = (setId, questId) => (dispatch, getState) => {
     .then(handleResponse)
     .then((data) => {
       dispatch(SAVE_QUEST_FE(data._id));
+    })
+    .catch(console.log);
+};
+
+export const DELETE_QUEST = (id) => (dispatch) => {
+  callApi({
+    endpoint: `quizzes/delete-quiz/${id}`,
+    method: "DELETE",
+    token: localStorage.getItem("token"),
+  })
+    .then(handleResponse)
+    .then((data) => {
+      dispatch(DELETE_QUEST_FE(id));
+    })
+    .catch(console.log);
+};
+
+export const CLOSE_CREATOR = (onSuccess) => (dispatch, getState) => {
+  const id = getState().creator._id;
+  callApi({
+    endpoint: `quizzes/delete-quiz-set/${id}`,
+    method: "DELETE",
+    token: localStorage.getItem("token"),
+  })
+    .then(handleResponse)
+    .then((data) => {
+      onSuccess();
+      dispatch(CLOSE_CREATOR_FE());
+    })
+    .catch(console.log);
+};
+
+export const SAVE = (onSuccess) => (dispatch, getState) => {
+  const _id = getState().creator._id;
+  callApi({
+    endpoint: `quizzes/update-draft`,
+    method: "PUT",
+    reqData: { _id },
+    token: localStorage.getItem("token"),
+  })
+    .then(handleResponse)
+    .then((data) => {
+      onSuccess();
+      dispatch(CLOSE_CREATOR_FE());
     })
     .catch(console.log);
 };

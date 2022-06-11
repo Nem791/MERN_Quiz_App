@@ -1,38 +1,43 @@
-import { FaImage, FaEye, FaEyeSlash } from "react-icons/fa";
+import { useRef, useState } from "react";
+import { BiBook } from "react-icons/bi";
+import { FaEye, FaEyeSlash, FaImage } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import CreateModal from "../../components/CreateModal";
+import { handleResponse } from "../../helpers/callApi";
+import { renderBackendImg } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { mausac } from "../../theme";
-import { BiBook } from "react-icons/bi";
-import { useSelector } from "react-redux";
-import { useState } from "react";
-import { useRef } from "react";
-import callApi from "../../helpers/callApi";
 
 export default function Manager({ img, setImg }) {
   const name = useSelector((state) => state.creator.name);
+  const type = useSelector((state) => state.creator.type);
   const tags = useSelector((state) => state.creator.tags);
   const setId = useSelector((state) => state.creator._id);
   const isPrivate = useSelector((state) => state.creator.isPrivate);
+  const [modalOn, setModalOn] = useState(false);
   const ref = useRef();
   const PrivateIcon = isPrivate ? FaEyeSlash : FaEye;
-  console.log(setId);
 
   return (
     <StyledManager className="p-4 mb-2">
       <div
-        className="p-4 img-part flex-col flex-center pointer"
+        className="p-2 img-part flex-col flex-center pointer"
         onClick={() => {
           if (ref.current) ref.current.click();
         }}
       >
-        <div className="mb-3 icon-wrapper b-radius-round flex-center">
-          {img ? (
-            <img src={URL.createObjectURL(img)} alt="" />
-          ) : (
-            <FaImage size="1.5rem" color="white" />
-          )}
-        </div>
+        {img ? (
+          <img className="cover-img" src={renderBackendImg(img)} alt="" />
+        ) : (
+          <>
+            <div className="icon-wrapper b-radius-round flex-center">
+              <FaImage size="1.5rem" color="white" />
+            </div>
+            <p className="mt-3">Click here to upload a quiz image</p>
+          </>
+        )}
         <input
           ref={ref}
           type="file"
@@ -40,10 +45,12 @@ export default function Manager({ img, setImg }) {
           hidden
           onChange={(e) => {
             const formData = new FormData();
-            console.log(e.target.files[0]);
-            formData.append("quiz_img", e.target.files[0]);
+            const image = e.target.files[0];
+            formData.append("image", image);
             formData.append("_id", setId);
+            formData.append("title", name);
             fetch("http://localhost:3000/quizzes/store-quiz-set", {
+              // fetch("https://quiz-app-791.herokuapp.com/quizzes/store-quiz-set", {
               headers: {
                 "Contetnt-Type": undefined,
                 authorization: localStorage.getItem("token"),
@@ -51,28 +58,18 @@ export default function Manager({ img, setImg }) {
               method: "POST",
               body: formData,
             })
-              .then((res) => res.json())
-              .then(console.log)
+              .then(handleResponse)
+              .then((data) => setImg(data.quiz_img))
               .catch(console.log);
-            // const img = e.target.files[0];
-            // console.log(img);
-            // setImg(img);
-            // callApi({
-            //   endpoint: "quizzes/store-quiz-set",
-            //   method: "POST",
-            //   reqData: {
-            //     _id: setId,
-            //     quiz_img: img,
-            //   },
-            //   token: localStorage.getItem("token"),
-            // });
           }}
         />
-        <p>Click here to upload a quiz image</p>
       </div>
       <div className="mt-3 flex justify-between align-center">
         <p className="fw-600">{name}</p>
-        <button className="p-1 edit-btn flex-center">
+        <button
+          className="p-1 edit-btn flex-center"
+          onClick={() => setModalOn(true)}
+        >
           <MdEdit size="1.125rem" />
         </button>
       </div>
@@ -92,6 +89,13 @@ export default function Manager({ img, setImg }) {
           ))}
         </div>
       </div>
+      {modalOn && (
+        <CreateModal
+          initialValues={{ setId, name, type, tags }}
+          onSuccess={() => setModalOn(false)}
+          close={() => setModalOn(false)}
+        />
+      )}
     </StyledManager>
   );
 }
@@ -107,6 +111,10 @@ const StyledManager = styled.div`
     p {
       color: ${getColor("text3")};
       font-size: 0.875rem;
+    }
+    .cover-img {
+      object-fit: contain;
+      height: 100%;
     }
   }
   .icon-wrapper {
