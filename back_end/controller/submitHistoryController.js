@@ -112,7 +112,24 @@ const submitAnswers = async (req, res) => {
     // return res.send({ doc });
 };
 
+const saveHistory = async (req, res) => {
+
+    let user = req.user;
+    let {score, quiz_set_id, user_answers} = req.body;
+
+    let user_id = user._id;
+
+    try {
+        const doc = await UserQuestionHistory.create({user_id, score, quiz_set_id, user_answers});
+        return res.send(doc);
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send(error);
+    }
+};
+
 module.exports = {
     submitAnswers,
+    saveHistory,
     test
 }

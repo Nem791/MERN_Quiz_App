@@ -40,7 +40,7 @@ const getQuizzesForHomePage = async (req, res) => {
 
         // Find and populate
         const quizzes = await QuizSet.aggregate([
-            { $match: { draft: false } },
+            { $match: { draft: false, deleted: false } },
             { $unwind: "$tags" },
             {
                 $bucket: {
@@ -125,10 +125,10 @@ const getQuizSetByTag = async (req, res) => {
         const limit = 10;
 
         if (pageNumber === 1 || pageNumber === undefined) {
-            quizzes = await QuizSet.aggregate().unwind('tags').match({ draft: false, tags: tags }).limit(limit);
+            quizzes = await QuizSet.aggregate().unwind('tags').match({ draft: false, deleted: false, tags: tags }).limit(limit);
 
         } else {
-            quizzes = await QuizSet.aggregate().unwind('tags').match({ draft: false, tags: tags }).limit(limit).skip(limit * pageNumber);
+            quizzes = await QuizSet.aggregate().unwind('tags').match({ draft: false, deleted: false, tags: tags }).limit(limit).skip(limit * pageNumber);
         }
 
         // Join User vs QuizSet
@@ -415,6 +415,36 @@ const likeFunction = async (req, res) => {
     }
 }
 
+const softDeleteQuizSet = async (req, res) => {
+
+    let id = req.params.id;
+
+    try {
+        // Find and populate
+        const quizSet = await QuizSet.findByIdAndUpdate(id, { deleted: true });
+        console.log(quizSet);
+        return res.json({deleted: true, type: 'soft-delete'});
+    } catch (error) {
+        console.log(error);
+        return res.json({ error: String(error) });
+    }
+};
+
+const deleteQuizSet = async (req, res) => {
+
+    let id = req.params.id;
+
+    try {
+        // Find and populate
+        const quizSet = await QuizSet.findByIdAndDelete(id);
+        console.log(quizSet);
+        return res.json({deleted: true, type: 'delete'});
+    } catch (error) {
+        console.log(error);
+        return res.json({ error: String(error) });
+    }
+};
+
 module.exports = {
     getQuizzes,
     getQuizSetById,
@@ -425,5 +455,7 @@ module.exports = {
     updateDraft,
     likeFunction,
     saveQuizzesMock,
+    softDeleteQuizSet,
+    deleteQuizSet,
     test
 }

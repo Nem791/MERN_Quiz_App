@@ -87,9 +87,14 @@ const searchQuiz = async (req, res) => {
 
     if (additionQuery.sort) {
         switch (additionQuery.sort) {
-            case 'date':
+            case 'dateAsc':
                 // Sort theo ngay tao 
                 pipeline.push({ $sort: { date_created: -1 } });
+                break;
+
+            case 'dateDesc':
+                // Sort theo ngay tao 
+                pipeline.push({ $sort: { date_created: 1 } });
                 break;
 
             default:

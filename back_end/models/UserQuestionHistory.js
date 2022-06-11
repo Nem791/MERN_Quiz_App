@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const QuizSet = require('./QuizSet');
 const Schema = mongoose.Schema;
 
 const UserQuestionHistorySchema = new Schema({
@@ -28,6 +29,14 @@ const UserQuestionHistorySchema = new Schema({
     duration: {
         type: String
     }
+});
+
+// Them so luong nguoi dung da lam` quiz (field completions cua QuizSet)
+UserQuestionHistorySchema.post('save', function(doc){
+    var completion = QuizSet.findById(this.quiz_set_id).exec().then((quizset) => {
+        quizset.completions++;
+        quizset.save();
+    });
 });
 
 const UserQuestionHistory = mongoose.model('UserQuestionHistory', UserQuestionHistorySchema);

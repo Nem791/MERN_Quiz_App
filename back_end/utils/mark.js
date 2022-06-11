@@ -1,9 +1,9 @@
 function markMultipleChoice(rightAnswer, submitAnswer, options) {
     let indexAnswer = options.findIndex(a => a.toLowerCase().trim() === rightAnswer.toLowerCase().trim());
     if (rightAnswer === submitAnswer) {
-        return {mark1: 1, indexAnswers1: indexAnswer};
+        return {mark1: 1, indexAnswers1: [indexAnswer]};
     }
-    return {mark1: 0, indexAnswers1: indexAnswer};
+    return {mark1: 0, indexAnswers1: [indexAnswer]};
 }
 
 function markFillBlank1(rightAnswer, submitAnswer) {
