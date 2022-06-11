@@ -1,17 +1,21 @@
 import cn from "classnames";
 import { useEffect, useState } from "react";
-import callApi from "../../helpers/callApi";
+import callApi, { handleResponse } from "../../helpers/callApi";
+import BottomBar from "./BottomBar";
 import Question from "./Question";
+import TopBar from "./TopBar";
 
-const Timer = ({ timeLimit, setQuestResult }) => {
+const Timer = ({ timeLimit, questResult, setQuestResult }) => {
   const [timer, setTimer] = useState(timeLimit);
   const pct = (timer / timeLimit) * 100;
 
   useEffect(() => {
-    if (timer > 0) {
-      setTimeout(() => setTimer((prev) => prev - 0.01), [10]);
-    } else setQuestResult(false);
-  }, [timer, setQuestResult]);
+    if (questResult === null) {
+      if (timer > 0) {
+        setTimeout(() => setTimer((prev) => prev - 0.01), [10]);
+      } else setQuestResult(0);
+    }
+  }, [timer, setQuestResult, questResult]);
 
   useEffect(() => {
     setTimer(timeLimit);
@@ -25,45 +29,35 @@ const Timer = ({ timeLimit, setQuestResult }) => {
   );
 };
 
-export default function Core({ step, setId, currentQuest }) {
+export default function Core({ step, setStep, currentQuest }) {
   const [point, setPoint] = useState(0);
   const [chosenOpts, setChosenOpts] = useState([]);
   const [rightOpts, setRightOpts] = useState([]);
   const [questResult, setQuestResult] = useState(null);
   const [selectDone, setSelectDone] = useState(false);
-  console.log(chosenOpts);
 
   const choose = (ansNo) => {
     if (selectDone) return;
-    if (currentQuest.type === "multiple_choice_answers") {
-      setChosenOpts((prev) => {
-        if (prev.includes(ansNo)) {
-          return prev.filter((opt) => opt !== ansNo);
-        }
-        return [...prev, ansNo];
-      });
-    } else {
+    switch (currentQuest.type) {
+      case "multiple_choice":
+        setChosenOpts([ansNo]);
+        setSelectDone(true);
+        setTimeout(() => submit([ansNo]), 1000);
+        break;
+      case "multiple_choice_answers":
+        setChosenOpts((prev) => {
+          if (prev.includes(ansNo)) {
+            return prev.filter((opt) => opt !== ansNo);
+          }
+          return [...prev, ansNo];
+        });
+        break;
+      default:
+        return;
     }
-
-    // if (chosenOpts + 1 === numOfRightAns) {
-    //   setSelectDone(true);
-    //   callApi({
-    //     endpoint: "submit/calculate-quiz-score",
-    //     method: "POST",
-    //     reqData: {
-    //       answers: [
-    //         {
-    //           quiz: setId,
-    //           user_answers: chosenOpts.map((no) => answers[no]),
-    //         },
-    //       ],
-    //     },
-    //   });
-    // }
-    // callApi({ }).then(() => setRightAns(index));
   };
 
-  const submit = () => {
+  const submit = (chosenOpts) => {
     const reqData = {
       answers: [
         {
@@ -79,25 +73,37 @@ export default function Core({ step, setId, currentQuest }) {
       reqData,
       token: localStorage.getItem("token"),
     })
-      .then((res) => {
-        if (res.ok) return res.json();
-      })
+      .then(handleResponse)
       .then((data) => {
+        console.log(data);
         setPoint((prev) => prev + data.score);
         setRightOpts(data.indexOfAnswers);
+        setQuestResult(
+          data.indexOfAnswers.reduce(
+            (result, next) => result + (chosenOpts.includes(next) ? 1 : 0),
+            0
+          )
+        );
+        setTimeout(() => {
+          setChosenOpts([]);
+          setRightOpts([]);
+          setQuestResult(null);
+          setSelectDone(false);
+          setStep((prev) => prev + 1);
+        }, 2000);
       })
       .catch(console.log);
   };
-
   return (
     <>
       <div className="p-1 full-w">
         <Timer
           timeLimit={currentQuest.timer || 0}
+          questResult={questResult}
           setQuestResult={setQuestResult}
         />
       </div>
-      <div className="px-2 py-3" style={{ height: "2.5rem" }}></div>
+      <TopBar point={point} />
       {step >= 0 && (
         <div className="qna-sec grow-1">
           <Question
@@ -105,20 +111,13 @@ export default function Core({ step, setId, currentQuest }) {
             question={currentQuest.question}
             answers={currentQuest.options}
             chosenOpts={chosenOpts}
-            setChosenOpts={setChosenOpts}
             rightOpts={rightOpts}
-            setRightOpts={setRightOpts}
             selectDone={selectDone}
-            setSelectDone={setSelectDone}
-            setQuestResult={setQuestResult}
             choose={choose}
           />
         </div>
       )}
-      <div style={{ height: "88px" }}>
-        {questResult !== null && <p>{`${questResult} correct answers`}</p>}
-        <button onClick={submit}>Submit</button>
-      </div>
+      <BottomBar questResult={questResult} submit={() => submit(chosenOpts)} />
     </>
   );
 }

@@ -54,7 +54,7 @@ const StyledPrepare = styled.div`
     right: 0;
     transform: translateY(-50%);
     height: 0;
-    transition: height 400ms linear;
+    transition: height 350ms linear;
     background-color: rgba(0, 0, 0, 0.3);
     &.expand {
       height: 100vh;

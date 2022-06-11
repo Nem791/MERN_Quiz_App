@@ -68,26 +68,21 @@ const StyledQuestion = styled.div`
     font-size: 1.5rem;
     color: white;
     transition: all 300ms linear;
-    &.selectDone.chosen:not(.wrong),
+    &.chosen:not(.wrong),
     &.right {
       position: relative;
       top: -0.5rem;
       box-shadow: 0 0 0 3px white;
-    }
-    &.selectDone.hidden,
-    &.hidden.wrong {
-      opacity: 0;
-      cursor: default;
-    }
-    &.hidden.right {
-      opacity: 1;
     }
     &.right {
       background-color: var(--green) !important;
       color: black;
     }
     &.chosen.wrong {
-      background-color: ${getColor("error")};
+      background-color: ${getColor("error")} !important;
+    }
+    &.hidden.wrong {
+      opacity: 0;
     }
     &.no-0 {
       background-color: ${mausac.xanhbien};

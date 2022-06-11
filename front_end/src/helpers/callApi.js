@@ -18,3 +18,8 @@ export default function callApi({ endpoint, method, reqData, token, queries }) {
   }
   return fetch(`http://localhost:3000/${endpoint}${query}`, options);
 }
+
+export function handleResponse(res) {
+  if (res.ok) return res.json();
+  throw new Error(res.message);
+}

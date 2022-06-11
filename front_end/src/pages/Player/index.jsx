@@ -34,7 +34,7 @@ export default function Player() {
   return (
     <StyledPlayer className="flex-col pos-relative">
       {currentQuest && (
-        <Core step={step} setId={playingSet._id} currentQuest={currentQuest} />
+        <Core step={step} setStep={setStep} currentQuest={currentQuest} />
       )}
       {step === -1 && <Prepare step={step} />}
     </StyledPlayer>
@@ -58,18 +58,3 @@ const StyledPlayer = styled.div`
     padding: 0 8px 8px;
   }
 `;
-
-// {
-//   quests: [
-//     {
-//       question: "What?",
-//       answers: ["A", "B", "C", "D"],
-//       timeLimit: 30,
-//     },
-//     {
-//       question: "How?",
-//       answers: ["1", "2", "3"],
-//       timeLimit: 30,
-//     },
-//   ],
-// }
