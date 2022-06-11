@@ -22,5 +22,18 @@ const loginValidation = function (data) {
     return schema.validate(data);
 }
 
+const userValidation = function (data) {
+    const schema = Joi.object({
+        name: Joi.string().min(4),
+        email: Joi.string().email().min(4),
+        password: Joi.string().min(6),
+        gender: Joi.string(),
+        birthday: Joi.date().format('YYYY/MM/DD').utc()
+    });
+
+    return schema.validate(data);
+}
+
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
+module.exports.userValidation = userValidation;

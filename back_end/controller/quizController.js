@@ -268,7 +268,6 @@ const saveQuizSet = async (req, res) => {
 const saveQuizzes = async (req, res) => {
     // Luu DataTransferItemList, content, image to database 
     console.log('req.body-', req.body);
-    let files = req.files;
     let setData = req.body;
 
     // console.log(files);
@@ -291,6 +290,8 @@ const saveQuizzes = async (req, res) => {
         console.log("setData._id: ", setData._id);
         const { _id, ...updatedData } = setData;
         updatedData.set = mongoose.Types.ObjectId(updatedData.set);
+
+        console.log("updatedData: ", updatedData);
 
         let queryData = { $set: updatedData };
         console.log(queryData);

@@ -7,6 +7,9 @@ const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
 const MongoStore = require("connect-mongo");
 const cors = require("cors");
+const dotenv = require('dotenv');
+dotenv.config();
+
 
 const db = "mongodb://localhost:27017/quiz_db";
 const connection = mongoose.connect(db, {
@@ -19,6 +22,7 @@ var usersRouter = require("./routes/users");
 var quizzesRouter = require("./routes/quiz");
 var submitRouter = require("./routes/submit");
 var filterQuiztRouter = require("./routes/filter-quiz");
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 var app = express();
 
@@ -51,5 +55,9 @@ app.use("/users", usersRouter);
 app.use("/quizzes", quizzesRouter);
 app.use("/submit", submitRouter);
 app.use("/filter-quiz", filterQuiztRouter);
+
+
+app.use(notFound);
+app.use(errorHandler);
 
 module.exports = app;

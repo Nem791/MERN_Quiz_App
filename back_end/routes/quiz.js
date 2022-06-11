@@ -23,7 +23,7 @@ router.get('/:id', getQuizSetById);
 router.post('/store-quiz-set', checkToken, saveQuizSet);
 
 // Store Quiz in DB 
-router.post('/store-quiz', checkToken, saveQuizzesMock);
+router.post('/store-quiz', checkToken, saveQuizzes);
 
 // Publish Quiz (draft = false) 
 router.put('/update-draft', checkToken, updateDraft);
