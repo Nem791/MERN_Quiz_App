@@ -81,7 +81,7 @@ export default function Answers({ id, deletable, focused, setFocusId }) {
             }
           }}
         >
-          <span className={cn("tooltip top-tooltip", { warnNoText })}>
+          <span className={cn("tooltip", { warnNoText })}>
             {warnNoText ? "Please add text first" : "Mark this answer correct"}
           </span>
           <FaCheck size="0.875rem" />
