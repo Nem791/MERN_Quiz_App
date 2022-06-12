@@ -29,4 +29,92 @@
     }
   },
   "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40c23a6aa2a5ce07ca563"
+  },
+  "quiz_set_id": {
+    "$oid": "62a218b882b8ee9f38f0eee0"
+  },
+  "score": 1,
+  "user_id": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_answers": [
+    {
+      "$oid": "62a4021aafc5b636ec981594"
+    }
+  ],
+  "finishedAt": {
+    "$date": {
+      "$numberLong": "1654918067806"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40c335083eb998cc5c270"
+  },
+  "quiz_set_id": {
+    "$oid": "62a218b882b8ee9f38f0eee0"
+  },
+  "score": 1,
+  "user_id": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_answers": [
+    {
+      "$oid": "62a4021aafc5b636ec981594"
+    }
+  ],
+  "finishedAt": {
+    "$date": {
+      "$numberLong": "1654918193882"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a410aa6a82346745a69a4c"
+  },
+  "quiz_set_id": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "score": 1,
+  "user_id": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_answers": [
+    {
+      "$oid": "62a4021aafc5b636ec981594"
+    }
+  ],
+  "finishedAt": {
+    "$date": {
+      "$numberLong": "1654919305765"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a448e1c41c840e6e9883db"
+  },
+  "quiz_set_id": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "score": 1,
+  "user_id": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_answers": [
+    {
+      "$oid": "62a4021aafc5b636ec981594"
+    }
+  ],
+  "finishedAt": {
+    "$date": {
+      "$numberLong": "1654933116068"
+    }
+  },
+  "__v": 0
 }]

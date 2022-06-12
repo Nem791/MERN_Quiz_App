@@ -52,4 +52,249 @@
   ],
   "misc": [],
   "__v": 0
+},{
+  "_id": {
+    "$oid": "62a377f180b6917ce11a0998"
+  },
+  "quiz": {
+    "$oid": "628f920529d7dc9b48fa83f2"
+  },
+  "user_answers": [
+    "Men are breadwinners and women are caregivers."
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a378bee3cdcd72269127ac"
+  },
+  "quiz": {
+    "$oid": "628f920529d7dc9b48fa83f2"
+  },
+  "user_answers": [
+    "Men are breadwinners and women are caregivers."
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a378e8827d87acd30c7dc4"
+  },
+  "quiz": {
+    "$oid": "628f920529d7dc9b48fa83f2"
+  },
+  "user_answers": [
+    "Men are breadwinners and women are caregivers."
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a378fc827d87acd30c7dc7"
+  },
+  "quiz": {
+    "$oid": "628f920529d7dc9b48fa83f3"
+  },
+  "user_answers": [
+    "Eliminated"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a37909827d87acd30c7dca"
+  },
+  "quiz": {
+    "$oid": "628f920529d7dc9b48fa83f4"
+  },
+  "user_answers": [
+    "is",
+    "for",
+    "an"
+  ],
+  "misc": [
+    1,
+    8,
+    5
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a37913827d87acd30c7dcd"
+  },
+  "quiz": {
+    "$oid": "628f920529d7dc9b48fa83f5"
+  },
+  "user_answers": [
+    "abandon"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a37962827d87acd30c7dd0"
+  },
+  "quiz": {
+    "$oid": "628f842398306d65e66cd0d8"
+  },
+  "user_answers": [
+    "LAN_1",
+    "LAN_2"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a37b26b368ca774e87ae9d"
+  },
+  "quiz": {
+    "$oid": "628f842398306d65e66cd0d8"
+  },
+  "user_answers": [
+    "LAN_1",
+    "LAN_2"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a38319188d721c6ff671c2"
+  },
+  "quiz": {
+    "$oid": "62a2091cdc9823defec38973"
+  },
+  "user_answers": [
+    "1401",
+    "1701"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a3844762696037f42de77d"
+  },
+  "quiz": {
+    "$oid": "62a218b882b8ee9f38f0eee0"
+  },
+  "user_answers": [
+    "1588",
+    "1688"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a3867062696037f42de780"
+  },
+  "quiz": {
+    "$oid": "62a218b882b8ee9f38f0eee0"
+  },
+  "user_answers": [
+    "1588",
+    "1688"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a4021aafc5b636ec981594"
+  },
+  "quiz": {
+    "$oid": "62a218b882b8ee9f38f0eee0"
+  },
+  "user_answers": [
+    "1588",
+    "1688"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a4194d14f7b15fe9f51527"
+  },
+  "quiz": {
+    "$oid": "62a218b882b8ee9f38f0eee0"
+  },
+  "user_answers": [
+    "1588",
+    "1688"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a4197014f7b15fe9f5152a"
+  },
+  "quiz": {
+    "$oid": "62a20fbe3b719fad524456ee"
+  },
+  "user_answers": [
+    "1588"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a41a4228d0b5e88cebd46f"
+  },
+  "quiz": {
+    "$oid": "62a20fbe3b719fad524456ee"
+  },
+  "user_answers": [],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a41a48109f8b81f8201f46"
+  },
+  "quiz": {
+    "$oid": "62a20fbe3b719fad524456ee"
+  },
+  "user_answers": [],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a41a8b9a35a1652f73a864"
+  },
+  "quiz": {
+    "$oid": "62a20fbe3b719fad524456ee"
+  },
+  "user_answers": [],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a41c4f3f87fb77b29dbb47"
+  },
+  "quiz": {
+    "$oid": "62a20fbe3b719fad524456ee"
+  },
+  "user_answers": [],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a4465e5af5d7c285fbb57b"
+  },
+  "quiz": {
+    "$oid": "62a20fbe3b719fad524456ee"
+  },
+  "user_answers": [
+    "1588"
+  ],
+  "misc": [],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a4467dc41c840e6e9883d8"
+  },
+  "quiz": {
+    "$oid": "62a20fbe3b719fad524456ee"
+  },
+  "user_answers": [
+    "1588"
+  ],
+  "misc": [],
+  "__v": 0
 }]

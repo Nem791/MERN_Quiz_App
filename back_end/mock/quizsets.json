@@ -3,8 +3,8 @@
     "$oid": "62a2091cdc9823defec38973"
   },
   "comments": [],
-  "completions": 0,
-  "date_created": "2022-06-09T13:27:55.832Z",
+  "completions": 2,
+  "date_created": "2022-06-08T13:27:55.832Z",
   "deleted": false,
   "draft": false,
   "likes": 0,
@@ -48,7 +48,9 @@
   ],
   "title": "Epic Mistakes of History",
   "type": "questions",
-  "user": "628e2b597105592acbce1fd5",
+  "user": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
   "user_liked": []
 },{
   "_id": {
@@ -56,7 +58,7 @@
   },
   "comments": [],
   "completions": 0,
-  "date_created": "2022-06-09T13:27:55.832Z",
+  "date_created": "2022-06-08T13:27:55.832Z",
   "deleted": false,
   "draft": false,
   "likes": 0,
@@ -130,7 +132,9 @@
   ],
   "title": "Some, Any",
   "type": "questions",
-  "user": "628e2b597105592acbce1fd5",
+  "user": {
+    "$oid": "62a45ea33a00a601ea7e64bb"
+  },
   "user_liked": []
 },{
   "_id": {
@@ -182,7 +186,9 @@
   ],
   "title": "Passive Sentences",
   "type": "questions",
-  "user": "628e2b597105592acbce1fd5",
+  "user": {
+    "$oid": "62a45ea73a00a601ea7e64bc"
+  },
   "user_liked": []
 },{
   "_id": {
@@ -231,7 +237,9 @@
   ],
   "title": "Idioms on Animals",
   "type": "questions",
-  "user": "628e2b597105592acbce1fd5",
+  "user": {
+    "$oid": "62a45eac3a00a601ea7e64bd"
+  },
   "user_liked": []
 },{
   "_id": {
@@ -280,7 +288,9 @@
   ],
   "title": "Ving-To V",
   "type": "questions",
-  "user": "628e2b597105592acbce1fd5",
+  "user": {
+    "$oid": "62a45eb13a00a601ea7e64be"
+  },
   "user_liked": []
 },{
   "_id": {
@@ -329,6 +339,380 @@
   ],
   "title": "/t/ - /d/ - /id/",
   "type": "questions",
-  "user": "628e2b597105592acbce1fd5",
+  "user": {
+    "$oid": "62a45e7e3a00a601ea7e64ba"
+  },
+  "user_liked": []
+},{
+  "_id": {
+    "$oid": "62a452e31b58c0ef3da21e7a"
+  },
+  "__v": 0,
+  "comments": [],
+  "completions": 0,
+  "date_created": {
+    "$date": {
+      "$numberLong": "1654933115894"
+    }
+  },
+  "deleted": false,
+  "draft": true,
+  "likes": 0,
+  "max_score": 0,
+  "quiz_img": "https://redzonekickboxing.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+  "quizzes": [
+    {
+      "$oid": "62a454f43fe39cef649a9890"
+    }
+  ],
+  "tags": [
+    "English",
+    "Japanese"
+  ],
+  "title": "So / Neither / Either / Too",
+  "type": "questions",
+  "user": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_liked": []
+},{
+  "_id": {
+    "$oid": "62a35b9e5a79fb1b731aa7f5"
+  },
+  "comments": [],
+  "completions": 0,
+  "date_created": "2022-06-09T13:27:55.832Z",
+  "deleted": false,
+  "draft": false,
+  "likes": 0,
+  "max_score": 0,
+  "quiz_img": "/images/great-wall-of-china-junior-1-62a35b9e5a79fb1b731aa7f5.jpg",
+  "quizzes": [
+    {
+      "$oid": "62a46130f03a10c77bb0ee58"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee5b"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee5e"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee61"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee64"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee67"
+    }
+  ],
+  "tags": [
+    "Geography"
+  ],
+  "title": "Great Wall of China - Junior 1",
+  "type": "questions",
+  "user": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_liked": []
+},{
+  "_id": {
+    "$oid": "62a35ea1d9bf4e3d8c0c976e"
+  },
+  "comments": [],
+  "completions": 0,
+  "date_created": "2022-06-09T13:27:55.832Z",
+  "deleted": false,
+  "draft": false,
+  "likes": 0,
+  "max_score": 0,
+  "quiz_img": "/images/wonders-of-the-past-62a35ea1d9bf4e3d8c0c976e.jpg",
+  "quizzes": [
+    {
+      "$oid": "62a46130f03a10c77bb0ee6a"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee6d"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee70"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee73"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee76"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee79"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee7c"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee7f"
+    }
+  ],
+  "tags": [
+    "English",
+    "History"
+  ],
+  "title": "Wonders of the Past",
+  "type": "questions",
+  "user": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_liked": []
+},{
+  "_id": {
+    "$oid": "62a3625da73cdb7257ef7913"
+  },
+  "comments": [],
+  "completions": 0,
+  "date_created": "2022-06-09T13:27:55.832Z",
+  "deleted": false,
+  "draft": false,
+  "likes": 0,
+  "max_score": 0,
+  "quiz_img": "/images/mekong-amazing-62a3625da73cdb7257ef7913.png",
+  "quizzes": [
+    {
+      "$oid": "62a46130f03a10c77bb0ee82"
+    },
+    {
+      "$oid": "62a46130f03a10c77bb0ee85"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0ee88"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0ee8b"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0ee8e"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0ee91"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0ee94"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0ee97"
+    }
+  ],
+  "tags": [
+    "Geography",
+    "World Language"
+  ],
+  "title": "Mekong Amazing",
+  "type": "questions",
+  "user": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_liked": []
+},{
+  "_id": {
+    "$oid": "62a36583031fa2a33bc38d5d"
+  },
+  "comments": [],
+  "completions": 0,
+  "date_created": "2022-06-09T13:27:55.832Z",
+  "deleted": false,
+  "draft": false,
+  "likes": 0,
+  "max_score": 0,
+  "quiz_img": "/images/epic-mistakes-of-history-62a36583031fa2a33bc38d5d.jpg",
+  "quizzes": [
+    {
+      "$oid": "62a46131f03a10c77bb0ee9a"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0ee9d"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eea0"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eea3"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eea6"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eea9"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eeac"
+    }
+  ],
+  "tags": [
+    "History"
+  ],
+  "title": "Epic Mistakes of History",
+  "type": "questions",
+  "user": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_liked": []
+},{
+  "_id": {
+    "$oid": "62a36a259a37ae6720ac85a8"
+  },
+  "comments": [],
+  "completions": 0,
+  "date_created": "2022-06-09T13:27:55.832Z",
+  "deleted": false,
+  "draft": false,
+  "likes": 0,
+  "max_score": 0,
+  "quiz_img": "/images/gender-equality-62a36a259a37ae6720ac85a8.png",
+  "quizzes": [
+    {
+      "$oid": "62a46131f03a10c77bb0eeaf"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eeb2"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eeb5"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eeb8"
+    }
+  ],
+  "tags": [
+    "Social Studies"
+  ],
+  "title": "Gender Equality",
+  "type": "questions",
+  "user": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_liked": []
+},{
+  "_id": {
+    "$oid": "62a36ddd7b25295743ed5ac3"
+  },
+  "comments": [],
+  "completions": 0,
+  "date_created": "2022-06-09T13:27:55.832Z",
+  "deleted": false,
+  "draft": false,
+  "likes": 0,
+  "max_score": 0,
+  "quiz_img": "/images/ecosystems-62a36ddd7b25295743ed5ac3.png",
+  "quizzes": [
+    {
+      "$oid": "62a46131f03a10c77bb0eebb"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eebe"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eec1"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eec4"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eec7"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eeca"
+    }
+  ],
+  "tags": [
+    "Biology",
+    "Science"
+  ],
+  "title": "Ecosystems",
+  "type": "questions",
+  "user": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_liked": []
+},{
+  "_id": {
+    "$oid": "62a370c0d34eabf98b7403f2"
+  },
+  "comments": [],
+  "completions": 0,
+  "date_created": "2022-06-09T13:27:55.832Z",
+  "deleted": false,
+  "draft": false,
+  "likes": 0,
+  "max_score": 0,
+  "quiz_img": "/images/animal-respiratory-systems-62a370c0d34eabf98b7403f2.jpg",
+  "quizzes": [
+    {
+      "$oid": "62a46131f03a10c77bb0eecd"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eed0"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eed3"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eed6"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eed9"
+    }
+  ],
+  "tags": [
+    "Biology"
+  ],
+  "title": "Animal Respiratory Systems",
+  "type": "questions",
+  "user": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
+  "user_liked": []
+},{
+  "_id": {
+    "$oid": "62a3729964024979268a18d6"
+  },
+  "comments": [],
+  "completions": 0,
+  "date_created": "2022-06-09T13:27:55.832Z",
+  "deleted": false,
+  "draft": false,
+  "likes": 0,
+  "max_score": 0,
+  "quiz_img": "/images/galaxies-62a3729964024979268a18d6.jpg",
+  "quizzes": [
+    {
+      "$oid": "62a46131f03a10c77bb0eedc"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eedf"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eee2"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eee5"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eee8"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eeeb"
+    },
+    {
+      "$oid": "62a46131f03a10c77bb0eeee"
+    }
+  ],
+  "tags": [
+    "Science"
+  ],
+  "title": "Galaxies",
+  "type": "questions",
+  "user": {
+    "$oid": "628e2b597105592acbce1fd5"
+  },
   "user_liked": []
 }]

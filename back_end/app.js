@@ -11,11 +11,24 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 
-const db = "mongodb://localhost:27017/quiz_db";
-const connection = mongoose.connect(db, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// const db = "mongodb://localhost:27017/quiz_db";
+// const connection = mongoose.connect(db, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+const db = "mongodb+srv://root:ktqd1234@cluster0.gdomz.mongodb.net/quiz_db?retryWrites=true&w=majority";
+
+try {
+  // Connect to the MongoDB cluster
+  mongoose.connect(
+    db,
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    () => console.log(" Mongoose blog mindx is connected")
+  );
+} catch (e) {
+  console.log("could not connect");
+}
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -49,6 +62,8 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(fileUpload());
+
+app.all
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

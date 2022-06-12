@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const checkToken = require('../auth/checkToken');
-const { getQuizzes, saveQuiz, getQuizSetById, test, getQuizzesForHomePage, getQuizSetByTag, saveQuizSet, saveQuizzes, updateDraft, saveQuizzesMock, softDeleteQuizSet, deleteQuizSet, deleteQuiz } = require('../controller/quizController');
+const { getQuizzes, saveQuiz, getQuizSetById, test, getQuizzesForHomePage, getQuizSetByTag, saveQuizSet, saveQuizzes, updateDraft, saveQuizzesMock, softDeleteQuizSet, deleteQuizSet, deleteQuiz, getDeletedQuiz } = require('../controller/quizController');
 
 // Render trang home
 router.get('/', getQuizzesForHomePage);
@@ -39,6 +39,9 @@ router.delete('/delete-quiz/:id', checkToken, deleteQuiz);
 
 // Add mock data 
 router.post('/add-mock', checkToken, saveQuizzesMock);
+
+// Get deleted QuizSet 
+router.get('/get-deleted-quiz-set/:id', checkToken, getDeletedQuiz);
 
 
 module.exports = router;

@@ -2,10 +2,10 @@
   "_id": {
     "$oid": "628e2b597105592acbce1fd5"
   },
-  "profile_img": "https://construct-static.com/images/v1007/r/uploads/tutorial/0/images/17449/windows-8-user-account_v650.jpg",
+  "profile_img": "/images/nam123-628e2b597105592acbce1fd5.jpeg",
   "name": "Nam123",
   "email": "abc@gmail.com",
-  "password": "$2b$10$YkepFq.vpnMeKsfaiCnIfuRQlcOaRU6DnOcso/LSNGwxToPvWfM.i",
+  "password": "$2b$10$8yKAlRKhzOrAdvvgWcjQLOvPIF2LGLKDoX/f/sw7ha5B8Ax1kk1Oe",
   "__v": 0,
   "liked_quiz": [
     {
@@ -23,5 +23,63 @@
   "name": "Nam131",
   "email": "abcde@gmail.com",
   "password": "$2b$10$LQMuU54NFEwEMHj8N.O44upyno1Na6xl76Mr12rCMx97ntGPEfl6G",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a34b5f1753013269dc6085"
+  },
+  "profile_img": "https://construct-static.com/images/v1007/r/uploads/tutorial/0/images/17449/windows-8-user-account_v650.jpg",
+  "liked_quiz": [],
+  "name": "Nam131",
+  "email": "abc123@gmail.com",
+  "password": "$2b$10$t5gqF7MwzVvzSRLcqCdEDeCO75aBMpt4isauwgJ0QsQK3Dg45IM5K",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a34d2d8940ba91555c8e5c"
+  },
+  "profile_img": "https://construct-static.com/images/v1007/r/uploads/tutorial/0/images/17449/windows-8-user-account_v650.jpg",
+  "liked_quiz": [],
+  "name": "Nam131",
+  "email": "abc321@gmail.com",
+  "password": "$2b$10$cgU5p8Wbn5voXWp9SPcA/OuURLiRRWXazIrKZ.RkO9gsZL5JxUn3u",
+  "gender": "male",
+  "birthday": {
+    "$date": {
+      "$numberLong": "1008176400000"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a34ebc29d6d6189f632b35"
+  },
+  "profile_img": "https://construct-static.com/images/v1007/r/uploads/tutorial/0/images/17449/windows-8-user-account_v650.jpg",
+  "liked_quiz": [],
+  "name": "Huan",
+  "email": "emailmoi@gmail.com",
+  "password": "$2b$10$bTfuOXFUx9QqS6yjePATN.MSQ3ALiWt8GjknfXjy3ZtB8ylkpTdLi",
+  "gender": "male",
+  "birthday": {
+    "$date": {
+      "$numberLong": "1044032400000"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a423dd8707aa8640302c98"
+  },
+  "profile_img": "https://construct-static.com/images/v1007/r/uploads/tutorial/0/images/17449/windows-8-user-account_v650.jpg",
+  "liked_quiz": [],
+  "name": "Huan",
+  "email": "emailmoi1@gmail.com",
+  "password": "$2b$10$zXkm3Sy3qtMitHedvptBeeH3x8O/WKQlJTXW2fxsaJzzmonMpmVBy",
+  "gender": "male",
+  "birthday": {
+    "$date": {
+      "$numberLong": "1044032400000"
+    }
+  },
   "__v": 0
 }]

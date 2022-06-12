@@ -464,6 +464,21 @@ const deleteQuiz = async (req, res) => {
     }
 };
 
+const getDeletedQuiz = async (req, res) => {
+
+    let id = req.params.id;
+
+    try {
+        // Find and populate
+        const quizSet = await QuizSet.aggregate().match({deleted: true, user: id});
+        console.log(quizSet);
+        return res.send(quizSet);
+    } catch (error) {
+        console.log(error);
+        return res.json({ error: String(error) });
+    }
+};
+
 module.exports = {
     getQuizzes,
     getQuizSetById,
@@ -477,5 +492,6 @@ module.exports = {
     softDeleteQuizSet,
     deleteQuizSet,
     deleteQuiz,
+    getDeletedQuiz,
     test
 } 
