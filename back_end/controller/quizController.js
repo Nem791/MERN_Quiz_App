@@ -425,7 +425,7 @@ const softDeleteQuizSet = async (req, res) => {
         // Find and populate
         const quizSet = await QuizSet.findByIdAndUpdate(id, { deleted: true });
         console.log(quizSet);
-        return res.json({deleted: true, type: 'soft-delete'});
+        return res.json({ deleted: true, type: 'soft-delete' });
     } catch (error) {
         console.log(error);
         return res.json({ error: String(error) });
@@ -440,9 +440,9 @@ const deleteQuizSet = async (req, res) => {
         // Find and populate
         const quizSet = await QuizSet.findByIdAndDelete(id);
         console.log(quizSet);
-        const quizzes = await Quiz.deleteMany({set: id});
+        const quizzes = await Quiz.deleteMany({ set: id });
         console.log(quizzes);
-        return res.json({deleted: true, type: 'delete'});
+        return res.json({ deleted: true, type: 'delete' });
     } catch (error) {
         console.log(error);
         return res.json({ error: String(error) });
@@ -457,7 +457,7 @@ const deleteQuiz = async (req, res) => {
         // Find and populate
         const quiz = await Quiz.findByIdAndDelete(id);
         console.log(quiz);
-        return res.json({deleted: true, type: 'delete'});
+        return res.json({ deleted: true, type: 'delete' });
     } catch (error) {
         console.log(error);
         return res.json({ error: String(error) });
@@ -470,7 +470,7 @@ const getDeletedQuiz = async (req, res) => {
 
     try {
         // Find and populate
-        const quizSet = await QuizSet.aggregate().match({deleted: true, user: id});
+        const quizSet = await QuizSet.aggregate().match({ deleted: true , user: mongoose.Types.ObjectId(id)});
         console.log(quizSet);
         return res.send(quizSet);
     } catch (error) {
