@@ -1,3 +1,5 @@
+import { _SERVER } from "../configs";
+
 export default function callApi({ endpoint, method, reqData, token, queries }) {
   const headers = {
     "Content-Type": "application/json",
@@ -16,11 +18,7 @@ export default function callApi({ endpoint, method, reqData, token, queries }) {
       .join("&");
     query = "?" + query;
   }
-  return fetch(`http://localhost:3000/${endpoint}${query}`, options);
-  // return fetch(
-  //   `https://quiz-app-791.herokuapp.com/${endpoint}${query}`,
-  //   options
-  // );
+  return fetch(`${_SERVER}/${endpoint}${query}`, options);
 }
 
 export function handleResponse(res) {

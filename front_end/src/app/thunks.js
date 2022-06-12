@@ -1,14 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { _SERVER } from "../configs";
 import callApi, { handleResponse } from "../helpers/callApi";
 import { FAKE_DELETE } from "./uiSlice";
 
 export const backendApi = createApi({
   reducerPath: "backendApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000",
-    // baseUrl: "https://quiz-app-791.herokuapp.com",
+    baseUrl: _SERVER,
     prepareHeaders: (headers, { getState }) => {
-      // const token = getState().auth.token;
       const token = localStorage.getItem("token");
       if (token) {
         headers.set("authorization", `Bearer ${token}`);

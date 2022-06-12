@@ -8,7 +8,10 @@ import EndScreen from "./EndScreen";
 import Prepare from "./Prepare";
 
 export default function Player() {
-  const [playingSet, setPlayingSet] = useState();
+  const [{ _id, quests }, setPlayingSet] = useState({
+    _id: null,
+    quests: [],
+  });
   const [point, setPoint] = useState(0);
   const [step, setStep] = useState(-1);
   const [userAnswers, setUserAnswers] = useState([]);
@@ -39,7 +42,8 @@ export default function Player() {
       .catch(console.log);
   }, [params.id]);
 
-  const currentQuest = playingSet?.quests[step];
+  const currentQuest = _id && quests[step];
+  const numOfQuests = _id && quests.length;
   return (
     <StyledPlayer className="flex-col pos-relative">
       {currentQuest && (
@@ -53,9 +57,9 @@ export default function Player() {
           setUserAnswers={setUserAnswers}
         />
       )}
-      {(playingSet?.quests.length || -1) === step && (
+      {numOfQuests && step === numOfQuests && (
         <EndScreen
-          setId={playingSet?._id}
+          setId={_id}
           point={point}
           setStep={setStep}
           setPoint={setPoint}

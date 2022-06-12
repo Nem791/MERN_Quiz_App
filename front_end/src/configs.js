@@ -1,19 +1,20 @@
 import { AiOutlineEdit } from "react-icons/ai";
-import { BiBox, BiEdit, BiUser } from "react-icons/bi";
+import { BiEdit, BiUser } from "react-icons/bi";
 import {
   FaRegHeart,
   FaMapMarkedAlt,
   FaRegCheckSquare,
-  FaRegFolder,
+  // FaRegFolder,
   FaRegUserCircle,
+  FaTrashAlt,
 } from "react-icons/fa";
 import { GiBackwardTime } from "react-icons/gi";
-import { HiOutlineCog } from "react-icons/hi";
+// import { HiOutlineCog } from "react-icons/hi";
 import { VscLibrary } from "react-icons/vsc";
 import { mausac } from "./theme";
 
-export const _IMG_BASE_URL = "http://localhost:3000";
-// export const _IMG_BASE_URL = "https://quiz-app-791.herokuapp.com";
+// export const _SERVER = "http://localhost:3000";
+export const _SERVER = "https://quiz-app-791.herokuapp.com";
 
 export const _USER_NAME_MIN_LEN = 4;
 export const _PASSWORD_MIN_LEN = 6;
@@ -21,8 +22,8 @@ export const _PASSWORD_MIN_LEN = 6;
 export const _SIDEBAR_LINKS = [
   { Icon: FaMapMarkedAlt, label: "Explore", path: "/" },
   { Icon: VscLibrary, label: "My library", path: "private" },
-  { Icon: HiOutlineCog, label: "Settings", path: "settings" },
-  { Icon: FaRegFolder, label: "Collections", path: "profile/collections" },
+  // { Icon: HiOutlineCog, label: "Settings", path: "settings" },
+  // { Icon: FaRegFolder, label: "Collections", path: "profile/collections" },
   { Icon: FaRegUserCircle, label: "Profile", path: "profile" },
 ];
 
@@ -83,33 +84,33 @@ export const _LIBRARY_NAMES = [
   "previouslyUsed",
   "likedQuizzes",
   "draftQuizzes",
+  "get-deleted-quiz-set",
 ];
 
 export const _LIBRARY_INFOS = {
   // [_LIBRARY_NAMES[0]]: {
   //   text: "All my content",
   //   Icon: BiBox,
-  //   endpoint: "",
   // },
   [_LIBRARY_NAMES[0]]: {
     text: "Created by me",
     Icon: BiUser,
-    endpoint: "",
   },
   [_LIBRARY_NAMES[1]]: {
     text: "Previously played",
     Icon: GiBackwardTime,
-    endpoint: "",
   },
   [_LIBRARY_NAMES[2]]: {
     text: "Liked by me",
     Icon: FaRegHeart,
-    endpoint: "",
   },
   [_LIBRARY_NAMES[3]]: {
     text: "Draft",
     Icon: BiEdit,
-    endpoint: "",
+  },
+  [_LIBRARY_NAMES[4]]: {
+    text: "Deleted",
+    Icon: FaTrashAlt,
   },
 };
 

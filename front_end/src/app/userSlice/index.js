@@ -12,6 +12,7 @@ const userSlice = createSlice({
   initialState: {
     _id: null,
     name: "",
+    email: "",
     formInfo: initialFormInfo,
   },
   reducers: {
@@ -21,10 +22,18 @@ const userSlice = createSlice({
     LOGOUT: (state) => {
       state._id = null;
       state.name = "";
+      state.email = "";
       localStorage.removeItem("token");
     },
     RESET_ERROR: (state) => {
       state.formInfo.reqError = "";
+    },
+    AUTO_LOGIN: (state, action) => {
+      const { _id, name, email, token } = action.payload;
+      state._id = _id;
+      state.name = name;
+      state.email = email;
+      if (token) localStorage.setItem("token", token);
     },
     SNEAKIN: (state) => {
       state._id = 1;
@@ -62,13 +71,14 @@ function login(state, res) {
     const { user, token } = res;
     state._id = user._id;
     state.name = user.name;
+    state.email = user.email;
     state.formInfo.reqError = "";
     localStorage.setItem("token", token);
   }
   state.formInfo.reqPending = false;
 }
 
-export const { RESET_USER_FORM, LOGOUT, RESET_ERROR, SNEAKIN } =
+export const { RESET_USER_FORM, LOGOUT, RESET_ERROR, SNEAKIN, AUTO_LOGIN } =
   userSlice.actions;
 
 export default userSlice.reducer;

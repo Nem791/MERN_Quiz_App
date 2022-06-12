@@ -9,6 +9,7 @@ export default function RightSec({ library }) {
   const deletedIds = useSelector((state) => state.ui.deletedIds);
   const dispatch = useDispatch();
   if (!data) return null;
+  console.log(data);
   return (
     <StyledRightSec className="full-w">
       <Box className="mb-4 flex" height="2rem"></Box>
@@ -17,6 +18,7 @@ export default function RightSec({ library }) {
           deletedIds[info._id] ? null : (
             <QuizSet
               key={info._id}
+              showOwner={false}
               {...info}
               deleteSet={() => dispatch(DELETE_MY_SET(info._id))}
             />

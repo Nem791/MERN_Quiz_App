@@ -12,6 +12,7 @@ export default function EndScreen({
   userAnswers,
   // setUserAnswers,
 }) {
+  console.log(setId);
   useEffect(() => {
     callApi({
       endpoint: "submit/save-history",

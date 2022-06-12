@@ -18,7 +18,10 @@ export default function SideBar({ setSidebarOn }) {
   const navigate = useNavigate();
   return (
     <StyledSideBar className="flex-col">
-      <div className="mt-2 ml-3 logo-wrapper">
+      <div
+        className="mt-2 ml-3 logo-wrapper pointer"
+        onClick={() => navigate("/")}
+      >
         <SiteLogo />
       </div>
       <div className="p-4 pb-2">

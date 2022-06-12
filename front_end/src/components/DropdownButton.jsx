@@ -12,6 +12,7 @@ export default function DropdownButton({
   IconRight,
   iconRightCn,
   collapseCn,
+  listWrapperCn,
   listItems,
   renderItem,
 }) {
@@ -26,6 +27,7 @@ export default function DropdownButton({
       <Collapse className={collapseCn} open={collapsed}>
         <div
           ref={collapseRef}
+          className={listWrapperCn}
           onClick={() => {
             setCollapsed(false);
           }}

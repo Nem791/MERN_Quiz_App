@@ -2,16 +2,18 @@ import cn from "classnames";
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import styled from "styled-components";
+import { backendImg } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { Box } from "../../styledComponents/Layout";
 
-export default function TopSec() {
+const dummyStats = [
+  { text: "quizzes", count: 0 },
+  { text: "collections", count: 0 },
+];
+
+export default function TopSec({ profile_img, name, email }) {
   const [navIndex, setNaxIndex] = useState(0);
-  const stats = [
-    { text: "quizzes", count: 0 },
-    { text: "collections", count: 0 },
-  ];
-  const navItems = [{ text: "Library" }, { text: "Collections" }];
+  const navItems = [{ text: "Settings" }];
   return (
     <StyledTopSec className="pos-relative">
       <button className="ml-auto px-4 py-1 edit-btn flex align-center b-radius-1">
@@ -23,20 +25,20 @@ export default function TopSec() {
           <Box width="7.5rem" height="7.5rem">
             <img
               className="full-w full-h b-radius-round"
-              src="https://lh3.googleusercontent.com/a-/AOh14GgqOWUD-SJqp5bmrUDHPllSJTKkdCd-P6Bk24BW=s96-c"
+              src={backendImg(profile_img)}
               alt=""
             />
           </Box>
           <div className="personal-info">
             <div className="flex">
-              <p className="fw-600">Huan</p>
+              <p className="fw-600">{name}</p>
             </div>
-            <p className="fs-0875 lh-15">lathieuhuan@gmail.com</p>
+            <p className="fs-0875 lh-15">{email}</p>
           </div>
         </div>
         <div className="ml-auto flex-col">
           <div className="mt-auto flex">
-            {stats.map(({ text, count }) => (
+            {dummyStats.map(({ text, count }) => (
               <div key={text} className="ml-5 flex-col align-center">
                 <p className="stat-count">{count}</p>
                 <p className="stat-text fs-075">{text}</p>

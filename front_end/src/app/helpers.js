@@ -3,6 +3,7 @@ export async function handleResponse(res) {
     console.log(res);
   }
   const response = await res.json();
+  console.log(response);
   if (response.error) {
     throw new Error(response.error);
   }

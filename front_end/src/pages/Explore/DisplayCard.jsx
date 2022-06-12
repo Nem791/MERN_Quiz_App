@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { OPEN_PREVIEW } from "../../app/uiSlice";
 import { _QUEST_SET_TYPES } from "../../configs";
-import { renderBackendImg } from "../../helpers/misc";
+import { backendImg } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { boxShadows, breakpoints } from "../../theme";
 
@@ -14,7 +14,7 @@ export default function Card(info) {
         <div className="flex top-part">
           <img
             className="full-w full-h"
-            src={renderBackendImg(info.quiz_img)}
+            src={backendImg(info.quiz_img)}
             alt=""
           />
         </div>

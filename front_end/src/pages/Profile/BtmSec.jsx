@@ -1,39 +1,114 @@
+import { useState } from "react";
 import styled from "styled-components";
-import { getColor } from "../../styledComponents/helpers";
-import { imgLink } from "../../helpers/misc";
+import Form from "../../components/Form";
+import callApi, { handleResponse } from "../../helpers/callApi";
 
-export default function BtmSec() {
+export default function BtmSec({ name, email, setInfo }) {
+  const [submitState, setSubmitState] = useState({
+    submitting: false,
+    submitError: "",
+  });
+  const changeInfo = (reqData, changeFE) => {
+    callApi({
+      endpoint: "users/update-user-info",
+      method: "PATCH",
+      reqData,
+      token: localStorage.getItem("token"),
+    })
+      .then(handleResponse)
+      .then((data) => {
+        console.log(data);
+        if (changeFE) setInfo((prev) => ({ ...prev, ...reqData }));
+      })
+      .catch(console.log);
+  };
   return (
-    <StyledBtmSec>
-      {[].length ? (
-        <></>
-      ) : (
-        <div className="flex-col align-center">
-          <img
-            className="default-img"
-            src={imgLink("empty-state/empty-state-created-content")}
-            alt=""
-          />
-          <p className="fw-600">Create your first quiz or lesson</p>
-          <button className="mt-4 create-btn b-radius-3">Create</button>
-        </div>
-      )}
+    <StyledBtmSec className="flex justify-center">
+      <div>
+        <Form
+          heading="Account"
+          initialValues={{ email, name }}
+          fieldsInfo={[
+            {
+              label: "Email",
+              name: "email",
+              placeholder: "Email",
+              type: "email",
+            },
+            {
+              label: "Username",
+              name: "name",
+              placeholder: "Username",
+              type: "text",
+            },
+          ]}
+          validateOnChange={false}
+          validateOnBlur={false}
+          validate={({ email, name }) => {
+            const errors = {};
+            if (!email.length) {
+              errors.email = "Please enter your new email address.";
+            }
+            if (!name.length) {
+              errors.password = "Please enter your new username.";
+            }
+            return errors;
+          }}
+          handleSubmit={(values, { setSubmitting }) => {
+            changeInfo(values, true);
+          }}
+          submitText="Save Changes"
+          submitting={submitState.submitting}
+          submitError={submitState.submitError}
+        />
+        <Form
+          heading="Password"
+          initialValues={{ oldPassword: "", password: "", rePassword: "" }}
+          fieldsInfo={[
+            {
+              label: "Old Password",
+              name: "oldPassword",
+              placeholder: "Old Password",
+              type: "password",
+            },
+            {
+              label: "New Password",
+              name: "password",
+              placeholder: "New Password",
+              type: "password",
+            },
+            {
+              label: "Retype Password",
+              name: "rePassword",
+              placeholder: "Retype Password",
+              type: "password",
+            },
+          ]}
+          validateOnChange={false}
+          validateOnBlur={false}
+          validate={({ oldPassword, password, rePassword }) => {
+            const errors = {};
+            if (!oldPassword.length) {
+              errors.oldPassword = "Please enter your old password.";
+            }
+            if (!password.length) {
+              errors.password = "Please enter your new password.";
+            }
+            if (!rePassword.length || password !== rePassword) {
+              errors.rePassword = "Please re-enter your new password.";
+            }
+            return errors;
+          }}
+          handleSubmit={(values, { setSubmitting }) => {
+            changeInfo({ password: values.password }, false);
+          }}
+          submitText="Save Changes"
+          submitting={submitState.submitting}
+          submitError={submitState.submitError}
+        />
+      </div>
     </StyledBtmSec>
   );
 }
 
-const StyledBtmSec = styled.div`
-  .default-img {
-    width: 15rem;
-    height: 15rem;
-  }
-  .create-btn {
-    padding: 0.5rem 2rem;
-    background-color: ${getColor("primary")};
-    color: white;
-    font-size: 1.125rem;
-    &:hover {
-      background-color: ${getColor("primaryHover")};
-    }
-  }
-`;
+const StyledBtmSec = styled.div``;

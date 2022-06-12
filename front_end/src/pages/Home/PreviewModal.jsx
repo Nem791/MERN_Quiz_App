@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { CLOSE_PREVIEW } from "../../app/uiSlice";
 import Modal from "../../components/Modal";
 import { _QUEST_SET_TYPES } from "../../configs";
-import { renderBackendImg } from "../../helpers/misc";
+import { backendImg } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 
 export default function PreviewModal() {
@@ -22,19 +22,20 @@ export default function PreviewModal() {
   const dispatch = useDispatch();
   const location = useLocation();
   const close = () => dispatch(CLOSE_PREVIEW());
+  const setType = _QUEST_SET_TYPES[type];
 
   return (
     <Modal close={close}>
       <StyledPreview className="p-4 b-radius-3 flex-col">
-        <img className="cover-image" src={renderBackendImg(quiz_img)} alt="" />
+        <img className="cover-image" src={backendImg(quiz_img)} alt="" />
         <h3 className="mt-3">{title}</h3>
         <div className="mt-2 flex">
           <span className="mr-2">{numberOfQuestion} questions</span>-
-          <span className="ml-2 capitalize">{type}</span>
+          <span className="ml-2 capitalize">{setType}</span>
         </div>
         <p className="mt-2">{completions} plays</p>
         <Link
-          to={`/${_QUEST_SET_TYPES[type]}/${_id}`}
+          to={`/${setType}/${_id}`}
           state={{ root: location.pathname }}
           className="mt-3 mx-auto"
         >

@@ -3,41 +3,51 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useGetSearchResultsQuery } from "../../app/thunks";
 import Navbar from "./NavBar";
-import SetList from "./SetList";
+import QuizSet from "../../components/QuizSet";
 
 export default function Search() {
   const params = useParams();
   const [filter, setFilter] = useState({
     tags: "English",
-    size: "1,10",
+    size: "1, 10",
     sort: "dateAsc",
   });
   const [query, setQuery] = useState("");
+  const { data } = useGetSearchResultsQuery(params.key + query);
+  console.log(data);
 
   const changeQuery = () => {
     let result = Object.entries(filter).map(
       ([key, value]) => `${key}=${value}`
     );
     result = "?" + result.join("&");
-    console.log(result);
     setQuery(result);
   };
 
-  const { data } = useGetSearchResultsQuery(params.key + query);
-  console.log(data);
-
   return (
-    <StyledSearch className="full-w full-h">
+    <StyledSearch className="full-w">
       <Navbar filter={filter} setFilter={setFilter} changeQuery={changeQuery} />
-      <div>
-        <div>{data && <SetList data={data} />}</div>
-        <div></div>
-      </div>
+      {data && (
+        <div className="flex justify-center">
+          <div className="set-list flex-col pr-3">
+            {data.map((info) => (
+              <QuizSet key={info._id} {...info} showOwner={true} />
+            ))}
+          </div>
+        </div>
+      )}
     </StyledSearch>
   );
 }
 
 const StyledSearch = styled.div`
   margin-top: 7.75rem;
+  margin-bottom: 5rem;
   padding: 0 2rem;
+  min-height: 100%;
+  .set-list {
+    width: 60%;
+    min-width: 360px;
+    gap: 0.5rem;
+  }
 `;

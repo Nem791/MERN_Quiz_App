@@ -7,9 +7,7 @@ import { _PASSWORD_MIN_LEN } from "../../configs";
 
 export default function LoginForm({ close }) {
   const dispatch = useDispatch();
-  const submitting = useSelector((state) => state.user.reqPending);
-  const submitError = useSelector((state) => state.user.reqError);
-
+  const { reqPending, reqError } = useSelector((state) => state.user.formInfo);
   const closeForm = () => {
     dispatch(RESET_ERROR());
     close();
@@ -40,8 +38,8 @@ export default function LoginForm({ close }) {
           // close();
           // }, 2000);
         }}
-        submitting={submitting}
-        submitError={submitError}
+        submitting={reqPending}
+        submitError={reqError}
         close={closeForm}
       />
     </Modal>

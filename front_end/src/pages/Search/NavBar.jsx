@@ -2,6 +2,7 @@ import { FaCaretDown, FaSearch } from "react-icons/fa";
 import styled from "styled-components";
 import DropdownButton from "../../components/DropdownButton";
 import { getColor } from "../../styledComponents/helpers";
+import { boxShadows } from "../../theme";
 
 const _TAGS = [
   "Biology",
@@ -24,13 +25,14 @@ const convertSort = {
 export default function Navbar({ filter, setFilter, changeQuery }) {
   return (
     <StyledNavbar className="flex align-end">
-      <div className="full-w flex align-center">
+      <div className="mb-3 full-w flex align-center">
         <DropdownButton
           width="9rem"
           btnText={filter.tags}
           IconRight={FaCaretDown}
           iconRightCn="ml-auto"
           collapseCn="collapse"
+          listWrapperCn="list-wrapper"
           listItems={_TAGS}
           renderItem={(tags) => (
             <p
@@ -51,6 +53,7 @@ export default function Navbar({ filter, setFilter, changeQuery }) {
           IconRight={FaCaretDown}
           iconRightCn="ml-auto"
           collapseCn="collapse"
+          listWrapperCn="list-wrapper"
           listItems={_SIZE}
           renderItem={(range) => (
             <p
@@ -64,13 +67,14 @@ export default function Navbar({ filter, setFilter, changeQuery }) {
             </p>
           )}
         />
-        <p className="ml-2 mr-5">Questions</p>
+        <p className="ml-1 mr-5">questions</p>
         <DropdownButton
           width="9rem"
           btnText={convertSort[filter.sort]}
           IconRight={FaCaretDown}
           iconRightCn="ml-auto"
           collapseCn="collapse"
+          listWrapperCn="list-wrapper"
           listItems={_SORT}
           renderItem={(sort) => (
             <p
@@ -101,6 +105,9 @@ const StyledNavbar = styled.div`
   width: calc(100vw - 264px);
   padding: 0 1.5rem;
   height: 4rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background-color: white;
+  box-shadow: ${boxShadows.common};
   .btn {
     padding: 0.5rem 0.75rem;
     border: 1px solid ${getColor("dividerLight")};
@@ -114,6 +121,8 @@ const StyledNavbar = styled.div`
     right: 0;
     left: 0;
     z-index: 1;
+  }
+  .list-wrapper {
     border: 1px solid ${getColor("dividerLight")};
     border-radius: 0.25rem;
     background-color: ${getColor("white1")};
@@ -123,6 +132,5 @@ const StyledNavbar = styled.div`
   }
   .search-btn {
     border: ${getColor("dividerLight")};
-    background-color: white;
   }
 `;

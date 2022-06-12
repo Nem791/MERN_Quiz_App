@@ -1,9 +1,12 @@
 // import "katex/dist/katex.min.css";
+import { useEffect } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 // import { BlockMath } from "react-katex";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
+import { AUTO_LOGIN } from "./app/userSlice";
+import callApi, { handleResponse } from "./helpers/callApi";
 import Creator from "./pages/Creator";
 import Explore from "./pages/Explore";
 import Home from "./pages/Home";
@@ -23,6 +26,23 @@ const StyledApp = styled.div`
 export default function App() {
   const mode = useSelector((state) => state.ui.mode);
   const userId = useSelector((state) => state.user._id);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      callApi({
+        endpoint: "users/check-login-status",
+        method: "POST",
+        token,
+      })
+        .then(handleResponse)
+        .then((data) => {
+          dispatch(AUTO_LOGIN(data));
+        })
+        .catch(console.log);
+    }
+  }, []);
 
   return (
     <ThemeProvider theme={colors[mode]}>

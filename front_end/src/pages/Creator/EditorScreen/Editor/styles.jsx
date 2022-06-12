@@ -54,7 +54,4 @@ export const BottomPart = styled.div`
       border-color: ${getColor("error")} transparent transparent transparent;
     }
   }
-  .top-tooltip.warnNoText {
-    transform: scale(1);
-  }
 `;

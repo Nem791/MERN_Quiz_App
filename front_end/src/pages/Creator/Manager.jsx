@@ -5,8 +5,9 @@ import { MdEdit } from "react-icons/md";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import CreateModal from "../../components/CreateModal";
+import { _SERVER } from "../../configs";
 import { handleResponse } from "../../helpers/callApi";
-import { renderBackendImg } from "../../helpers/misc";
+import { backendImg } from "../../helpers/misc";
 import { getColor } from "../../styledComponents/helpers";
 import { mausac } from "../../theme";
 
@@ -29,7 +30,7 @@ export default function Manager({ img, setImg }) {
         }}
       >
         {img ? (
-          <img className="cover-img" src={renderBackendImg(img)} alt="" />
+          <img className="cover-img" src={backendImg(img)} alt="" />
         ) : (
           <>
             <div className="icon-wrapper b-radius-round flex-center">
@@ -49,8 +50,7 @@ export default function Manager({ img, setImg }) {
             formData.append("image", image);
             formData.append("_id", setId);
             formData.append("title", name);
-            fetch("http://localhost:3000/quizzes/store-quiz-set", {
-              // fetch("https://quiz-app-791.herokuapp.com/quizzes/store-quiz-set", {
+            fetch(`${_SERVER}/quizzes/store-quiz-set`, {
               headers: {
                 "Contetnt-Type": undefined,
                 authorization: localStorage.getItem("token"),

@@ -46,6 +46,8 @@ export default function MyForm({
   submitError,
   successMsg,
   close,
+  validateOnChange = true,
+  validateOnBlur = true,
 }) {
   const msg = submitError || successMsg;
   return (
@@ -62,6 +64,8 @@ export default function MyForm({
           initialValues={initialValues}
           validate={validate}
           onSubmit={handleSubmit}
+          validateOnChange={validateOnChange}
+          validateOnBlur={validateOnBlur}
           children={({ isSubmitting }) => {
             return (
               <Form className="flex-col">
